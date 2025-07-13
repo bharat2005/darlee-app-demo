@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { useAuth } from '../../../contexts/AuthContextProvider'
+import { useAuth } from '../../contexts/AuthContextProvider'
 
-const GoogleRegister = () => {
+const GoogleAuthComp = () => {
     const {googleLogin} = useAuth()
   return (
     <View style={{width:'100%', height:50, paddingHorizontal:12}}>
@@ -15,4 +15,4 @@ const GoogleRegister = () => {
   )
 }
 
-export default GoogleRegister
+export default GoogleAuthComp

@@ -1,19 +1,24 @@
-import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Button, HelperText, TextInput } from 'react-native-paper'
-import { useAuth } from '../../../contexts/AuthContextProvider'
+import { useAuth } from '../../contexts/AuthContextProvider'
+import { router } from 'expo-router'
 
-const EmailRegister = () => {
-    const {emailRegister} = useAuth()
+const EmailAuthComp = ({origin}) => {
+    const {emailRegister, emailLogin} = useAuth()
     const validation =  Yup.object({
         email: Yup.string().required('Email is Required*').email("Should be a valid email"),
         password: Yup.string().required('Password is Required').min(6, "Char should be atlest 6")
     })
 
-    const handleRegisterFormik = async(values)=> {
+    const handleFormik = async(values)=> {
+        if(origin === 'login'){
+        await emailLogin(values?.email, values?.password)
+        } else{
         await emailRegister(values?.email, values?.password)
+        }
     }
   return (
 
@@ -23,7 +28,7 @@ const EmailRegister = () => {
         <Formik 
         initialValues={{email: '', password: ''}}
         validationSchema={validation}
-        onSubmit={handleRegisterFormik}
+        onSubmit={handleFormik}
         validateOnMount
         >
 
@@ -59,8 +64,17 @@ const EmailRegister = () => {
 
 
                         <Button mode='contained' loading={isSubmitting} disabled={isSubmitting || !isValid } onPress={handleSubmit}>
-                            Register
+                            {origin === 'login' ? 'Login' : 'Register'}
                         </Button>
+
+                        
+                        {
+                            origin === 'login' && (
+                                <TouchableOpacity style={{width:'100%'}} onPress={()=> router.push('/forgetPass')}>
+                                    <Text style={{textAlign:'center'}}>Forget Password?</Text>
+                                </TouchableOpacity>
+                            )
+                        }
 
 
                     </React.Fragment>
@@ -75,4 +89,4 @@ const EmailRegister = () => {
   )
 }
 
-export default EmailRegister
+export default EmailAuthComp

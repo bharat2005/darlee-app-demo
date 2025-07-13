@@ -1,7 +1,7 @@
 import { View, Text, Alert } from 'react-native'
 import React, { createContext, Profiler, useContext, useEffect, useState } from 'react'
 import { router } from 'expo-router'
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signOut } from '@react-native-firebase/auth'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
 import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { doc, serverTimestamp, setDoc } from '@react-native-firebase/firestore'
@@ -86,9 +86,19 @@ const AuthContextProvider = ({children}) => {
     }
   }
 
+  const emailLogin = async(email, password) =>{
+    try{
+
+    await signInWithEmailAndPassword(email, password)
+
+    } catch(err){
+      console.log('Error', err.message)
+    }
+  }
+
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin }}>
     {children}
 </AuthContext.Provider>
   )

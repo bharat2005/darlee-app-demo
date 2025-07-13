@@ -4,12 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import GoogleAuthComp from '../../src/components/Auth/GoogleAuthComp'
 import EmailAuthComp from '../../src/components/Auth/EmailAuthComp'
 
-const Register = () => {
+const Login = () => {
   return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <SafeAreaView style={{flex:1, gap:28}}>
-      
-    <EmailAuthComp />
+    <EmailAuthComp origin={'login'} />
 
     <GoogleAuthComp />
       
@@ -18,4 +17,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login
