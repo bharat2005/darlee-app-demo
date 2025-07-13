@@ -3,11 +3,15 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { router, useFocusEffect } from 'expo-router'
 import { Button } from 'react-native-paper'
+import { agreementStore } from '../../src/stores/aggrementStore'
 
 
 
 const Read = () => {
     const navigationRef = useRef(false)
+    const readTerms = agreementStore(state => state.readTerms)
+    const readPrivacy = agreementStore(state => state.readPrivacy)
+
 
     useFocusEffect(
         useCallback(()=> {
@@ -20,6 +24,8 @@ const Read = () => {
     <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}} >
         
         <Button  
+        mode='contained'
+        style={{backgroundColor:readTerms ? 'black' : 'gray'}}
         onPress={()=> {
             if(navigationRef.current) return
             navigationRef.current = true
@@ -30,6 +36,8 @@ const Read = () => {
         </Button>
 
         <Button 
+        mode='contained'
+        style={{backgroundColor:readPrivacy ? 'black' : 'gray'}}
         onPress={()=> {
             if(navigationRef.current) return
             navigationRef.current = true
@@ -42,7 +50,15 @@ const Read = () => {
 
         <View style={{position:'absolute', bottom:40, width:'100%'}}>
 
-            <Button>
+            <Button 
+            mode='contained'
+            disabled={!(readPrivacy && readTerms)}
+            onPress={()=> {
+                if (navigationRef.current) return
+                navigationRef.current = true
+                router.push('/register')
+            }}
+            >
                 Next
             </Button>
 
