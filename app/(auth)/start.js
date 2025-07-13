@@ -29,6 +29,19 @@ const Start = () => {
         Register
       </Button>
 
+
+     <Button
+     mode='text' 
+     onPress={()=> {
+        if(navigationRef.current) return
+        navigationRef.current = true
+        router.push('/login')
+      }} 
+
+      >
+        Login
+      </Button>
+
     
 
     </SafeAreaView>

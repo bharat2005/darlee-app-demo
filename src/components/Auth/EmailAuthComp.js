@@ -8,6 +8,7 @@ import { router } from 'expo-router'
 
 const EmailAuthComp = ({origin}) => {
     const {emailRegister, emailLogin} = useAuth()
+    
     const validation =  Yup.object({
         email: Yup.string().required('Email is Required*').email("Should be a valid email"),
         password: Yup.string().required('Password is Required').min(6, "Char should be atlest 6")
@@ -67,7 +68,7 @@ const EmailAuthComp = ({origin}) => {
                             {origin === 'login' ? 'Login' : 'Register'}
                         </Button>
 
-                        
+
                         {
                             origin === 'login' && (
                                 <TouchableOpacity style={{width:'100%'}} onPress={()=> router.push('/forgetPass')}>

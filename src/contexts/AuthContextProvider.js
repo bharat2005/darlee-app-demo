@@ -1,7 +1,7 @@
 import { View, Text, Alert } from 'react-native'
 import React, { createContext, Profiler, useContext, useEffect, useState } from 'react'
 import { router } from 'expo-router'
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
 import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { doc, serverTimestamp, setDoc } from '@react-native-firebase/firestore'
@@ -72,6 +72,7 @@ const AuthContextProvider = ({children}) => {
 
     } catch(err){
       console.log("Error from emailRegister",err.message)
+          Alert.alert("Error", err.message)
     }
   }
 
@@ -89,16 +90,29 @@ const AuthContextProvider = ({children}) => {
   const emailLogin = async(email, password) =>{
     try{
 
-    await signInWithEmailAndPassword(email, password)
+    await signInWithEmailAndPassword(auth,email, password)
 
     } catch(err){
-      console.log('Error', err.message)
+      console.log('Error from eamilLogin funtion', err.message)
+      Alert.alert("Error", err.message)
     }
   }
 
+
+  const forgetPass = async(email) => {
+    try{
+      await sendPasswordResetEmail(auth, email)
+      return {success:true, error: ''}
+
+    } catch(err){
+      console.log("Error from forgetPasss funtion", err.message)
+      Alert.alert("Error", err.message)
+      return {success:false, error: err.message}
+    }
+  }
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass }}>
     {children}
 </AuthContext.Provider>
   )
