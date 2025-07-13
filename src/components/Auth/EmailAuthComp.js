@@ -1,14 +1,24 @@
 import { View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Button, HelperText, TextInput } from 'react-native-paper'
 import { useAuth } from '../../contexts/AuthContextProvider'
-import { router } from 'expo-router'
+import { router, useFocusEffect } from 'expo-router'
+import { useRef } from 'react'
 
 const EmailAuthComp = ({origin}) => {
+    const navigationRef = useRef(false)
     const {emailRegister, emailLogin} = useAuth()
-    
+
+    useFocusEffect(
+        useCallback(
+            ()=> {
+                navigationRef.current = false
+            }
+        )
+    )
+
     const validation =  Yup.object({
         email: Yup.string().required('Email is Required*').email("Should be a valid email"),
         password: Yup.string().required('Password is Required').min(6, "Char should be atlest 6")
@@ -71,7 +81,15 @@ const EmailAuthComp = ({origin}) => {
 
                         {
                             origin === 'login' && (
-                                <TouchableOpacity style={{width:'100%'}} onPress={()=> router.push('/forgetPass')}>
+                                <TouchableOpacity style={{width:'100%'}} 
+                                onPress={
+                                    ()=> {
+                                        if(navigationRef.current) return
+                                        navigationRef.current = true
+                                        router.push('/forgetPass')
+                                    }
+                                }
+                                >
                                     <Text style={{textAlign:'center'}}>Forget Password?</Text>
                                 </TouchableOpacity>
                             )

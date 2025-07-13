@@ -4,7 +4,7 @@ import { router } from 'expo-router'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
 import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
-import { doc, serverTimestamp, setDoc } from '@react-native-firebase/firestore'
+import { doc, getDoc, serverTimestamp, setDoc } from '@react-native-firebase/firestore'
 
 const AuthContext = createContext()
 
@@ -14,9 +14,18 @@ const AuthContextProvider = ({children}) => {
 
   useEffect(()=> {
 
-    const unsub = onAuthStateChanged(auth, (u)=> {
+    const unsub = onAuthStateChanged(auth, async(u)=> {
       setUser(u)
-      u ? router.replace('/home') : router.replace('/start')
+      if(u){
+        const res = await getDoc(doc(db, 'users', u?.uid))
+        if(res.data()?.hasCompletedOnboarding === true){
+          router.replace('/home')
+        } else{
+          router.replace('/profileBuild')
+        }
+      } else{
+        router.replace('/start')
+      }
     })
 
     return unsub
