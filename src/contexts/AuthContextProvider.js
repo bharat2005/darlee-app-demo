@@ -1,9 +1,10 @@
 import { View, Text, Alert } from 'react-native'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, Profiler, useContext, useEffect, useState } from 'react'
 import { router } from 'expo-router'
-import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signOut } from '@react-native-firebase/auth'
-import { auth } from '../services/firebase/firebaseConfig'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signOut } from '@react-native-firebase/auth'
+import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
+import { doc, serverTimestamp, setDoc } from '@react-native-firebase/firestore'
 
 const AuthContext = createContext()
 
@@ -39,11 +40,38 @@ const AuthContextProvider = ({children}) => {
       const cred = await GoogleAuthProvider.credential(data?.idToken)
       const res = await signInWithCredential(auth, cred)
 
+      const docRef = doc(db, 'users', res?.user?.uid)
+      await setDoc(docRef, {
+        uid: res?.user?.uid,
+        profilePic: res?.user?.photoURL,
+        createdAt: serverTimestamp(),
+        email: res?.user?.email,
+        hasCompletedOnboarding: false
+      })
+
       
 
     } catch(err){
       console.log("Error from googleLogin funtion",err.message)
       Alert.alert("Error",err.message )
+    }
+  }
+
+  const emailRegister = async(email, password) => {
+    try{
+      const res = await createUserWithEmailAndPassword(auth, email, password)
+
+      const docRef = doc(db, 'users', res?.user?.uid)
+      await setDoc(docRef, {
+        uid: res?.user?.uid,
+        profilePic: '',
+        createdAt: serverTimestamp(),
+        email: res?.user?.email,
+        hasCompletedOnboarding: false
+      })
+
+    } catch(err){
+      console.log("Error from emailRegister",err.message)
     }
   }
 
@@ -60,7 +88,7 @@ const AuthContextProvider = ({children}) => {
 
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister }}>
     {children}
 </AuthContext.Provider>
   )

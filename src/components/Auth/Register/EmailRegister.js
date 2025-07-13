@@ -3,15 +3,17 @@ import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Button, HelperText, TextInput } from 'react-native-paper'
+import { useAuth } from '../../../contexts/AuthContextProvider'
 
 const EmailRegister = () => {
+    const {emailRegister} = useAuth()
     const validation =  Yup.object({
         email: Yup.string().required('Email is Required*').email("Should be a valid email"),
         password: Yup.string().required('Password is Required').min(6, "Char should be atlest 6")
     })
 
     const handleRegisterFormik = async(values)=> {
-        console.log(values)
+        await emailRegister(values?.email, values?.password)
     }
   return (
 

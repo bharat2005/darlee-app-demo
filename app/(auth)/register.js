@@ -8,13 +8,7 @@ const Register = () => {
   return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <SafeAreaView style={{flex:1, gap:28}}>
-
-
     <EmailRegister />
-
-
-
-    
 
     <GoogleRegister />
       
