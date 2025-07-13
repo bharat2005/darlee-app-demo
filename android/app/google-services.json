@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "385011330673",
+    "project_id": "darlee-b47c4",
+    "storage_bucket": "darlee-b47c4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385011330673:android:368713f0557efe1c8f75d0",
+        "android_client_info": {
+          "package_name": "com.bharat2005.darlee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385011330673-sifhg9v4bl493d4ort6uke71dfjp8i9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bharat2005.darlee",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "385011330673-raaukpvrdq57f5vs030jfggu4qt0miia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG9SFABusfCRywmidOvrkQV-WTuwYi6ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385011330673-raaukpvrdq57f5vs030jfggu4qt0miia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
