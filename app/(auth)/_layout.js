@@ -5,6 +5,8 @@ const AuthLayout = () => {
   return (
 <Stack screenOptions={{headerShown:false}} >
   <Stack.Screen name='start' />
+    <Stack.Screen name='read' />
+      <Stack.Screen name='textScreen' />
 </Stack>
   )
 }
