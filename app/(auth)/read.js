@@ -40,7 +40,7 @@ const Read = () => {
             Privacy
         </Button>
 
-        <View style={{position:'absolute', bottom:40}}>
+        <View style={{position:'absolute', bottom:40, width:'100%'}}>
 
             <Button>
                 Next
