@@ -21,7 +21,7 @@ const AuthContextProvider = ({children}) => {
         if(res.data()?.hasCompletedOnboarding === true){
           router.replace('/home')
         } else{
-          router.replace('/profileBuild')
+          router.replace('/(profileBuild)')
         }
       } else{
         router.replace('/start')
