@@ -1,10 +1,11 @@
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState } from 'react'
-import { format } from 'date-fns'
+import { format, set } from 'date-fns'
 import DatePicker, {} from 'react-native-date-picker'
 import Feather from '@expo/vector-icons/Feather';
+import { Menu } from 'react-native-paper';
 
-const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFeildValue, exPrimaryText, exSecondaryText, expandable}) => {
+const NumInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFeildValue, exPrimaryText, exSecondaryText, expandable, numlength=5, startNum=1}) => {
   const [open, setOpen] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
   return (
@@ -19,10 +20,28 @@ const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setF
         )}
 
 
+        <Menu
+        visible={open}
+        contentStyle={{width:300, height:400, backgroundColor:'white'}}
+        onDismiss={()=>setOpen(false)}
+        anchor={
         <TouchableOpacity onPress={()=> setOpen(true)} style={{width:'100%', height:50, flexDirection:'row', borderWidth:1, borderColor:'black', borderRadius:6, justifyContent:'space-between', paddingHorizontal:8, alignItems:'center'}}>
-          <Text>{format(value, 'yyyy/MM/dd')}</Text>
+          <Text>{value}</Text>
           <Feather name="chevron-down" size={24} color="black" />
         </TouchableOpacity>
+        }
+        >
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {
+              [...Array(numlength)].map((item, index)=> (
+                <React.Fragment key={index}>
+                    <Menu.Item title={index + startNum} onPress={()=> {setFeildValue(index + startNum); setOpen(false)}} />
+                </React.Fragment>
+              ))
+            }
+          </ScrollView>
+
+        </Menu>
 
 
 
@@ -44,22 +63,6 @@ const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setF
 
 
 
-      <DatePicker
-        modal
-        title={'Date of Birth'}
-        open={open}
-        mode='date'
-        date={value}
-        onConfirm={(date) => {
-          setOpen(false)
-          setFeildValue(date)
-        }}
-        onCancel={() => {
-          setOpen(false)
-        }}
-      />
-
-
 
 
 
@@ -71,4 +74,4 @@ const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setF
   )
 }
 
-export default DateInputCard
+export default NumInputCard
