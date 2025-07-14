@@ -4,8 +4,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const NextButton = ({handleNextPress, setCurrentIndex, currentIndex}) => {
 
-    if(currentIndex >= 3) return
-
   return (
     <View
       style={{

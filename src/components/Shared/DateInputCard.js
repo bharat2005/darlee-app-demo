@@ -2,6 +2,7 @@ import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { format } from 'date-fns'
 import DatePicker, {} from 'react-native-date-picker'
+import Feather from '@expo/vector-icons/Feather';
 
 const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFeildValue}) => {
   const [open, setOpen] = useState('')
@@ -17,9 +18,9 @@ const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setF
         )}
 
 
-        <TouchableOpacity style={{width:'100%', borderWidth:1, borderColor:'black', borderRadius:6, justifyContent:'space-between', paddingHorizontal:8, alignItems:'center'}}>
+        <TouchableOpacity onPress={()=> setOpen(true)} style={{width:'100%', height:50, flexDirection:'row', borderWidth:1, borderColor:'black', borderRadius:6, justifyContent:'space-between', paddingHorizontal:8, alignItems:'center'}}>
           <Text>{format(value, 'yyyy/MM/dd')}</Text>
-          
+          <Feather name="chevron-down" size={24} color="black" />
         </TouchableOpacity>
 
 

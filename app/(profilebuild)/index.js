@@ -35,7 +35,7 @@ const ProfileBuild = () => {
 
    
     <SafeAreaView style={{ flex:1, width:'100%'}}>
-         <KeyboardAvoidingView style={{flex:1}} behavior='height' >
+        
 
         <Formik
         initialValues={{
@@ -74,7 +74,7 @@ const ProfileBuild = () => {
         </Formik>
 
 
-    </KeyboardAvoidingView>
+
     </SafeAreaView>
 
 
