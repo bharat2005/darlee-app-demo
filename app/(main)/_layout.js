@@ -6,6 +6,10 @@ const MainLayout = () => {
   return (
 <Tabs screenOptions={{headerShown:false}}>
 <Tabs.Screen name='home' />
+<Tabs.Screen name='chat' />
+<Tabs.Screen name='love' />
+<Tabs.Screen name='magzine' />
+<Tabs.Screen name='calander' />
 </Tabs>
   )
 }
