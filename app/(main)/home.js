@@ -5,12 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useAuth } from '../../src/contexts/AuthContextProvider'
 
 const Home = () => {
-  const {logout} = useAuth()
+
   return (
     <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-      <Button onPress={logout} mode='outlined'>
-        Logout
-      </Button>
+
     </SafeAreaView>
   )
 }
