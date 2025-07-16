@@ -4,7 +4,7 @@ import { router } from 'expo-router'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
 import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
-import { doc, getDoc, serverTimestamp, setDoc } from '@react-native-firebase/firestore'
+import { doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc } from '@react-native-firebase/firestore'
 
 const AuthContext = createContext()
 
@@ -119,9 +119,26 @@ const AuthContextProvider = ({children}) => {
       return {success:false, error: err.message}
     }
   }
+
+  const profileBuild = async(values) => {
+    try{
+
+      await  setDoc(doc(db, 'users', auth.currentUser?.uid), {
+        ...values,
+        dob:Timestamp.fromDate(values?.dob),
+        recentPeriodDate: Timestamp.fromDate(values?.recentPeriodDate),
+        hasCompletedOnboarding:true
+      }, {merge:true})
+
+      router.replace('/home')
+      
+    } catch (err){
+      console.log("Error from profileBuild function", err.message)
+    }
+  }
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild }}>
     {children}
 </AuthContext.Provider>
   )

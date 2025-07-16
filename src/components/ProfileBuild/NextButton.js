@@ -1,8 +1,10 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Button } from "react-native-paper";
 
-const NextButton = ({handleNextPress, setCurrentIndex, currentIndex}) => {
+const NextButton = ({handleNextPress, setCurrentIndex, currentIndex, isCurrentStepValid, values}) => {
+  if(currentIndex > 3 ) return
 
   return (
     <View
@@ -14,23 +16,23 @@ const NextButton = ({handleNextPress, setCurrentIndex, currentIndex}) => {
         paddingHorizontal: 8,
       }}
     >
-      <TouchableOpacity
+      <Button
+      mode='contained'
+      disabled={!isCurrentStepValid(values)}
       onPress={()=> {
         setCurrentIndex(prev => prev + 1)
         handleNextPress()
       }}
-        style={{
-          height: "100%",
-          width: "100%",
-          backgroundColor:'black',
-          borderRadius: 12,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+      contentStyle={{
+        height:'100%'
+      }}
+      height={{
+        height:'100%'
+      }}
 
       >
         <Text style={{color:'white'}} >Next</Text>
-      </TouchableOpacity>
+      </Button>
     </View>
   );
 };

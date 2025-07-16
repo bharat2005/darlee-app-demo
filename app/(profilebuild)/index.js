@@ -12,6 +12,7 @@ import Control from '../../src/components/ProfileBuild/Control'
 import End from '../../src/components/ProfileBuild/End'
 import NextButton from '../../src/components/ProfileBuild/NextButton'
 import { KeyboardAvoidingView } from 'react-native'
+import { useAuth } from '../../src/contexts/AuthContextProvider'
 
 
 const steps = [Name, DOB, Period, Symptom, Interest, Concious, Control, End]
@@ -19,6 +20,8 @@ const steps = [Name, DOB, Period, Symptom, Interest, Concious, Control, End]
 const ProfileBuild = () => {
     const flatListRef = useRef()
     const [currentIndex, setCurrentIndex]= useState(0)
+    const {profileBuild} = useAuth()
+
 
 
     const handleNextPress = () => {
@@ -30,6 +33,23 @@ const ProfileBuild = () => {
             })
         }
     }
+
+
+    const isCurrentStepValid = (values) => {
+        if(currentIndex === 0){
+            return values?.name.trim()
+        } else if (currentIndex === 3){
+            return values?.pmsSymptoms.length
+        } else {
+            return true
+        }
+    }
+
+    const handleFormSubmit = async(values) => {
+        await profileBuild(values)
+    }
+
+
   return (
 
 
@@ -38,6 +58,7 @@ const ProfileBuild = () => {
         
 
         <Formik
+        onSubmit={handleFormSubmit}
         initialValues={{
           name: "",
           dob: new Date("2005-05-25"),
@@ -51,7 +72,7 @@ const ProfileBuild = () => {
         }}  
         >
             {
-                ({handleBlur, handleChange, handleReset, handleSubmit, touched, errors, values, setFieldValue})=>(
+                ({handleBlur, handleChange, handleReset, handleSubmit, touched, errors, values, setFieldValue, isSubmitting})=>(
                     <View style={{flex:1, width:'100%'}}>
 
                         <FlatList
@@ -60,13 +81,13 @@ const ProfileBuild = () => {
                         showsHorizontalScrollIndicator={false}
                         horizontal
                         data={steps}
-                        scrollEnabled={true}
+                        scrollEnabled={false}
                         keyExtractor={(item, index)=> index.toString()}
-                        renderItem={({item:Step, index})=> <Step width={Dimensions.get('screen').width} {...{handleBlur, handleChange, handleReset, handleSubmit, touched, errors, values, setFieldValue}} />}
+                        renderItem={({item:Step, index})=> <Step handleSubmit={handleSubmit} handleNextPress={handleNextPress} setCurrentIndex={setCurrentIndex} width={Dimensions.get('screen').width} {...{handleBlur, handleChange, handleReset, handleSubmit, isSubmitting, touched, errors, values, setFieldValue}} />}
                         />
 
 
-                        <NextButton currentIndex={currentIndex} handleNextPress={handleNextPress} setCurrentIndex={setCurrentIndex} />
+                        <NextButton values={values} isCurrentStepValid={isCurrentStepValid} currentIndex={currentIndex} handleNextPress={handleNextPress} setCurrentIndex={setCurrentIndex} />
 
                     </View>
                 )
