@@ -16,16 +16,12 @@ const Magzines = () => {
   ])
   const {data = [], error} = useAllStarred()
 
-  const starredCardIds = useMemo(()=> {
-    return data?.map(item => item?.docId)
-  }, [data])
-
 
 
 
 
   const renderScene = ({route}) => {
-    const props = { starredCardIds}
+    const props = {data}
     switch (route.key){
       case 'content' :
         return <Content  {...props} />

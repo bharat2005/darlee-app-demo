@@ -1,16 +1,22 @@
 import { View, Text, Dimensions } from 'react-native'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import SelfCare from './SelfCare'
 import HormoneGuide from './HormoneGuide'
 import { TabView, SceneMap } from 'react-native-tab-view';
 import ContentTabBar from './ContentTabBar';
 
-const Content = ({starredCardIds}) => {
+const Content = ({data}) => {
     const [index, setIndex] = useState(0);
     const [routes, setRoutes] = useState([
   { key: 'selfCare', title: 'Selfcare' },
   { key: 'hormoneGuide', title: 'Hormoneguide' },
 ])
+
+  const starredCardIds = useMemo(()=> {
+    return data?.map(item => item?.docId)
+  }, [data])
+
+
 
 const renderScene = ({route}) => {
    const props = {type: route.key, starredCardIds}
