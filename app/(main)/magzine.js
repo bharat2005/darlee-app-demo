@@ -1,5 +1,5 @@
 import { View, Text, Dimensions } from 'react-native'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TabView } from 'react-native-tab-view'
 import Favorite from '../../src/components/Magzine/Favorite/Favorite'
@@ -16,12 +16,16 @@ const Magzines = () => {
   ])
   const {data = [], error} = useAllStarred()
 
+  const starredCardIds = useMemo(()=> {
+    return data?.map(item => item?.docId)
+  }, [data])
+
 
 
 
 
   const renderScene = ({route}) => {
-    const props = { starredCardIds: data}
+    const props = { starredCardIds}
     switch (route.key){
       case 'content' :
         return <Content  {...props} />

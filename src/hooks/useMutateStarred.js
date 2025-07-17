@@ -17,10 +17,12 @@ export const useMutateStarred = (id, type) => {
             }
         },
         onMutate:async({isStarred})=> {
-            await queryClient.cancelQueries(['starred', id])
-            const prevCAtched = queryClient.getQueryData(['starred', id])
+            await queryClient.cancelQueries(['allStarred'])
+            const prevCAtched = queryClient.getQueryData(['allStarred'])
 
-            queryClient.setQueryData(['starred', id], prev => !prev)
+            queryClient.setQueryData(['allStarred'], prev => {
+               return isStarred ? prev.filter(item => item !== id) : [...prev, id]
+            })
 
             return{
                 prevCAtched
@@ -28,10 +30,10 @@ export const useMutateStarred = (id, type) => {
 
         },
         onSuccess: ()=> {
-            queryClient.invalidateQueries(['starred', id])
+            queryClient.invalidateQueries(['allStarred'])
         },
         onError:(a,b,context)=> {
-            queryClient.setQueryData(['starred', id], context.prevCAtched)
+            queryClient.setQueryData(['allStarred'], context.prevCAtched)
         }
     })
 }
