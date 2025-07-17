@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, orderBy, query, startAfter, where } from "@react-native-firebase/firestore"
+import { collection, getDoc, getDocs, limit, orderBy, query, startAfter, where } from "@react-native-firebase/firestore"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { db } from "../services/firebase/firebaseConfig"
 
@@ -16,7 +16,7 @@ export const useCards = (id) => {
             const lastDocRef = res.docs[res?.docs?.length - 1]
 
             return {
-                list : res.docs?.map(doc => doc.data()),
+                list : res.docs?.map(doc => ({docId: doc.id,...doc.data()})),
                 lastDocRef,
             }
         },

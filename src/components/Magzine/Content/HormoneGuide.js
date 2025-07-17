@@ -1,7 +1,8 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import React, { useMemo } from 'react'
 import CardList from './CardList'
 import { useCardList } from '../../../hooks/useCardList'
+
 
 const HormoneGuide = ({type}) => {
   const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage} = useCardList(type)
@@ -21,6 +22,7 @@ const HormoneGuide = ({type}) => {
       data={cleandedList}
       onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
       onEndReachedThreshold={0}
+      ListFooterComponent={isFetchingNextPage && <View style={{ width:'100%', padding:12}} ><ActivityIndicator color={'black'} size={44}  style={{alignSelf:'center'}} /></View>}
       keyExtractor={(item, index)=> index.toString()}
       showsHorizontalScrollIndicator={false}
       renderItem={({item, index})=> <CardList listData={item} />}
