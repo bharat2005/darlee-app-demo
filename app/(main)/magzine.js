@@ -5,6 +5,7 @@ import { TabView } from 'react-native-tab-view'
 import Favorite from '../../src/components/Magzine/Favorite/Favorite'
 import Content from '../../src/components/Magzine/Content/Content'
 import MagzineTabBar from '../../src/components/Magzine/MagzineTabBar'
+import { useAllStarred } from '../../src/hooks/useAllStarred'
 
 
 const Magzines = () => {
@@ -13,15 +14,19 @@ const Magzines = () => {
     {title: 'Content', key: 'content'},
     {title: 'Favorite', key: 'fav'},
   ])
+  const {data = [], error} = useAllStarred()
+
+
 
 
 
   const renderScene = ({route}) => {
+    const props = { starredCardIds: data}
     switch (route.key){
       case 'content' :
-        return <Content />
+        return <Content  {...props} />
       case 'fav':
-        return <Favorite />
+        return <Favorite {...props} />
     }
 
   }

@@ -5,7 +5,7 @@ import HormoneGuide from './HormoneGuide'
 import { TabView, SceneMap } from 'react-native-tab-view';
 import ContentTabBar from './ContentTabBar';
 
-const Content = () => {
+const Content = ({starredCardIds}) => {
     const [index, setIndex] = useState(0);
     const [routes, setRoutes] = useState([
   { key: 'selfCare', title: 'Selfcare' },
@@ -13,7 +13,7 @@ const Content = () => {
 ])
 
 const renderScene = ({route}) => {
-   const props = {type: route.key}
+   const props = {type: route.key, starredCardIds}
   switch (route.key){
     case 'selfCare':
       return <SelfCare {...props} />

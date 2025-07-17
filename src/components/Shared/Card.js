@@ -3,7 +3,7 @@ import React from 'react'
 import { router } from 'expo-router'
 import StartButton from './StartButton'
 
-const Card = ({cardData}) => {
+const Card = ({cardData, type, isStarred}) => {
   return (
         <View style={{height:'100%', width:160, paddingHorizontal:4}}>
 
@@ -13,7 +13,7 @@ const Card = ({cardData}) => {
 
             <View style={{position:'absolute', bottom:18, right:18}}>
 
-              <StartButton cardId={cardData?.docId} />
+              <StartButton isStarred={isStarred} type={type} cardId={cardData?.docId} />
 
             </View>
 

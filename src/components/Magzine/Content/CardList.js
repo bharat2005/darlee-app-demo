@@ -5,7 +5,7 @@ import { useCards } from '../../../hooks/useCards'
 import { router } from 'expo-router'
 import Card from '../../Shared/Card'
 
-const CardList = ({listData, type}) => {
+const CardList = ({listData, type, starredCardIds}) => {
   const {data, error, hasNextPage, isFetchingNextPage, fetchNextPage} = useCards(listData?.id)
     
 
@@ -28,7 +28,7 @@ const CardList = ({listData, type}) => {
         onEndReachedThreshold={0}
         ListFooterComponent={isFetchingNextPage && <View  style={{height:160, width:160, paddingHorizontal:4}}><View  style={{height:'100%', width:'100%', backgroundColor:'lightgray', borderRadius:8}} /></View>}
         data={cleanedList}
-        renderItem={({item, index})=> <Card type={type} cardData={item} />}
+        renderItem={({item, index})=> <Card type={type} cardData={item} isStarred={starredCardIds.includes(item?.docId)} />}
         keyExtractor={(item, index)=> index.toString()}
 
         />

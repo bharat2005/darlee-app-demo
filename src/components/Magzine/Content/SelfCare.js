@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import CardList from './CardList'
 import { useCardList } from '../../../hooks/useCardList'
 
-const SelfCare = ({type}) => {
+const SelfCare = ({type, starredCardIds}) => {
   const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage} = useCardList(type)
 
   const cleandedList = useMemo(()=> {
@@ -23,7 +23,7 @@ const SelfCare = ({type}) => {
       onEndReachedThreshold={0}
       keyExtractor={(item, index)=> index.toString()}
       showsHorizontalScrollIndicator={false}
-      renderItem={({item, index})=> <CardList type={type} listData={item} />}
+      renderItem={({item, index})=> <CardList starredCardIds={starredCardIds} type={type} listData={item} />}
       />
       
     </View>

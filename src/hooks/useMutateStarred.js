@@ -10,14 +10,28 @@ export const useMutateStarred = (id, type) => {
             if(isStarred){
                 await deleteDoc(docRef)
             } else {
-                setDoc(docRef, {
+              await setDoc(docRef, {
                     createdAt:serverTimestamp(),
                     type: type
                 })
             }
         },
+        onMutate:async({isStarred})=> {
+            await queryClient.cancelQueries(['starred', id])
+            const prevCAtched = queryClient.getQueryData(['starred', id])
+
+            queryClient.setQueryData(['starred', id], prev => !prev)
+
+            return{
+                prevCAtched
+            }
+
+        },
         onSuccess: ()=> {
             queryClient.invalidateQueries(['starred', id])
+        },
+        onError:(a,b,context)=> {
+            queryClient.setQueryData(['starred', id], context.prevCAtched)
         }
     })
 }

@@ -4,7 +4,7 @@ import CardList from './CardList'
 import { useCardList } from '../../../hooks/useCardList'
 
 
-const HormoneGuide = ({type}) => {
+const HormoneGuide = ({type, starredCardIds}) => {
   const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage} = useCardList(type)
 
 
@@ -25,7 +25,7 @@ const HormoneGuide = ({type}) => {
       ListFooterComponent={isFetchingNextPage && <View style={{ width:'100%', padding:12}} ><ActivityIndicator color={'black'} size={44}  style={{alignSelf:'center'}} /></View>}
       keyExtractor={(item, index)=> index.toString()}
       showsHorizontalScrollIndicator={false}
-      renderItem={({item, index})=> <CardList type={type} listData={item} />}
+      renderItem={({item, index})=> <CardList starredCardIds={starredCardIds} type={type} listData={item} />}
       />
       
     </View>
