@@ -9,19 +9,25 @@ import ChatTextInput from '../../src/components/Chat/ChatTextInput'
 
 const Chat = () => {
   const [messagesList, setMessagesList] = useState([])
+  const [loading, setLoading] = useState(false)
 
 
  useEffect(()=> {
   const q = query(collection(db,'users', auth?.currentUser?.uid, 'messages'), orderBy('createdAt', 'desc'))
+
   const unsub = onSnapshot(q, async(snapShot)=> {
     setMessagesList(snapShot.docs.map(doc => doc.data()))
+
+    if(snapShot.docs[0]?.data()?.role === 'user'){
+      setLoading(true)
+    }
 
     if(snapShot.docs?.length === 0){
       try{
 
-              await addDoc(collection(db, 'users', auth?.currentUser?.uid, 'messages')<{
+        await addDoc(collection(db, 'users', auth?.currentUser?.uid, 'messages'),{
         role: 'model',
-        text: '',
+        text: 'Hey! How are you feeling today?',
         createdAt: serverTimestamp()
       })
 
@@ -37,6 +43,8 @@ const Chat = () => {
     
   }, [])
 
+ 
+
 
 
   return (
@@ -45,9 +53,9 @@ const Chat = () => {
 
         <MainTopBar title='Chat' type='chat' />
 
-        <ChatList messagesList={messagesList} />
+        <ChatList loading={loading} messagesList={messagesList} />
 
-        <ChatTextInput />
+        <ChatTextInput setLoading={setLoading} setMessagesList={setMessagesList} />
 
         
 
