@@ -8,6 +8,7 @@ const ChatList = ({messagesList=[], loading}) => {
 
         <FlatList 
         inverted
+        contentContainerStyle={{paddingVertical:12}}
         ListHeaderComponent={ loading && <View style={{flexDirection:'row', width:'100%', height:48, paddingHorizontal:24}}><ActivityIndicator color='black' size={30} /></View>}
         data={messagesList}
         keyExtractor={(item, index)=> index.toString()}

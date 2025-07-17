@@ -6,6 +6,7 @@ import ChatList from '../../src/components/Chat/ChatList'
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp } from '@react-native-firebase/firestore'
 import { auth, db } from '../../src/services/firebase/firebaseConfig'
 import ChatTextInput from '../../src/components/Chat/ChatTextInput'
+import { messagePretter } from '../../src/utils/messagePretter'
 
 const Chat = () => {
   const [messagesList, setMessagesList] = useState([])
@@ -16,7 +17,8 @@ const Chat = () => {
   const q = query(collection(db,'users', auth?.currentUser?.uid, 'messages'), orderBy('createdAt', 'desc'))
 
   const unsub = onSnapshot(q, async(snapShot)=> {
-    setMessagesList(snapShot.docs.map(doc => doc.data()))
+    setMessagesList(messagePretter(snapShot.docs.map(doc => doc.data())))
+   
 
     if(snapShot.docs[0]?.data()?.role === 'user'){
       setLoading(true)
@@ -49,7 +51,7 @@ const Chat = () => {
 
   return (
     <KeyboardAvoidingView style={{flex:1}} behavior='height'>
-      <SafeAreaView style={{flex:1}} edges={['top']}>
+      <SafeAreaView style={{flex:1, backgroundColor:'white'}} edges={['top']}>
 
         <MainTopBar title='Chat' type='chat' />
 

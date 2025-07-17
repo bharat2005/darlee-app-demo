@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { geminiMessageSend } from '../../services/gemini/geminiMessageSend'
 
+
 const ChatTextInput = ({setMessagesList, setLoading}) => {
     const [text, setText] = useState('')
 
@@ -21,16 +22,24 @@ const ChatTextInput = ({setMessagesList, setLoading}) => {
 
 
   return (
-    <View style={{width:'100%', flexDirection:'row', height:55}}>
+    <View style={{width:'100%', flexDirection:'row', alignItems:'flex-end', padding:4, backgroundColor:'pink'}}>
+
+      <View style={{flex:1, paddingHorizontal:2 }}>
 
         <TextInput
         value={text}
         multiline
-        style={{flex:1 ,height:'100%', backgroundColor:'lightgray', paddingHorizontal:12, fontSize:18}}
+        numberOfLines={6}
+        style={{ fontSize:18, paddingHorizontal:12, minHeight:53, backgroundColor:'white',borderRadius:8, borderWidth:1, borderColor:'black'}}
         onChangeText={(v)=> setText(v)}
         />
 
-        <View style={{width:'18%', padding:2}}>
+
+      </View>
+
+
+
+        <View style={{width:75, height:50}}>
             <TouchableOpacity onPress={handleSend} style={{height:'100%', width:'100%', backgroundColor:'black'}} />
         </View>
         
