@@ -14,7 +14,7 @@ const Magzines = () => {
     {title: 'Content', key: 'content'},
     {title: 'Favorite', key: 'fav'},
   ])
-  const {data = [], error} = useAllStarred()
+    const {data = [], error} = useAllStarred()
 
 
 

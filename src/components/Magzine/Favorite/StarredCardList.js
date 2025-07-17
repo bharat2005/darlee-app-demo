@@ -7,10 +7,10 @@ import Card from '../../Shared/Card'
 import { useStarredCards } from '../../../hooks/useStarredCards'
 
 const StarredCardList = ({listData}) => {
-  if(listData?.starredCardsIds?.length === 0) return
+
   const {data = [], error} = useStarredCards(listData?.starredCardsIds, listData?.type)
 
-
+if(data?.length === 0) return null
 
 
   return (

@@ -21,7 +21,7 @@ export const useMutateStarred = (id, type) => {
             const prevCAtched = queryClient.getQueryData(['allStarred'])
 
             queryClient.setQueryData(['allStarred'], prev => {
-               return isStarred ? prev.filter(item => item?.docId !== id) : [...prev, {docId:id}]
+               return isStarred ? prev.filter(item => item?.docId !== id) : [{docId:id, type: type}, ...prev]
             })
 
             return{
@@ -29,8 +29,9 @@ export const useMutateStarred = (id, type) => {
             }
 
         },
-        onSuccess: ()=> {
-            queryClient.invalidateQueries(['allStarred'])
+        onSuccess: async()=> {
+           await queryClient.invalidateQueries(['allStarred'])
+            queryClient.invalidateQueries(['starredCards', type])
         },
         onError:(a,b,context)=> {
             queryClient.setQueryData(['allStarred'], context.prevCAtched)
