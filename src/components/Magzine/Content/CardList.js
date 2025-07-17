@@ -3,8 +3,9 @@ import React, { useMemo } from 'react'
 import CardListTitle from './CardListTitle'
 import { useCards } from '../../../hooks/useCards'
 import { router } from 'expo-router'
+import Card from '../../Shared/Card'
 
-const CardList = ({listData}) => {
+const CardList = ({listData, type}) => {
   const {data, error, hasNextPage, isFetchingNextPage, fetchNextPage} = useCards(listData?.id)
     
 
@@ -12,15 +13,9 @@ const CardList = ({listData}) => {
     return data?.pages?.flatMap(page => page.list)
   })
 
-    const renderItem = ({item, index}) => (
-        <View style={{height:'100%', width:160, paddingHorizontal:4}}>
 
-            <Pressable onPress={()=> router.push({pathname:'/magScreen', params:{id:item?.docId }})} style={{height:'100%', width:'100%', backgroundColor:'black', borderRadius:8}}>
-              <Text style={{color:'white', textAlign:'center', marginVertical:'auto'}}>{item?.titleText}</Text>
-            </Pressable>
 
-        </View>
-    )
+
 
   return (
     <View style={{height:200, width:'100%',}}>
@@ -33,7 +28,7 @@ const CardList = ({listData}) => {
         onEndReachedThreshold={0}
         ListFooterComponent={isFetchingNextPage && <View  style={{height:160, width:160, paddingHorizontal:4}}><View  style={{height:'100%', width:'100%', backgroundColor:'lightgray', borderRadius:8}} /></View>}
         data={cleanedList}
-        renderItem={renderItem}
+        renderItem={({item, index})=> <Card type={type} cardData={item} />}
         keyExtractor={(item, index)=> index.toString()}
 
         />

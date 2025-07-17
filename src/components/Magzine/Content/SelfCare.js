@@ -23,7 +23,7 @@ const SelfCare = ({type}) => {
       onEndReachedThreshold={0}
       keyExtractor={(item, index)=> index.toString()}
       showsHorizontalScrollIndicator={false}
-      renderItem={({item, index})=> <CardList listData={item} />}
+      renderItem={({item, index})=> <CardList type={type} listData={item} />}
       />
       
     </View>
