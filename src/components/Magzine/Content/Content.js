@@ -8,14 +8,19 @@ import ContentTabBar from './ContentTabBar';
 const Content = () => {
     const [index, setIndex] = useState(0);
     const [routes, setRoutes] = useState([
-  { key: 'first', title: 'Selfcare' },
-  { key: 'second', title: 'Hormoneguide' },
+  { key: 'selfCare', title: 'Selfcare' },
+  { key: 'hormoneGuide', title: 'Hormoneguide' },
 ])
 
-const renderScene = SceneMap({
-  first: SelfCare,
-  second: HormoneGuide,
-});
+const renderScene = ({route}) => {
+   const props = {type: route.key}
+  switch (route.key){
+    case 'selfCare':
+      return <SelfCare {...props} />
+    case 'hormoneGuide':
+      return <HormoneGuide {...props} />
+  }
+}
 
   return (
     <View style={{flex:1 , width:'100%'}}>
