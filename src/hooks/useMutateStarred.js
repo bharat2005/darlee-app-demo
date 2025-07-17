@@ -21,7 +21,7 @@ export const useMutateStarred = (id, type) => {
             const prevCAtched = queryClient.getQueryData(['allStarred'])
 
             queryClient.setQueryData(['allStarred'], prev => {
-               return isStarred ? prev.filter(item => item !== id) : [...prev, id]
+               return isStarred ? prev.filter(item => item?.docId !== id) : [...prev, {docId:id}]
             })
 
             return{

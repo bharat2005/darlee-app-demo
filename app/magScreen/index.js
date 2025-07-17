@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useLocalSearchParams } from 'expo-router'
 import { useCardHydrate } from '../../src/hooks/useCardHydrate'
@@ -8,12 +8,14 @@ import { useAllStarred } from '../../src/hooks/useAllStarred'
 
 const MagScreen = () => {
     const {cardId, type} = useLocalSearchParams()
-    const {data: starredCardIds} = useAllStarred({
+    const {data} = useAllStarred({
       staleTime:Infinity
     })
-    const {data, error} = useCardHydrate(cardId)
+    const {data:fuckData, error} = useCardHydrate(cardId)
 
-
+const starredCardIds = useMemo(()=> {
+  return data?.map(item => item?.docId)
+},[data])
 
 
 
@@ -23,7 +25,7 @@ const MagScreen = () => {
 
         <MagScreenTopBar cardId={cardId} isStarred={starredCardIds.includes(cardId)} type={type} />
 
-        <Text>{data?.description}</Text>
+        <Text>{fuckData?.description}</Text>
         
     </SafeAreaView>
   )
