@@ -17,8 +17,8 @@ export const geminiMessageSend = async(message) => {
 
         const listToSendGemini = lastMessagesRes.docs.reverse().map(doc => {
             let response = '';
-            if(doc.data()?.response === 'liked') response = 'User liked this response: '
-            if(doc.data()?.response === 'disliked') response = 'User disliked this response: '
+            if(doc.data()?.response === 'like') response = 'User liked this response: '
+            if(doc.data()?.response === 'dislike') response = 'User disliked this response: '
 
             return {
                 role: doc.data().role,

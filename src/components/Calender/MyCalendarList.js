@@ -2,26 +2,32 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 import DayComponent from './DayComponent'
+import { format } from 'date-fns'
+
 
 const MyCalendarList = () => {
 
-  const renderHeader = () => (
-    <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', paddingHorizontal:16, paddingVertical:12}}>
-      <Text style={{fontSize:16, fontWeight:'bold'}}>My Baby Girl</Text>
+  const renderHeader = (date) => (
+    <View style={{justifyContent:'center', alignItems:'center', paddingVertical:24}}>
+      <Text style={{fontSize:16, fontWeight:'bold'}}>{format(date, "yyyy 'y' M 'month'")}</Text>
     </View>
   )
+
+
   return (
     <View style={{flex:1, width:'100%'}}>
+
       <CalendarList
-      futureScrollRange={2}
-      renderHeader={renderHeader}
-      pastScrollRange={2}
+      theme={{
+        textSectionTitleColor: 'transparent',
+      }}
       hideExtraDays={false}
-     dayComponent={({state, marking, date})=> <DayComponent state={state} marking={marking} date={date} />}
-     theme={{
-      textSectionTitleColor: 'transparent',
-     }}
+      renderHeader={renderHeader}
+      futureScrollRange={2}
+      pastScrollRange={2}
+      dayComponent={({date, marking, state})=> <DayComponent date={date} marking={marking} state={state} />}
       />
+
     </View>
   )
 }

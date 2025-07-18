@@ -15,15 +15,17 @@ const responseButtons = [
     }
 ]
 
-const MessageResponse = (messageId) => {
+const MessageResponse = ({messageId}) => {
     const {data: pastResponse} = useMessageResponse(messageId)
-    const {mutate: mutateMessageResponse} = useMutateMessageResponse(messageId)
+    const {mutate: mutateMessageResponse, error} = useMutateMessageResponse(messageId)
+
+
 
   return (
     <View style={{width:'100%', flexDirection:'row', justifyContent:'flex-start', alignItems:'center', paddingHorizontal:18, paddingVertical:6, gap:12}}>
         {
             responseButtons.map((item, index)=> (
-                <TouchableOpacity onPress={()=> mutateMessageResponse({currentResponse: item.id, pastResponse})} key={index} style={{ padding:6, backgroundColor: pastResponse ? 'blue' : 'gray', borderRadius:24}}>
+                <TouchableOpacity onPress={()=> mutateMessageResponse({currentResponse: item.id, pastResponse})} key={index} style={{ padding:6, backgroundColor: pastResponse === item.id ? 'blue' : 'gray', borderRadius:24}}>
                     {item.icon}
                 </TouchableOpacity>
             ))
