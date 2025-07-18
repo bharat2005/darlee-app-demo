@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CalendarProvider, WeekCalendar } from 'react-native-calendars'
 import WeekNextButtons from './WeekNextButtons'
 import { View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
+import { getDay, getISODay, parseISO } from 'date-fns'
 
-const MyWeekList = ({seletedDate, setSelectedDate}) => {
 
-  const handleDayPress = (day)=> {
-  setSelectedDate(day.dateString)
-  }
+const MyWeekList = ({seletedDate, setSelectedDate, handleDayPress}) => {
+
+
+  useEffect(()=>{
+    handleDayPress(getISODay(parseISO(seletedDate)))
+  },[seletedDate])
+
 
 
   return (
@@ -19,7 +23,7 @@ const MyWeekList = ({seletedDate, setSelectedDate}) => {
 
     <WeekCalendar 
     firstDay={1}
-    onDayPress={handleDayPress}
+    onDayPress={(day)=> setSelectedDate(day.dateString)}
     theme={{
         calendarBackground: 'transparent',
         textSectionTitleColor: 'black',

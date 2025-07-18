@@ -6,9 +6,31 @@ import MyWeekList from '../../src/components/Home/WeekCalander/MyWeekList'
 import MainTopBar from '../../src/components/Shared/MainTopBar'
 import PadView from '../../src/components/Home/PadView/PadView'
 import { View } from 'react-native'
+import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+
+
+const TOTAL_ANGLE = 80
+const ANGLE_PER_ITEM = TOTAL_ANGLE / 7
 
 const Home = () => {
+  const rotateValue = useSharedValue(0)
+  const popDownValue = useSharedValue(0)
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+
+  const handleDayPress = (dayIndex) =>{
+    popDownValue.value = withTiming(80, {duration:400}, ()=>{
+      rotateValue.value = withTiming(dayIndex * ANGLE_PER_ITEM, {duration:50})
+      popDownValue.value = withTiming(0, {duration:400})
+    })
+  }
+
+  const flowerAnimationStyle = useAnimatedStyle(()=>{
+    return {
+      transform: [{rotate: `${rotateValue.value}deg`},
+        {translateY: popDownValue.value}
+      ]
+    }
+  })
 
   return (
     <SafeAreaView style={{flex:1, backgroundColor:'white'}} edges={['top']}>
@@ -21,10 +43,10 @@ const Home = () => {
 
       <MyFlowerMood />
 
-      <MyWeekList seletedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      <MyWeekList seletedDate={selectedDate} setSelectedDate={setSelectedDate} handleDayPress={handleDayPress} />
 
+      <PadView flowerAnimationStyle={flowerAnimationStyle} />
 
-      <PadView />
       </View>
 
     </SafeAreaView>
