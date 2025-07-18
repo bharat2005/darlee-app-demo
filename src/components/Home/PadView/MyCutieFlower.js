@@ -1,6 +1,7 @@
-import { View, Text, Animated } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
 import Flower from '../../../../assets/svgs/Flower'
+import Animated from 'react-native-reanimated'
 
 const MyCutieFlower = ({flowerAnimationStyle}) => {
 

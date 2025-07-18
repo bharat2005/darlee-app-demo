@@ -9,8 +9,9 @@ import { View } from 'react-native'
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
 
-const TOTAL_ANGLE = 80
-const ANGLE_PER_ITEM = TOTAL_ANGLE / 7
+const TOTAL_ANGLE = 72
+const ANGLE_PER_ITEM = TOTAL_ANGLE / 6
+const INITIAL_ANGLE = - TOTAL_ANGLE / 2
 
 const Home = () => {
   const rotateValue = useSharedValue(0)
@@ -19,14 +20,15 @@ const Home = () => {
 
   const handleDayPress = (dayIndex) =>{
     popDownValue.value = withTiming(80, {duration:400}, ()=>{
-      rotateValue.value = withTiming(dayIndex * ANGLE_PER_ITEM, {duration:50})
+      rotateValue.value = withTiming(INITIAL_ANGLE + (dayIndex * ANGLE_PER_ITEM), {duration:50})
       popDownValue.value = withTiming(0, {duration:400})
     })
   }
 
   const flowerAnimationStyle = useAnimatedStyle(()=>{
     return {
-      transform: [{rotate: `${rotateValue.value}deg`},
+      transform: [
+        {rotate: `${rotateValue.value}deg`},
         {translateY: popDownValue.value}
       ]
     }

@@ -5,12 +5,16 @@ import { View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { getDay, getISODay, parseISO } from 'date-fns'
 
+const getIndex = (date) =>{
+  const jsDay = getDay(parseISO(date))
+  return ( jsDay + 6 ) % 7
+}
 
 const MyWeekList = ({seletedDate, setSelectedDate, handleDayPress}) => {
 
 
   useEffect(()=>{
-    handleDayPress(getISODay(parseISO(seletedDate)))
+    handleDayPress(getIndex(seletedDate))
   },[seletedDate])
 
 
