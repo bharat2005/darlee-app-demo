@@ -1,7 +1,8 @@
 import React from 'react'
 import { CalendarProvider, WeekCalendar } from 'react-native-calendars'
 import WeekNextButtons from './WeekNextButtons'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 
 const MyWeekList = ({seletedDate, setSelectedDate}) => {
 
@@ -12,24 +13,22 @@ const MyWeekList = ({seletedDate, setSelectedDate}) => {
 
   return (
 <>
+<GestureDetector gesture={Gesture.Pan().onStart((e)=>{})}>
 <View style={{width:'100%', height:85}}>
 <CalendarProvider date={seletedDate} >
 
     <WeekCalendar 
     firstDay={1}
     onDayPress={handleDayPress}
-    dayComponent={({date})=> {
-        return <View style={{width:100, height:100, backgroundColor:'blue'}} />
-    }}
     theme={{
         calendarBackground: 'transparent',
         textSectionTitleColor: 'black',
     }}
     />
 
-
 </CalendarProvider>
 </View>
+</GestureDetector>
 <WeekNextButtons seletedDate={seletedDate} setSelectedDate={setSelectedDate} />
 </>
   )
