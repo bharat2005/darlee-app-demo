@@ -13,6 +13,7 @@ const handleDatePress = () => {
 
 
 
+
   return (
     <TouchableOpacity activeOpacity={state === 'disabled' ? 1 : 0.5} onPress={state === 'disabled' ? null : handleDatePress} style={{width:'100%', height:80, justifyContent:'center', alignItems:'center', borderBottomWidth:1, borderBottomColor:'#ccc', backgroundColor: state === 'today' ? 'blue' : 'transparent'}}>
       <Text style={{fontSize:16, fontWeight:'bold'}}>{state === 'disabled' ? '' : date?.day}</Text>

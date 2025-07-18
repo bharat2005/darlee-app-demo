@@ -26,8 +26,6 @@ const MyCalendarList = ({handlSheet}) => {
       }}
       hideExtraDays={false}
       renderHeader={renderHeader}
-      futureScrollRange={2}
-      pastScrollRange={2}
       dayComponent={({date, marking, state})=> <DayComponent isMarked={allMarkedDates?.includes(date.dateString)} date={date} marking={marking} state={state} handlSheet={handlSheet} />}
       />
 

@@ -1,29 +1,37 @@
-import { View, Text, Dimensions, KeyboardAvoidingView, Platform, BackHandler } from 'react-native'
-import React, { useEffect } from 'react'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import React, { useCallback, useEffect, useState } from 'react'
+import { BackHandler } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import MySheetView from './MySheetView'
 
 const MyBottomSheet = ({sheetRef, handlSheet}) => {
   const insets = useSafeAreaInsets()
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
-  // useEffect(()=>{
-  //   const onBackPress = () => {
-  //     handlSheet('close')
-      
-  //   }
+  const handleBackPress = useCallback(()=> {
+    handlSheet('close')
+    return true
+  },[handlSheet])
 
-  //   BackHandler.addEventListener('hardwareBackPress', onBackPress)
 
-  //   return () => {
-  //     BackHandler.removeEventListener('hardwareBackPress', onBackPress)
-  //   }
-  // },[])
+  useEffect(()=>{
+    let backhandler;
+    if(isSheetOpen){
+      backhandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress)
+    }
 
+    return ()=> {
+      if(backhandler) backhandler.remove()
+    }
+},[isSheetOpen, handleBackPress])
+
+  const handleChange = (index)=> {
+    setIsSheetOpen(index >= 0)
+  }
 
   return (
     
-    <BottomSheetModal  enableContentPanningGesture={false} enableDismissOnClose={true} ref={sheetRef} snapPoints={['96%']}>
+    <BottomSheetModal onChange={handleChange} enableContentPanningGesture={false} enableDismissOnClose={true} ref={sheetRef} snapPoints={['96%']}>
       <BottomSheetView style={{height:'100%', width:'100%', paddingBottom:insets.bottom + 40}}>
        
         <MySheetView handlSheet={handlSheet} /> 
