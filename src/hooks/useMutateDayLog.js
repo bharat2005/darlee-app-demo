@@ -13,6 +13,7 @@ export const useMutateDayLog = (date) =>{
         },
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ['dayLog', date]})
+            queryClient.invalidateQueries({queryKey: ['allMarkedDates']})
         }
     })  
 }

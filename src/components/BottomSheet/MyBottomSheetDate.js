@@ -1,13 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { dateStore } from '../../stores/dateStore'
+import { format, parseISO } from 'date-fns'
 
 const MyBottomSheetDate = ({selectedDate}) => {
 
 
   return (
     <View style={{width:'100%', height:40, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-      <Text style={{fontSize:16, fontWeight:'bold'}}>{selectedDate}</Text>
+      <Text style={{fontSize:16, fontWeight:'bold'}}>{format(parseISO(selectedDate), 'yyyy.M.dd')}</Text>
     </View>
   )
 }

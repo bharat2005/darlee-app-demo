@@ -29,7 +29,7 @@ const MySheetView = ({handlSheet}) => {
 
         <MyBottomSheetDate  selectedDate={selectedDate} /> 
 
-        <MyFormikView handleFormikSubmit={handleFormikSubmit} />
+        <MyFormikView handleFormikSubmit={handleFormikSubmit} initialValues={dayLog} />
 
 
     </View>

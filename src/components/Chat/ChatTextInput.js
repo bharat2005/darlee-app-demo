@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { geminiMessageSend } from '../../services/gemini/geminiMessageSend'
 
 
-const ChatTextInput = ({setMessagesList, setLoading}) => {
+const ChatTextInput = ({setMessagesList, setLoading, loading}) => {
     const [text, setText] = useState('')
 
     const handleSend = async() => {
@@ -40,7 +40,7 @@ const ChatTextInput = ({setMessagesList, setLoading}) => {
 
 
         <View style={{width:75, height:50}}>
-            <TouchableOpacity onPress={handleSend} style={{height:'100%', width:'100%', backgroundColor:'black'}} />
+            <TouchableOpacity disabled={loading} onPress={handleSend} style={{height:'100%', width:'100%', backgroundColor:'black'}} />
         </View>
         
     </View>

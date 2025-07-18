@@ -3,9 +3,11 @@ import { Text, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 import DayComponent from './DayComponent'
 import { format } from 'date-fns'
+import { useAllMarkedDates } from '../../hooks/useAllMarkedDates'
 
 
 const MyCalendarList = ({handlSheet}) => {
+  const {data: allMarkedDates} = useAllMarkedDates()
 
   const renderHeader = (date) => (
     <View style={{justifyContent:'center', alignItems:'center', paddingVertical:24}}>
@@ -13,6 +15,7 @@ const MyCalendarList = ({handlSheet}) => {
     </View>
   )
 
+  console.log(allMarkedDates)
 
   return (
     <View style={{flex:1, width:'100%'}}>
@@ -25,7 +28,7 @@ const MyCalendarList = ({handlSheet}) => {
       renderHeader={renderHeader}
       futureScrollRange={2}
       pastScrollRange={2}
-      dayComponent={({date, marking, state})=> <DayComponent date={date} marking={marking} state={state} handlSheet={handlSheet} />}
+      dayComponent={({date, marking, state})=> <DayComponent isMarked={allMarkedDates?.includes(date.dateString)} date={date} marking={marking} state={state} handlSheet={handlSheet} />}
       />
 
     </View>

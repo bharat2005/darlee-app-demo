@@ -12,7 +12,7 @@ import FeildOptionSelector from './FeildOptionSelector/FeildOptionSelector'
 import FeildOptionsData from '../../../constants/FeildOptionsData'
 import * as Yup from 'yup'
 
-const MyFormikView = ({handleFormikSubmit}) => {
+const MyFormikView = ({handleFormikSubmit, initialValues}) => {
     const validation = Yup.object({
         temperature: Yup.number().min(35, 'Tempereaturen should be between 35.00 and 41.00').max(41, 'Tempereaturen should be between 35.00 and 41.00'),
         weight: Yup.number().min(20, 'Weifght should be between 20.00 and 199.99').max(199, 'Weifght should be between 20.00 and 199.99'),
@@ -23,7 +23,7 @@ const MyFormikView = ({handleFormikSubmit}) => {
     <Formik
     onSubmit={handleFormikSubmit}
     validationSchema={validation}
-initialValues = {{
+initialValues = { initialValues ? initialValues : {
         condition: '',
         isDuringMensuration: false,
         menstrualPain: '',
