@@ -20,7 +20,7 @@ const MyFormikView = () => {
     })
 
     const handleFormikSubmit = (values) => {
-        console.log(values)
+        console.log('')
     }
 
   return (
