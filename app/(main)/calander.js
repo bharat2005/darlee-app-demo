@@ -22,7 +22,7 @@ const Calander = () => {
 
       <MyCalendarList handlSheet={handlSheet} />
         
-      <MyBottomSheet ref={sheetRef} handlSheet={handlSheet} />
+      <MyBottomSheet sheetRef={sheetRef} handlSheet={handlSheet} />
  
         
     </SafeAreaView>

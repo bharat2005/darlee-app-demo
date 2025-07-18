@@ -10,6 +10,7 @@ export const useDayLog = (date) => {
             const docSnap = await getDoc(docRef)
             return docSnap.data() || null
         },
-        enabled: !!date
+        enabled: !!date,
+        
     })  
 }

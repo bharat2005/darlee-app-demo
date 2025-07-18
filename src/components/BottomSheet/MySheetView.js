@@ -14,13 +14,11 @@ const MySheetView = ({handlSheet}) => {
   const {mutateAsync: mutateDayLog} = useMutateDayLog(selectedDate)
 
 
+
   const handleFormikSubmit = async(values) => {
     await mutateDayLog({dayLogData: values})
     handlSheet('close')
   }
-
-
-  console.log(dayLog)
 
 
 
@@ -31,7 +29,7 @@ const MySheetView = ({handlSheet}) => {
 
         <MyBottomSheetDate  selectedDate={selectedDate} /> 
 
-        <MyFormikView handleFormikSubmit={handleFormikSubmit} initialValues={dayLog} />
+        <MyFormikView handleFormikSubmit={handleFormikSubmit} dayLog={dayLog} />
 
 
     </View>

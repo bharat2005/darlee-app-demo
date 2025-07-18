@@ -1,5 +1,5 @@
 import { View, Text, KeyboardAvoidingView, Platform } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik } from 'formik'
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet'
 import ImageOptionSelector from './ImageOptionSeletor/ImageOptionSelector'
@@ -12,12 +12,16 @@ import FeildOptionSelector from './FeildOptionSelector/FeildOptionSelector'
 import FeildOptionsData from '../../../constants/FeildOptionsData'
 import * as Yup from 'yup'
 
-const MyFormikView = ({handleFormikSubmit, initialValues}) => {
+const MyFormikView = ({handleFormikSubmit, dayLog:initialValues}) => {
     const validation = Yup.object({
         temperature: Yup.number().min(35, 'Tempereaturen should be between 35.00 and 41.00').max(41, 'Tempereaturen should be between 35.00 and 41.00'),
         weight: Yup.number().min(20, 'Weifght should be between 20.00 and 199.99').max(199, 'Weifght should be between 20.00 and 199.99'),
         time:  Yup.number().min(0, 'Time should be between 00.00 and 24.00').max(24, 'Time should be between 00.00 and 24.00'),
     })
+
+    if(initialValues === undefined){
+        return <></>
+    }
 
   return (
     <Formik
