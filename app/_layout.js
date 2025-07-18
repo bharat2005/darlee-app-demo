@@ -9,10 +9,9 @@ const client = new QueryClient();
 
 export default function RootLayout() {
   return (
+    <QueryClientProvider client={client}>
     <GestureHandlerRootView style={{flex:1}}>
       <BottomSheetModalProvider>
-
-    <QueryClientProvider client={client}>
       <PaperProvider>
         <AuthContextProvider>
           <Stack screenOptions={{ headerShown: false }}>
@@ -25,8 +24,8 @@ export default function RootLayout() {
           </Stack>
         </AuthContextProvider>
       </PaperProvider>
-    </QueryClientProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
+    </QueryClientProvider>
   );
 }
