@@ -6,13 +6,13 @@ import { MaterialIcons } from '@expo/vector-icons'
 
 
 
-const ImageOptionSelector = ({data}) => {
+const ImageOptionSelector = ({data, value, setFieldValue}) => {
   return (
     <View style={{width: '100%'}}>
 
       <OptionsHeader data={data} />
 
-      <ImageOptionList data={data} />
+      <ImageOptionList data={data} value={value} setFieldValue={setFieldValue} />
         
     </View>
   )

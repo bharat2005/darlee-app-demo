@@ -2,12 +2,13 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { Image } from 'expo-image'
 
-const ImageOptionList = ({data}) => {
-  const [selectedOption, setSelectedOption] = useState(null)
+const ImageOptionList = ({data, value, setFieldValue}) => {
+  const [selectedOption, setSelectedOption] = useState(value)
 
   const handleSelectOption = (optionId) => {
     const isSelected = selectedOption === optionId
-    setSelectedOption(isSelected ? null : optionId)
+    setSelectedOption(isSelected ? '' : optionId)
+    setFieldValue(isSelected ? '' : optionId)
   }
 
   return (
