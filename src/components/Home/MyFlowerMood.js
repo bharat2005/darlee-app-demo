@@ -3,8 +3,8 @@ import React from 'react'
 
 const MyFlowerMood = () => {
   return (
-    <View style={{width:'100%', height:100, backgroundColor:'yellow'}}>
-      <Text>MyFlowerMood</Text>
+    <View style={{width:'100%', height:130, backgroundColor:'gray'}}>
+      
     </View>
   )
 }
