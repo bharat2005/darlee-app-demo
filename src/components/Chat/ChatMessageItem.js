@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { format } from 'date-fns'
+import MessageResponse from './MessageResponse'
 
 const ChatMessageItem = ({item}) => {
 
@@ -17,7 +18,8 @@ const ChatMessageItem = ({item}) => {
 
 
   return (
-    <View style={{width:'100%',flexDirection:item?.role === 'user' ? "row-reverse" : "row", paddingHorizontal:8, paddingVertical:12}}>
+  <View style={{ paddingHorizontal:12, paddingVertical:12}}>
+    <View style={{width:'100%',flexDirection:item?.role === 'user' ? "row-reverse" : "row"}}>
 
         <View style={{minHeight:48, maxWidth:300, padding:14, justifyContent:'center', alignItems:'center', backgroundColor:'white', borderRadius:8}}>
             <Text>{item?.text}</Text>
@@ -28,6 +30,12 @@ const ChatMessageItem = ({item}) => {
         </View>
         
     </View>
+    
+
+    {
+      item?.role === 'model' && <MessageResponse messageId={item?.id} />
+    }    
+    </ View>
   )
 }
 

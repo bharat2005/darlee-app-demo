@@ -17,7 +17,7 @@ const Chat = () => {
   const q = query(collection(db,'users', auth?.currentUser?.uid, 'messages'), orderBy('createdAt', 'desc'))
 
   const unsub = onSnapshot(q, async(snapShot)=> {
-    setMessagesList(messagePretter(snapShot.docs.map(doc => doc.data())))
+    setMessagesList(messagePretter(snapShot.docs.map(doc => ({...doc.data(), id: doc.id}))))
    
 
     if(snapShot.docs[0]?.data()?.role === 'user'){
