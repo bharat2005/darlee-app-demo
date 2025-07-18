@@ -38,7 +38,7 @@ const ModalView = ({setVisible, type}) => {
             
             {
                 type === 'calander' && (
-                    <></>
+                    <Text>jjdff ofhjw fodhf diudhv ivuh vfiuhvu sviuvh divh vss suih</Text>
                 )
             }
 

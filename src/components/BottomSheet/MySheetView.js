@@ -20,6 +20,8 @@ const MySheetView = ({handlSheet}) => {
   }
 
 
+  console.log(dayLog)
+
 
 
 

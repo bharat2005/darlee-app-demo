@@ -6,7 +6,7 @@ import ModalView from './ModalView';
 const MainTopBar = ({title="for my baby girl", type='home'}) => {
     const [visible, setVisible] = useState(false)
   return (
-    <View style={{height:55, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12, justifyContent:'center', alignItems:'center'}}>
+    <View style={{height:55, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12, justifyContent:'center'}}>
 
         {
             type === 'home' && (
