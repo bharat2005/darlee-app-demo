@@ -20,7 +20,7 @@ const MyWeekList = ({seletedDate, setSelectedDate, handleDayPress}) => {
 
 
   return (
-<>
+<View style={{}}>
 <GestureDetector gesture={Gesture.Pan().onStart((e)=>{})}>
 <View style={{width:'100%', height:85}}>
 <CalendarProvider date={seletedDate} >
@@ -38,7 +38,7 @@ const MyWeekList = ({seletedDate, setSelectedDate, handleDayPress}) => {
 </View>
 </GestureDetector>
 <WeekNextButtons seletedDate={seletedDate} setSelectedDate={setSelectedDate} />
-</>
+</View>
   )
 }
 
