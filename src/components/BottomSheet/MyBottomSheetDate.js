@@ -1,10 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { dateStore } from '../../stores/dateStore'
 
 const MyBottomSheetDate = () => {
+  const selectedDate = dateStore(state => state.selectedDate)
+
   return (
     <View style={{width:'100%', height:40, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-      <Text style={{fontSize:16, fontWeight:'bold'}}>22.07.2025</Text>
+      <Text style={{fontSize:16, fontWeight:'bold'}}>{selectedDate}</Text>
     </View>
   )
 }

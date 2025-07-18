@@ -5,7 +5,7 @@ import DayComponent from './DayComponent'
 import { format } from 'date-fns'
 
 
-const MyCalendarList = () => {
+const MyCalendarList = ({handlSheet}) => {
 
   const renderHeader = (date) => (
     <View style={{justifyContent:'center', alignItems:'center', paddingVertical:24}}>
@@ -25,7 +25,7 @@ const MyCalendarList = () => {
       renderHeader={renderHeader}
       futureScrollRange={2}
       pastScrollRange={2}
-      dayComponent={({date, marking, state})=> <DayComponent date={date} marking={marking} state={state} />}
+      dayComponent={({date, marking, state})=> <DayComponent date={date} marking={marking} state={state} handlSheet={handlSheet} />}
       />
 
     </View>
