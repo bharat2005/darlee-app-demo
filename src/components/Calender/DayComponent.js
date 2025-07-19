@@ -4,7 +4,7 @@ import { dateStore } from '../../stores/dateStore'
 import { format, parseISO } from 'date-fns'
 import Toast from 'react-native-toast-message'
 
-const DayComponent = ({date, marking, state, handlSheet, isMarked, isFutureToday}) => {
+const DayComponent = ({date, marking, state, handlSheet, isMarked, isFutureToday, phaseColor}) => {
   const setSelectedDate = dateStore(state => state.setSelectedDate)
 
 const handleDatePress = () => {
@@ -30,6 +30,7 @@ const handleDatePress = () => {
     <TouchableOpacity activeOpacity={state === 'disabled' ? 1 : 0.5} onPress={state === 'disabled' ? null : handleDatePress} style={{width:'100%', height:80, justifyContent:'center', alignItems:'center', borderBottomWidth:1, borderBottomColor:'#ccc', backgroundColor: state === 'today' ? 'blue' : 'transparent'}}>
       <Text style={{fontSize:16, fontWeight:'bold'}}>{state === 'disabled' ? '' : date?.day}</Text>
       {(isMarked && state !== 'disabled') && <View style={{width:10, height:10, backgroundColor:'blue', borderRadius:10, position:'absolute', top:0, right:0}} />}
+      {phaseColor && state !== 'disabled' && <View style={{ height:10, backgroundColor:phaseColor, position:'absolute', bottom:0, right:0, left:0}} />}
     </TouchableOpacity>
   )
 }
