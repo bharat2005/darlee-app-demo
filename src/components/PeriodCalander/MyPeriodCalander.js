@@ -5,8 +5,8 @@ import CalandarHeaader from '../Shared/CalandarHeaader'
 import { eachDayOfInterval, format, getDay, parseISO } from 'date-fns'
 import Toast from 'react-native-toast-message'
 
-const MyPeriodCalander = () => {
-    const [periods, setPeriods] = useState([])
+const MyPeriodCalander = ({data}) => {
+    const [periods, setPeriods] = useState(data || [])
     const [currentStart, setCurrentStart] = useState(null)
 
     const handleDayPress = (day)=>{
