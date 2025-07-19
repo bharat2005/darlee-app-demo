@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { doc, setDoc } from "@react-native-firebase/firestore"
+import { doc, setDoc, Timestamp } from "@react-native-firebase/firestore"
 import { auth, db } from "../services/firebase/firebaseConfig"
 import { getDay, parseISO } from "date-fns"
 
@@ -10,7 +10,7 @@ export const useMutateDayLog = (date, weekDays) =>{
     return useMutation({
         mutationFn: async ({dayLogData}) => {
             const docRef = doc(db, 'users', auth.currentUser.uid, 'dayLogs', date)
-            await setDoc(docRef, {...dayLogData}, {merge: true})
+            await setDoc(docRef, {...dayLogData, date: Timestamp.fromDate(parseISO(date))}, {merge: true})
         },
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ['dayLog', date]})
