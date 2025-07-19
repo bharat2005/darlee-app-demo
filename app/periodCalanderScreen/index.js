@@ -1,22 +1,34 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MainTopBar from '../../src/components/Shared/MainTopBar'
 import MyPeriodCalander from '../../src/components/PeriodCalander/MyPeriodCalander'
-  import { usePeriods } from '../../src/hooks/usePeriods'
 import MyPeriodCalanderButton from '../../src/components/PeriodCalander/MyPeriodCalanderButton'
+import { usePeriods } from '../../src/hooks/usePeriods'
+import { useMutatePeriod } from '../../src/hooks/useMutatePeriod'
+import Toast from 'react-native-toast-message'
+import { router } from 'expo-router'
 
 const PeriodCalanderScreen = () => {
-const {data} = usePeriods()
+  const {data, error} = usePeriods()
+  const [periods, setPeriods] = useState(data || [])
+  const {mutate: mutatePeriods, error:errorMutate} = useMutatePeriod()
+
+ 
+
+
+
+
+
 
   return (
-    <SafeAreaView style={{flex:1}} edges={['top']}>
+    <SafeAreaView style={{flex:1}} edges={['top', 'bottom']}>
      
      <MainTopBar title='Period Calander' type='periodCalander' />
 
-     <MyPeriodCalander data={data} />
+     <MyPeriodCalander periods={periods} setPeriods={setPeriods}/>
 
-     <MyPeriodCalanderButton />
+     <MyPeriodCalanderButton  periods={periods} setPeriods={setPeriods} mutatePeriods={mutatePeriods}/>
 
      
     </SafeAreaView>

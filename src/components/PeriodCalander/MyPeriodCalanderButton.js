@@ -1,13 +1,35 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import { useMutatePeriod } from '../../hooks/useMutatePeriod'
+import Toast from 'react-native-toast-message'
+import { router } from 'expo-router'
+import { Button } from 'react-native-paper'
 
-const MyPeriodCalanderButton = () => {
+const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleAddPeriod = () => {
+        setIsLoading(true)
+        mutatePeriods({periods}, {
+            onSuccess: () => {
+                Toast.show({type:'custome', text1:'Periods Added', props: {type: 'success'}})
+                router.back()
+            },
+            onError: () => {
+                Toast.show({type:'custome', text1:'Error Adding Periods', props: {type: 'error'}})
+            },
+            onSettled: () => {
+                setIsLoading(false)
+            }
+        })
+    }
+
   return (
-    <View style={{width:'100%', height:50, backgroundColor:'white', padding:2}}>
+    <View style={{width:'100%', height:50, backgroundColor:'white', paddingHorizontal:12}}>
         
-        <TouchableOpacity style={{width:'100%', height:'100%',borderRadius:10, justifyContent:'center', alignItems:'center', backgroundColor:'hotpink'}}>
-            <Text style={{fontSize:16, fontWeight:'bold', color:'black'}}>Add Period</Text>
-        </TouchableOpacity>
+        <Button mode='contained' disabled={isLoading} loading={isLoading} style={{width:'100%', height:'100%',backgroundColor:'hotpink'}} contentStyle={{height:'100%', width:'100%'}} onPress={handleAddPeriod} >
+        Add Period
+        </Button>
     </View>
   )
 }
