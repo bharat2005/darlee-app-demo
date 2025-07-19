@@ -22,6 +22,7 @@ export default function RootLayout() {
             <Stack.Screen name="(main)" />
              <Stack.Screen name="(profileBuild)" />
               <Stack.Screen name="magScreen" />
+              <Stack.Screen name="periodCalanderScreen" options={{animation: 'slide_from_right'}} />
           </Stack>
           <Toast 
           config={{

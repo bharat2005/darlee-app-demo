@@ -4,16 +4,13 @@ import { CalendarList } from 'react-native-calendars'
 import DayComponent from './DayComponent'
 import { format, parseISO } from 'date-fns'
 import { useAllMarkedDates } from '../../hooks/useAllMarkedDates'
+import CalandarHeaader from '../Shared/CalandarHeaader'
 
 
 const MyCalendarList = ({handlSheet}) => {
   const {data: allMarkedDates} = useAllMarkedDates()
 
-  const renderHeader = (date) => (
-    <View style={{justifyContent:'center', alignItems:'center', paddingVertical:24}}>
-      <Text style={{fontSize:16, fontWeight:'bold'}}>{format(date, "yyyy 'y' M 'month'")}</Text>
-    </View>
-  )
+
 
 
 
@@ -25,7 +22,7 @@ const MyCalendarList = ({handlSheet}) => {
         textSectionTitleColor: 'transparent',
       }}
       hideExtraDays={false}
-      renderHeader={renderHeader}
+      renderHeader={(date)=> <CalandarHeaader date={date} />}
       dayComponent={({date, marking, state})=> <DayComponent isMarked={allMarkedDates?.includes(date.dateString)} isFutureToday={format(new Date(), 'yyyy-MM-dd') <= date.dateString} date={date} marking={marking} state={state} handlSheet={handlSheet} />}
       />
 

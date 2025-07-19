@@ -1,7 +1,8 @@
-import { collection, getDocs, limit, orderBy, query } from "@react-native-firebase/firestore"
+import { collection, doc, getDocs, limit, orderBy, query, setDoc } from "@react-native-firebase/firestore"
 import { auth, db } from "../firebase/firebaseConfig"
 import { format } from "date-fns"
 import axios from "axios"
+import { responseCleaner } from "../../utils/responseCleaner"
 
 export const geminiMoodPrediciton = async (weekKey) => {
     try{
@@ -59,13 +60,15 @@ Only choose from these categories:
             }
         )
 
-        return geminiResponnse.data.candidates[0].content.parts[0].text
+        const cleanedResponse = responseCleaner(geminiResponnse.data.candidates[0].content.parts[0].text)
 
+        await setDoc(doc(db, 'users', auth.currentUser.uid, 'mood-predictions', weekKey), cleanedResponse)
 
+        return {success: true, data: cleanedResponse}
 
     } catch(error){
         console.log("Error in geminiMoodPrediciton", error)
         console.log("Error response:", error.response?.data)
-        console.log("Status:", error.response?.status)
+        return {success: false, data: null}
     }
 }

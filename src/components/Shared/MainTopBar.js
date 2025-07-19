@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'r
 import React, { useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ModalView from './ModalView';
+import { router } from 'expo-router';
 
 const MainTopBar = ({title="for my baby girl", type='home'}) => {
     const [visible, setVisible] = useState(false)
@@ -10,8 +11,16 @@ const MainTopBar = ({title="for my baby girl", type='home'}) => {
 
         {
             type === 'home' && (
-                <TouchableOpacity onPress={()=>{}} style={{position:'absolute', left:0, marginHorizontal:12, height:'100%'}}>
+                <TouchableOpacity onPress={()=>{}} style={{position:'absolute', left:0,top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
                     <Ionicons name="person" size={24} color="gray" />
+                </TouchableOpacity>
+            )
+        }
+
+{
+            type === 'periodCalander' && (
+                <TouchableOpacity onPress={()=>router.back()} style={{position:'absolute', left:0, top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
+                  <Ionicons name="arrow-back" size={24} color="gray" />
                 </TouchableOpacity>
             )
         }
