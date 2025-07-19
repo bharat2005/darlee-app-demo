@@ -8,10 +8,10 @@ import { dateStore } from '../../stores/dateStore'
 import { useMutateDayLog } from '../../hooks/useMutateDayLog'
 
 
-const MySheetView = ({handlSheet}) => {
+const MySheetView = ({handlSheet, weekDays}) => {
   const selectedDate = dateStore(state => state.selectedDate)
   const {data: dayLog, error} = useDayLog(selectedDate)
-  const {mutateAsync: mutateDayLog} = useMutateDayLog(selectedDate)
+  const {mutateAsync: mutateDayLog} = useMutateDayLog(selectedDate, weekDays)
 
 
 

@@ -1,11 +1,36 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React from 'react'
+import { getWeekDays } from '../../utils/getWeekDays'
+import CuteMood from './WeekCalander/CuteMood'
+import { useRecords } from '../../hooks/useRecord'
 
 
 
-const MyFlowerMood = ({handleSheet, seletedDate}) => {
+const MyFlowerMood = ({handleSheet, seletedDate, weekDays}) => {
+  
+   const {data:records} = useRecords(weekDays)
+
+  if(records === undefined) {
+    return (
+      <View style={{width:'100%', height:100, backgroundColor:'pink', paddingHorizontal:16, justifyContent:'center', alignItems:'center'  }}>
+        <Text>Loading...</Text>
+      </View>
+    )
+  }
+
+
+
   return (
-    <View style={{width:'100%', height:130, backgroundColor:'pink'}}>
+    <View style={{width:'100%', backgroundColor:'pink', paddingHorizontal:16}}>
+
+      <FlatList
+      horizontal
+      scrollEnabled={false}
+      keyExtractor={(item,index)=>index.toString()}
+      data={records}
+      renderItem={({item,index})=> <CuteMood dateString={weekDays[index]} data={item} handleSheet={handleSheet} />}
+      
+      />
       
     </View>
   )

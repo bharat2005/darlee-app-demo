@@ -8,6 +8,7 @@ import PadView from '../../src/components/Home/PadView/PadView'
 import { View } from 'react-native'
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import MyBottomSheet from '../../src/components/BottomSheet/MyBottomSheet'
+import { getWeekDays } from '../../src/utils/getWeekDays'
 
 
 const TOTAL_ANGLE = 80
@@ -19,6 +20,7 @@ const Home = () => {
   const popDownValue = useSharedValue(0)
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'))
   const sheetRef = useRef(null)
+  const weekDays = getWeekDays(selectedDate)
 
   const handleDayPress = (dayIndex) =>{
     popDownValue.value = withTiming(80, {duration:400}, ()=>{
@@ -49,16 +51,16 @@ const Home = () => {
 
 
       <MainTopBar title='Home' type='home' />
-      <View style={{flex:1, backgroundColor:'pink'}}>
+      <View style={{flex:1, backgroundColor:'pink', paddingTop:40}}>
       
 
-      <MyFlowerMood handleSheet={handleSheet} seletedDate={selectedDate} />
+      <MyFlowerMood handleSheet={handleSheet} seletedDate={selectedDate} weekDays={weekDays} />
 
       <MyWeekList seletedDate={selectedDate} setSelectedDate={setSelectedDate} handleDayPress={handleDayPress} />
 
       <PadView flowerAnimationStyle={flowerAnimationStyle} />
 
-      <MyBottomSheet sheetRef={sheetRef} handlSheet={handleSheet} />
+      <MyBottomSheet sheetRef={sheetRef} handlSheet={handleSheet} weekDays={weekDays} />
 
       </View>
 

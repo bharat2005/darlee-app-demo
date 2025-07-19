@@ -4,7 +4,7 @@ import { BackHandler } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import MySheetView from './MySheetView'
 
-const MyBottomSheet = ({sheetRef, handlSheet}) => {
+const MyBottomSheet = ({sheetRef, handlSheet, weekDays}) => {
   const insets = useSafeAreaInsets()
   const [isSheetOpen, setIsSheetOpen] = useState(false)
 
@@ -34,7 +34,7 @@ const MyBottomSheet = ({sheetRef, handlSheet}) => {
     <BottomSheetModal onChange={handleChange} enableContentPanningGesture={false} enableDismissOnClose={true} ref={sheetRef} snapPoints={['96%']}>
       <BottomSheetView style={{height:'100%', width:'100%', paddingBottom:insets.bottom + 40}}>
        
-        <MySheetView handlSheet={handlSheet} /> 
+        <MySheetView handlSheet={handlSheet} weekDays={weekDays} /> 
     
       </BottomSheetView>
   </BottomSheetModal>
