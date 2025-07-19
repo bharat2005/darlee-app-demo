@@ -11,6 +11,18 @@ const MyPeriodCalander = ({periods, setPeriods}) => {
 
     const handleDayPress = (day)=>{
 
+        if(day.dateString >= format(new Date(), 'yyyy-MM-dd')) {
+            Toast.show({
+                type: 'custome',
+                text1: 'Cannot select future dates',
+                text2: 'Please select a past date',
+                props: {type: 'error'}
+            })
+            return
+        }
+        
+        
+
         const existingPeriodIndex = periods.findIndex(({start, end}, index)=> {
             const range = eachDayOfInterval({start: parseISO(start), end: parseISO(end)}).map(date => format(date, 'yyyy-MM-dd'))
             return range.includes(day.dateString)
@@ -61,6 +73,7 @@ const MyPeriodCalander = ({periods, setPeriods}) => {
     const getMarkedDates = () => {
         const markedObj = {}
         periods.forEach((item)=> {
+            if(item.phase !== 'period') return
             const range = eachDayOfInterval({start: parseISO(item.start), end: parseISO(item.end)}).map(date => format(date, 'yyyy-MM-dd'))
             range.forEach((dateString, index) => {
                 if(index === 0){

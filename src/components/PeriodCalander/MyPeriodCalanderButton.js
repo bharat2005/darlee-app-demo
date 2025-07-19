@@ -4,6 +4,7 @@ import { useMutatePeriod } from '../../hooks/useMutatePeriod'
 import Toast from 'react-native-toast-message'
 import { router } from 'expo-router'
 import { Button } from 'react-native-paper'
+import { geminiPeriodPrediction } from '../../services/gemini/geminiPeriodPrediction'
 
 const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -11,15 +12,13 @@ const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
     const handleAddPeriod = () => {
         setIsLoading(true)
         mutatePeriods({periods}, {
-            onSuccess: () => {
+            onSuccess: async() => {  
+                await geminiPeriodPrediction()
                 Toast.show({type:'custome', text1:'Periods Added', props: {type: 'success'}})
                 router.back()
             },
             onError: () => {
                 Toast.show({type:'custome', text1:'Error Adding Periods', props: {type: 'error'}})
-            },
-            onSettled: () => {
-                setIsLoading(false)
             }
         })
     }
