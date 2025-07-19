@@ -4,7 +4,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { dateStore } from '../../../stores/dateStore'
 import { date } from 'yup';
 
-const CuteMood = ({data, handleSheet, dateString}) => {
+const CuteMood = ({data, handleSheet, dateString, isFutureToday}) => {
     const setSelectedDate = dateStore(state => state.setSelectedDate)
     const selectedDate = dateStore(state => state.selectedDate)
 
@@ -15,11 +15,16 @@ const CuteMood = ({data, handleSheet, dateString}) => {
 
 
     if(data === null  || !data?.condition) {
+    
         return (
             <View style={{width:(Dimensions.get('window').width - 32)/7, height:100, padding:2}}>
-            <TouchableOpacity onPress={onPlusPress} style={{justifyContent:'center', alignItems:'center', height:'100%', width:'100%'}}>
-             <AntDesign name="plus" size={24} color="gray" />
-            </TouchableOpacity>
+                {
+                    isFutureToday ?
+                    (<></>) :
+                    (<TouchableOpacity onPress={onPlusPress} style={{justifyContent:'center', alignItems:'center', height:'100%', width:'100%'}}>
+                        <AntDesign name="plus" size={24} color="gray" />
+                    </TouchableOpacity>)
+                }
             </View>
         )
     }

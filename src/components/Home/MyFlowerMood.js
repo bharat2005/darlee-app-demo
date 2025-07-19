@@ -3,6 +3,7 @@ import React from 'react'
 import { getWeekDays } from '../../utils/getWeekDays'
 import CuteMood from './WeekCalander/CuteMood'
 import { useRecords } from '../../hooks/useRecord'
+import { format } from 'date-fns'
 
 
 
@@ -28,7 +29,7 @@ const MyFlowerMood = ({handleSheet, seletedDate, weekDays}) => {
       scrollEnabled={false}
       keyExtractor={(item,index)=>index.toString()}
       data={records}
-      renderItem={({item,index})=> <CuteMood dateString={weekDays[index]} data={item} handleSheet={handleSheet} />}
+      renderItem={({item,index})=> <CuteMood dateString={weekDays[index]} data={item} handleSheet={handleSheet} isFutureToday={format(new Date(), 'yyyy-MM-dd') <= weekDays[index]} />}
       
       />
       

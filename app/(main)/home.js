@@ -58,7 +58,7 @@ const Home = () => {
 
       <MyWeekList seletedDate={selectedDate} setSelectedDate={setSelectedDate} handleDayPress={handleDayPress} />
 
-      <PadView selectedDate={selectedDate} weekDays={weekDays} isFutureToday={format(new Date(), 'yyyy-MM-dd') <= selectedDate} flowerAnimationStyle={flowerAnimationStyle} />
+      <PadView handleSheet={handleSheet}  selectedDate={selectedDate} weekDays={weekDays} isFutureToday={format(new Date(), 'yyyy-MM-dd') <= selectedDate} flowerAnimationStyle={flowerAnimationStyle} />
 
       <MyBottomSheet sheetRef={sheetRef} handlSheet={handleSheet} weekDays={weekDays} />
 
