@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import React, { useRef, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MyFlowerMood from '../../src/components/Home/MyFlowerMood'
@@ -58,7 +58,7 @@ const Home = () => {
 
       <MyWeekList seletedDate={selectedDate} setSelectedDate={setSelectedDate} handleDayPress={handleDayPress} />
 
-      <PadView flowerAnimationStyle={flowerAnimationStyle} />
+      <PadView selectedDate={selectedDate} weekDays={weekDays} isFutureToday={format(new Date(), 'yyyy-MM-dd') <= selectedDate} flowerAnimationStyle={flowerAnimationStyle} />
 
       <MyBottomSheet sheetRef={sheetRef} handlSheet={handleSheet} weekDays={weekDays} />
 

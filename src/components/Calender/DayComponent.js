@@ -2,11 +2,23 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { dateStore } from '../../stores/dateStore'
 import { format, parseISO } from 'date-fns'
+import Toast from 'react-native-toast-message'
 
-const DayComponent = ({date, marking, state, handlSheet, isMarked}) => {
+const DayComponent = ({date, marking, state, handlSheet, isMarked, isFutureToday}) => {
   const setSelectedDate = dateStore(state => state.setSelectedDate)
-  
+
 const handleDatePress = () => {
+  if(isFutureToday) {
+    Toast.show({
+      type: 'custome',
+      text1: 'Future Date',
+      text2: 'You can not select a future date',
+      props:{
+        type: 'error'
+      }
+    })
+    return
+  }
   setSelectedDate(format(parseISO(date.dateString), 'yyyy-MM-dd'))
   handlSheet('open')
 }

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { db } from "../services/firebase/firebaseConfig"
 import { auth } from "../services/firebase/firebaseConfig"
 
-export const useRecords = (weekDays) => {
+export const useRecords = (weekDays, options={}) => {
   return  useQuery({
         queryKey:['records',weekDays],
         queryFn:async()=>{
@@ -14,6 +14,7 @@ export const useRecords = (weekDays) => {
             }))
 
         },
-        enabled: weekDays.length > 0
+        enabled: weekDays.length > 0,
+        ...options
     })
 }

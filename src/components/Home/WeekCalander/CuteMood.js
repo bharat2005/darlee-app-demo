@@ -12,7 +12,7 @@ const CuteMood = ({data, handleSheet, dateString}) => {
         setSelectedDate(dateString)
         handleSheet('open')
     }
-    console.log(selectedDate, data?.docId)
+
 
     if(data === null  || !data?.condition) {
         return (
