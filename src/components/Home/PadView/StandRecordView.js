@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import { useRecords } from '../../../hooks/useRecord'
 import { TouchableOpacity } from 'react-native'
 import { dateStore } from '../../../stores/dateStore'
+import IconsPreview from '../../Shared/IconsPreview'
 
 const StandRecordView = ({weekDays, selectedDate, handleSheet}) => {
     const {data:records} = useRecords(weekDays, {refetchOnWindowFocus:false, refetchOnMount:false})
@@ -40,10 +41,11 @@ const StandRecordView = ({weekDays, selectedDate, handleSheet}) => {
 
 
   return (
-    <View style={{width:'100%', backgroundColor:'snow', height:'30%', marginVertical:'auto', justifyContent:'center', alignItems:'center'}}>
-        <Text>{JSON.stringify(record)}</Text>
+    <View style={{width:'100%', backgroundColor:'snow', height:'30%', marginVertical:'auto', justifyContent:'center', alignItems:'center', padding:18}}>
 
-        <TouchableOpacity onPress={onRecordPress} style={{backgroundColor:'tomato', padding:10, borderRadius:10, marginVertical:'auto'}}>
+        <IconsPreview array={record} />
+
+        <TouchableOpacity onPress={onRecordPress} style={{backgroundColor:'tomato', padding:10, borderRadius:10, marginTop:'auto'}}>
           <Text>Edit Record</Text>
          </TouchableOpacity>
     </View>

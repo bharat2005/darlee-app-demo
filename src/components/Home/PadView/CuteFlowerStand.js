@@ -12,7 +12,7 @@ const CuteFlowerStand = ({isFutureToday, weekDays, selectedDate, handleSheet}) =
 {
   isFutureToday ?
   (
-<FutureRecordView  />
+<FutureRecordView selectedDate={selectedDate}  />
   ) : (
   <StandRecordView weekDays={weekDays} selectedDate={selectedDate} handleSheet={handleSheet} />
   )
