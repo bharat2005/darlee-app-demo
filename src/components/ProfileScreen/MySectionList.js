@@ -1,7 +1,7 @@
 import { View, Text, SectionList, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { router } from 'expo-router'
+import { router, useFocusEffect } from 'expo-router'
 import ProfileModal from './ProfileModal'
 
 
@@ -11,8 +11,13 @@ const MySectionList = ({user}) => {
     const [modalType, setModalType] = useState(null)
     const [open, setOpen] = useState(false)
 
+    const navigationRef = useRef(false)
 
-
+    useFocusEffect(
+        useCallback(()=> {
+            navigationRef.current = false
+        })
+    )
 
 
     const sectionListData =  [
@@ -22,7 +27,11 @@ const MySectionList = ({user}) => {
                 {
                     label: 'Proifle',
                     icon:'person',
-                    onPress:()=>router.push('/profileDetail')
+                        onPress:()=>{
+                        if(navigationRef.current) return
+                        navigationRef.current = true
+                        router.push('/profileDetail')
+                    }
                 },
                 {
                     label: 'UserId',
@@ -39,12 +48,20 @@ const MySectionList = ({user}) => {
                 {
                     label: 'Terms',
                     icon:'document-text',
-                    onPress:()=>router.push({pathname:'/TPScreen', params:{id: 'terms'}})
+                    onPress:()=>{
+                        if(navigationRef.current) return
+                        navigationRef.current = true
+                        router.push({pathname:'/TPScreen', params:{id: 'terms'}})
+                    }
                 },
                 {
                     label: 'Privacy Procily',
                     icon:'document-text',
-                   onPress:()=>router.push({pathname:'/TPScreen', params:{id: 'privacy'}})
+                    onPress:()=>{
+                    if(navigationRef.current) return
+                    navigationRef.current = true
+                    router.push({pathname:'/TPScreen', params:{id: 'privacy'}})
+                   }
                 },
     
             ]

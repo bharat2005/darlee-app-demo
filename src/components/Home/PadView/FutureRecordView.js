@@ -28,7 +28,7 @@ const FutureRecordView = ({selectedDate}) => {
       Toast.show({
         text1: 'Error',
         text2: 'Failed to get mood prediction',
-        type: 'custom',
+        type: 'custome',
         props:{success: false}
       })
     }

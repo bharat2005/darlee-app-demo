@@ -1,17 +1,32 @@
 import { View, Text, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ModalView from './ModalView';
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 
 const MainTopBar = ({title="for my baby girl", type='home'}) => {
+    const navigationRef = useRef(false)
     const [visible, setVisible] = useState(false)
+
+
+
+    useFocusEffect(
+        useCallback(()=> {
+            navigationRef.current = false
+        })
+    )
+
+
   return (
     <View style={{height:55, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12, justifyContent:'center'}}>
 
         {
             type === 'home' && (
-                <TouchableOpacity onPress={()=>router.push('/profileScreen')} style={{position:'absolute', left:0,top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
+                <TouchableOpacity onPress={()=>{
+                    if(navigationRef.current) return
+                    navigationRef.current = true
+                    router.push('/profileScreen')
+                }} style={{position:'absolute', left:0,top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
                     <Ionicons name="person" size={24} color="gray" />
                 </TouchableOpacity>
             )
@@ -19,7 +34,11 @@ const MainTopBar = ({title="for my baby girl", type='home'}) => {
 
 {
             type === 'periodCalander' && (
-                <TouchableOpacity onPress={()=>router.back()} style={{position:'absolute', left:0, top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
+                <TouchableOpacity onPress={()=>{
+                    if(navigationRef.current) return
+                    navigationRef.current = true
+                    router.back()
+                }} style={{position:'absolute', left:0, top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
                   <Ionicons name="arrow-back" size={24} color="gray" />
                 </TouchableOpacity>
             )
