@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContextProvider'
 
 
 const ProfileModal = ({open, setOpen, modalType}) => {
-    const { logout} = useAuth()
+    const { logout, deleteAccount} = useAuth()
 
 
 
@@ -23,7 +23,7 @@ const ProfileModal = ({open, setOpen, modalType}) => {
             title: 'Delete Account',
             description: 'Are you sure you want to delete your account?',
             onConfirm: async() => {
-               // await deleteAccount()
+                await deleteAccount()
             }
         }
     }

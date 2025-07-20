@@ -97,8 +97,9 @@ const AuthContextProvider = ({children}) => {
 
   const logout = async() => {
     try{
-      console.log("logout")
+     
       await signOut(auth)
+      queryClient.clear()
 
     } catch(err){
       console.log("Error from logout function", err.message)
@@ -147,19 +148,19 @@ const AuthContextProvider = ({children}) => {
     }
   }
 
-  // const deleteAccount = async() => {
-  //   try{
+  const deleteAccount = async() => {
+    try{
     
-  //     // await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
-  //     // await deleteUser(auth.currentUser)
-  //     // queryClient.clear()
-  //   } catch(err){
-  //     console.log("Error from deleteAccount function", err.message)
-  //   }
-  // }
+      await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
+      await deleteUser(auth.currentUser)
+      queryClient.clear()
+    } catch(err){
+      console.log("Error from deleteAccount function", err.message)
+    }
+  }
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild, deleteAccount }}>
     {children}
 </AuthContext.Provider>
   )
