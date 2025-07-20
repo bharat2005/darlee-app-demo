@@ -13,7 +13,7 @@ const ProfileScreen = () => {
     <SafeAreaView style={{flex:1}}>
         <ProfileScreenHeader user={user}/>
 
-        <MySectionList />
+        <MySectionList user={user} />
         
     </SafeAreaView>
   )

@@ -7,7 +7,7 @@ import ProfileModal from './ProfileModal'
 
 
 
-const MySectionList = () => {
+const MySectionList = ({user}) => {
     const [modalType, setModalType] = useState(null)
     const [open, setOpen] = useState(false)
 
@@ -27,7 +27,8 @@ const MySectionList = () => {
                 {
                     label: 'UserId',
                     icon:'person',
-                    info:true
+                    info:true,
+                    text:user?.uid
                 },
     
             ]
@@ -94,6 +95,7 @@ const renderItem = ({item}) => (
         </View>
 
         {item.onPress && <Ionicons name="chevron-forward" size={24} color="gray" />}
+        {item.info && <Text style={{fontSize:14, fontWeight:'300', color:'gray'}}>{item.text.slice(0,17)}</Text>}
     </TouchableOpacity>
 )
 
