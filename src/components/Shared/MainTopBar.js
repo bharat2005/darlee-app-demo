@@ -11,7 +11,7 @@ const MainTopBar = ({title="for my baby girl", type='home'}) => {
 
         {
             type === 'home' && (
-                <TouchableOpacity onPress={()=>{}} style={{position:'absolute', left:0,top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
+                <TouchableOpacity onPress={()=>router.push('/profileScreen')} style={{position:'absolute', left:0,top:0, bottom:0, justifyContent:'center', alignItems:'center',  marginHorizontal:12, height:'100%'}}>
                     <Ionicons name="person" size={24} color="gray" />
                 </TouchableOpacity>
             )

@@ -26,7 +26,7 @@ const PeriodCalanderScreen = () => {
 
 
   return (
-    <SafeAreaView style={{flex:1}} edges={['top', 'bottom']}>
+    <SafeAreaView style={{flex:1}} >
      
      <MainTopBar title='Period Calander' type='periodCalander' />
 

@@ -1,15 +1,17 @@
 import { View, Text, Alert } from 'react-native'
 import React, { createContext, Profiler, useContext, useEffect, useState } from 'react'
 import { router } from 'expo-router'
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
 import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
-import { doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc } from '@react-native-firebase/firestore'
+import { deleteDoc, doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc } from '@react-native-firebase/firestore'
+import { useQueryClient } from '@tanstack/react-query'
 
 const AuthContext = createContext()
 
 const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState(null)
+  const queryClient = useQueryClient()
 
 
   useEffect(()=> {
@@ -88,6 +90,7 @@ const AuthContextProvider = ({children}) => {
 
   const logout = async() => {
     try{
+      queryClient.clear()
       await signOut(auth)
 
     } catch(err){
@@ -136,9 +139,19 @@ const AuthContextProvider = ({children}) => {
       console.log("Error from profileBuild function", err.message)
     }
   }
+
+  const deleteAccount = async() => {
+    try{
+     queryClient.clear()
+      await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
+      await deleteUser(auth.currentUser)
+    } catch(err){
+      console.log("Error from deleteAccount function", err.message)
+    }
+  }
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild, deleteAccount }}>
     {children}
 </AuthContext.Provider>
   )

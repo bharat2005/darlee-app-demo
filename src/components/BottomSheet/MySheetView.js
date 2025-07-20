@@ -11,7 +11,9 @@ import { useMutateDayLog } from '../../hooks/useMutateDayLog'
 const MySheetView = ({handlSheet, weekDays}) => {
   const selectedDate = dateStore(state => state.selectedDate)
   const {data: dayLog, error} = useDayLog(selectedDate)
-  const {mutateAsync: mutateDayLog} = useMutateDayLog(selectedDate, weekDays)
+  const {mutateAsync: mutateDayLog, error: errorMutate} = useMutateDayLog(selectedDate, weekDays)
+
+  console.log(error, errorMutate)
 
 
 

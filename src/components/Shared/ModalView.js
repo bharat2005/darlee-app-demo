@@ -13,6 +13,9 @@ const modalData = {
     'periodCalander': {
         title:'Period Calander',
     },
+    'calander': {
+        title:'Calander',
+    },
 }
 
 const ModalView = ({setVisible, type}) => {
@@ -32,13 +35,18 @@ const ModalView = ({setVisible, type}) => {
             }
                    {
                 type === 'chat' && (
-                    <Text>rough dfhif eiufhue f sebfhh fiuhf diufhhwff  fwudhfwoieu wewifuuhwef wioufhweef weifuh</Text>
+                 <></>
                 )
             }
             
             {
                 type === 'periodCalander' && (
-                    <Text>jjdff ofhjw fodhf diudhv ivuh vfiuhvu sviuvh divh vss suih</Text>
+                    <></>
+                )
+            }
+            {
+                type === 'calander' && (
+                    <></>
                 )
             }
 

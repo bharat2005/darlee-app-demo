@@ -9,6 +9,10 @@ export const geminiMoodPrediciton = async (weekKey) => {
         const q = query(collection(db, 'users', auth.currentUser.uid, 'dayLogs'), orderBy('date', 'desc'), limit(7))
         const res = await getDocs(q)
 
+        if(res.empty){
+            return {success: true, data: null}
+        }
+
         const listToSend = res.docs.reverse().map(doc => ({
             condition: doc.data().condition,
             heart: doc.data().heart,
