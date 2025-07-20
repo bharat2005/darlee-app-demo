@@ -28,7 +28,7 @@ const MySectionList = ({user}) => {
                     label: 'UserId',
                     icon:'person',
                     info:true,
-                    text:user?.uid
+                    text:user?.uid?.slice(0,17)
                 },
     
             ]
@@ -95,7 +95,7 @@ const renderItem = ({item}) => (
         </View>
 
         {item.onPress && <Ionicons name="chevron-forward" size={24} color="gray" />}
-        {item.info && <Text style={{fontSize:14, fontWeight:'300', color:'gray'}}>{item.text.slice(0,17)}</Text>}
+        {item.info && <Text style={{fontSize:14, fontWeight:'300', color:'gray'}}>{item.text}</Text>}
     </TouchableOpacity>
 )
 

@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useLocalSearchParams } from 'expo-router'
 import { useText } from '../../src/hooks/useText'
 import TPScreenHeader from '../../src/components/TPScreen/TPScreenHeader'
+import ScreenHeader from '../../src/components/Shared/ScreenHeader'
 
 const TPScreen = () => {
     const {id} = useLocalSearchParams()
@@ -12,7 +13,7 @@ const TPScreen = () => {
   return (
     <SafeAreaView style={{flex:1}}>
 
-    <TPScreenHeader id={id} />
+    <ScreenHeader title={id === 'terms' ? 'Terms & Conditions' : 'Privacy Policy'} />
 
       <ScrollView>
       <Text>{text}</Text>
