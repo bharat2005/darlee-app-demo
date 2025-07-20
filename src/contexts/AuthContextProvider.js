@@ -90,8 +90,9 @@ const AuthContextProvider = ({children}) => {
 
   const logout = async() => {
     try{
-      queryClient.clear()
       await signOut(auth)
+      queryClient.clear()
+
 
     } catch(err){
       console.log("Error from logout function", err.message)
@@ -142,9 +143,10 @@ const AuthContextProvider = ({children}) => {
 
   const deleteAccount = async() => {
     try{
-     queryClient.clear()
+    
       await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
       await deleteUser(auth.currentUser)
+      queryClient.clear()
     } catch(err){
       console.log("Error from deleteAccount function", err.message)
     }
