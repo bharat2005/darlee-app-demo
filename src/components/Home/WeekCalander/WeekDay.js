@@ -30,7 +30,7 @@ const WeekDay = ({date, marking, state, onPress, seletedDate}) => {
   
     return (
         <View style={{width:'100%', height:'100%', justifyContent:'center', alignItems:'center'}}>
-            <TouchableOpacity onPress={onPress} style={{backgroundColor:getBGColor().backgroundColor, width:'65%', height:'100%', borderRadius:'40%', justifyContent:'center', alignItems:'center', borderWidth:2, borderColor:getBorderColor()}}>
+            <TouchableOpacity onPress={onPress} style={{backgroundColor:getBGColor().backgroundColor, width:'65%', height:'100%', borderRadius:'40%', justifyContent:'center', alignItems:'center', borderWidth:isToday ? 3 : 2, borderColor:getBorderColor()}}>
                 <Text style={{fontSize:16, fontWeight:'medium', color:getBGColor().color}}>{date?.day}</Text>
             </TouchableOpacity>
 

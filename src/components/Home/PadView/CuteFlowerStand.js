@@ -7,7 +7,7 @@ import FutureRecordView from './FutureRecordView'
 const CuteFlowerStand = ({isFutureToday, weekDays, selectedDate, handleSheet}) => {
   return (
     <View style={{width:'70%', height:'95%', borderTopLeftRadius:170, borderTopRightRadius:170, marginHorizontal:'auto', marginTop:'auto', backgroundColor:'white', alignItems:'center'}}>
-      <StandCircleView />
+      <StandCircleView seletedDate={selectedDate} />
 
 {
   isFutureToday ?
