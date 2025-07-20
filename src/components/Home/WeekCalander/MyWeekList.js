@@ -3,7 +3,9 @@ import { CalendarProvider, WeekCalendar } from 'react-native-calendars'
 import WeekNextButtons from './WeekNextButtons'
 import { View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import { getDay, getISODay, parseISO } from 'date-fns'
+import { eachDayOfInterval, format, getDay, getISODay, parseISO } from 'date-fns'
+import { usePeriods } from '../../../hooks/usePeriods'
+import WeekDay from './WeekDay'
 
 const getIndex = (date) =>{
   const jsDay = getDay(parseISO(date))
@@ -11,11 +13,30 @@ const getIndex = (date) =>{
 }
 
 const MyWeekList = ({seletedDate, setSelectedDate, handleDayPress}) => {
+  const {data: periods} = usePeriods()
 
 
   useEffect(()=>{
     handleDayPress(getIndex(seletedDate))
   },[seletedDate])
+
+
+  const getMarkedDates = () => {
+    const markedObj = {}
+    const colorTypes = {
+      period: 'tomato',
+      follicular:'blue',
+      ovulation:'cyan',
+      luteal:'gray'
+    }
+    periods?.forEach((item, index) => {
+      const range = eachDayOfInterval({start: parseISO(item.start), end: parseISO(item.end)}).map(date => format(date, 'yyyy-MM-dd'))
+      range.forEach(dateString => {
+        markedObj[dateString] = {phaseColor: colorTypes[item.phase]}
+      })
+    })
+    return markedObj
+  }
 
 
 
@@ -26,12 +47,13 @@ const MyWeekList = ({seletedDate, setSelectedDate, handleDayPress}) => {
 <CalendarProvider date={seletedDate} >
 
     <WeekCalendar 
+    markedDates={getMarkedDates()}
     firstDay={1}
-    onDayPress={(day)=> setSelectedDate(day.dateString)}
     theme={{
         calendarBackground: 'transparent',
         textSectionTitleColor: 'black',
     }}
+    dayComponent={({date, marking, state})=> <WeekDay seletedDate={seletedDate} onPress={()=> setSelectedDate(date.dateString)} date={date} marking={marking} state={state} />}
     />
 
 </CalendarProvider>

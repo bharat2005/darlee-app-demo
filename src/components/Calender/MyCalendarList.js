@@ -29,7 +29,6 @@ const MyCalendarList = ({handlSheet}) => {
     return markedObj
   }
 
-console.log(getMarkedDates())
 
 
 
