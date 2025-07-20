@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import { router } from 'expo-router'
 import { usePeriods } from '../../../hooks/usePeriods'
 import { differenceInCalendarDays, isAfter, isWithinInterval, parseISO } from 'date-fns'
+import ordinal from 'ordinal'
 
 const StandCircleView = ({seletedDate}) => {
   const {data: periods} = usePeriods()
@@ -20,7 +21,8 @@ const StandCircleView = ({seletedDate}) => {
     })
 
     if(currentPeriod){
-      return `${differenceInCalendarDays(today, parseISO(currentPeriod.start)) + 1} days of period`
+      const number = ordinal(differenceInCalendarDays(today, parseISO(currentPeriod.start)) + 1)
+      return `${number} day of period`
     }
 
     const upcomingPeriod = sortedPeriods?.find(period => {
@@ -30,7 +32,8 @@ const StandCircleView = ({seletedDate}) => {
     })
 
     if(upcomingPeriod){
-      return `${differenceInCalendarDays(parseISO(upcomingPeriod.start), today)} days left for periods`
+      const number = differenceInCalendarDays(parseISO(upcomingPeriod.start), today)
+      return `${number} day${number === 1 ? '' : 's'} left for period`
     }
 
     return 'No Periods Yet'
