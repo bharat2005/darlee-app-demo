@@ -2,6 +2,14 @@ import { View, Text } from 'react-native'
 import React from 'react'
 
 const IconsPreview = ({array}) => {
+
+  if(array.length === 0) {
+    return (
+      <View style={{width:'100%', flexDirection:'row', gap:4, justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
+        <Text>No predictions</Text>
+      </View>
+    )
+  }
   return (
     <View style={{width:'100%', flexDirection:'row', gap:4, justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
       {

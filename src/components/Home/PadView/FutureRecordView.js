@@ -37,9 +37,8 @@ const FutureRecordView = ({selectedDate}) => {
   if(isLoading) {
     return (
       <View style={{width:'100%', backgroundColor:'tomato', height:'30%',  marginVertical:'auto', justifyContent:'center', alignItems:'center'}}>
-        
-        {predictions ? <ActivityIndicator size='large' color='black' /> : <Text>No predictions</Text>}
-        
+        <ActivityIndicator size='large' color='black' />
+      
       </View>
     )
   }
