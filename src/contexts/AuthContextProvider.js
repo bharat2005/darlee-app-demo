@@ -51,6 +51,13 @@ const AuthContextProvider = ({children}) => {
       const cred = await GoogleAuthProvider.credential(data?.idToken)
       const res = await signInWithCredential(auth, cred)
 
+      const res2 = await getDoc(doc(db, 'users', res?.user?.uid))
+      if(res2.exists()) {
+        router.replace('/home')
+        return 
+      }
+
+
       const docRef = doc(db, 'users', res?.user?.uid)
       await setDoc(docRef, {
         uid: res?.user?.uid,
@@ -90,9 +97,8 @@ const AuthContextProvider = ({children}) => {
 
   const logout = async() => {
     try{
+      console.log("logout")
       await signOut(auth)
-      queryClient.clear()
-
 
     } catch(err){
       console.log("Error from logout function", err.message)
@@ -141,19 +147,19 @@ const AuthContextProvider = ({children}) => {
     }
   }
 
-  const deleteAccount = async() => {
-    try{
+  // const deleteAccount = async() => {
+  //   try{
     
-      await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
-      await deleteUser(auth.currentUser)
-      queryClient.clear()
-    } catch(err){
-      console.log("Error from deleteAccount function", err.message)
-    }
-  }
+  //     // await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
+  //     // await deleteUser(auth.currentUser)
+  //     // queryClient.clear()
+  //   } catch(err){
+  //     console.log("Error from deleteAccount function", err.message)
+  //   }
+  // }
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild, deleteAccount }}>
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild }}>
     {children}
 </AuthContext.Provider>
   )

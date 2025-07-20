@@ -10,6 +10,7 @@ import ScreenHeader from '../../src/components/Shared/ScreenHeader'
 const ProfileScreen = () => {
      const {data: user} = useCurrentUser()
 
+
   return (
     <SafeAreaView style={{flex:1}}>
         <ScreenHeader title={user?.name} />
