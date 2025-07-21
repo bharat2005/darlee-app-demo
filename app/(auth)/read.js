@@ -6,6 +6,7 @@ import { Button } from 'react-native-paper'
 import { agreementStore } from '../../src/stores/aggrementStore'
 import { Image } from 'expo-image'
 import MyColors from '../../src/constants/MyColors'
+import { Entypo } from '@expo/vector-icons'
 
 
 
@@ -22,11 +23,13 @@ const Read = () => {
     )
 
 
+
+
   return (
-    <SafeAreaView style={{flex:1, paddingTop:260}} >
+    <SafeAreaView style={{flex:1, paddingTop:240}} >
         <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0}} />
 
-<View style={{width:'100%', justifyContent:'center', alignItems:'center', gap:18, paddingHorizontal:20,}}>
+<View style={{width:'100%', justifyContent:'center', alignItems:'center', gap:30, paddingHorizontal:20,}}>
 
 <Image source={require('../../assets/images/people.png')} style={{width:200, height:200}} />
 <Text style={{fontFamily:'Outfit-Regular', fontSize:16, color:'black', textAlign:'center'}}>
@@ -38,54 +41,58 @@ const Read = () => {
 
 <View style={{width:'100%', gap:12, paddingHorizontal:100, marginVertical:40}}>
 
-</View>
+    <Button mode='contained' onPress={()=> {
+        if(navigationRef.current) return
+        navigationRef.current = true
+        router.push({pathname:'/textScreen', params:{id:'terms'}})
+    }}
+    style={{backgroundColor:readTerms ? MyColors.DARK_GREY : 'lightgray'}}
+    theme={{roundness:2}}
+    labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readTerms ? 'white' : 'gray'}}
+    >
+        Terms of Services
+    </Button>   
+
+    <View style={{justifyContent:'center', alignItems:'center'}}>
+    <Entypo name="chevron-small-down" size={24} color="gray" />
+    </View>
+
+<Button mode='contained' onPress={()=> {
+
+    if(navigationRef.current) return
+    navigationRef.current = true
+    router.push({pathname:'/textScreen', params:{id:'privacy'}})
+}}
+theme={{roundness:2}}
+style={{backgroundColor:readPrivacy ? MyColors.DARK_GREY : 'lightgray'}}
+labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy ? 'white' : 'gray'}}
+>
+    Privacy Policy
+</Button>
+
+    </View>
 
 
 
+    <View style={{marginTop:'auto', paddingHorizontal:20, marginBottom:20}}>
 
-
-
-        
-        {/* <Button  
-        mode='contained'
-        style={{backgroundColor:readTerms ? 'black' : 'gray'}}
-        onPress={()=> {
+        <Button mode='contained' onPress={()=> {
             if(navigationRef.current) return
             navigationRef.current = true
-            router.push({pathname:'/textScreen', params:{id:'terms'}})
-        }} 
-            >
-            Terms
-        </Button>
-
-        <Button 
-        mode='contained'
-        style={{backgroundColor:readPrivacy ? 'black' : 'gray'}}
-        onPress={()=> {
-            if(navigationRef.current) return
-            navigationRef.current = true
-            router.push({pathname:'/textScreen', params:{id:'privacy'}})
-        }} 
-            
+            router.push('/register')
+        }}
+        disabled={!(readPrivacy && readTerms)}
+        style={{backgroundColor: readPrivacy && readTerms ? MyColors.DARK_GREY : 'lightgray', height:44}}
+        theme={{roundness:2}}
+        labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy && readTerms ? 'white' : 'gray'}}
         >
-            Privacy
+            Next
         </Button>
 
-        <View style={{position:'absolute', bottom:40, width:'100%'}}>
 
-            <Button 
-            mode='contained'
-            disabled={!(readPrivacy && readTerms)}
-            onPress={()=> {
-                if (navigationRef.current) return
-                navigationRef.current = true
-                router.push('/register')
-            }}
-            >
-                Next
-            </Button>
+    </View>
 
-        </View> */}
+
 
     </SafeAreaView>
   )

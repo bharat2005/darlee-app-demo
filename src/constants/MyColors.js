@@ -1,3 +1,3 @@
 export default {
-    DARK_GREY: '#0e2b31'
+    DARK_GREY: '#0e2b31',
 }

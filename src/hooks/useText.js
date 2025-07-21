@@ -8,7 +8,7 @@ export const useText = (id) => {
         queryKey:['agreement',id],
         queryFn:async()=> {
             const res = await getDoc(doc( db, 'textData', id))
-            return res.data()?.text || ''
+            return res.data()?.array || []
         },
         enabled:!!id
     })

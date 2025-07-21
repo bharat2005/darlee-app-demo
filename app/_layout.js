@@ -19,6 +19,9 @@ export default function RootLayout() {
     "NotoSansJP-Regular": require('../assets/fonts/NotoSansJP-Regular.ttf'),
     "Outfit-Bold": require('../assets/fonts/Outfit-Bold.ttf'),  
     "Outfit-Regular": require('../assets/fonts/Outfit-Regular.ttf'),
+    "Outfit-Light": require('../assets/fonts/Outfit-Light.ttf'),
+    "Outfit-ExtraLight": require('../assets/fonts/Outfit-ExtraLight.ttf'),
+
   })
 
   return (
