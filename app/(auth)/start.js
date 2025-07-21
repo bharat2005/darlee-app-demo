@@ -29,16 +29,16 @@ const Start = () => {
 
 </View>
 
-<View style={{width:'100%', justifyContent:'center', alignItems:'center', paddingHorizontal:18, gap:24}}>
+<View style={{width:'100%', justifyContent:'center', alignItems:'center', paddingHorizontal:14, gap:18}}>
 <Text style={{fontFamily:'KaiseiDecol-Regular', fontSize:18, color:'black', textAlign:'center'}}>
 Built with love, not just logic
   </Text>
-  <Text style={{fontFamily:'KaiseiDecol-Bold', fontSize:30, color:'black', textAlign:'center'}}>Made Soft for Your Stormy Days </Text>
+  <Text style={{fontFamily:'KaiseiDecol-Bold', fontSize:28, color:'black', textAlign:'center'}}>Made Soft for Your Stormy Days </Text>
 
 </View>
 
 
-<View style={{width:'100%', marginTop:180, paddingHorizontal:60, gap:16}}>
+<View style={{width:'100%', marginTop:190, paddingHorizontal:60, gap:16}}>
 
 <Button mode='contained' onPress={()=> {
   if(navigationRef.current) return

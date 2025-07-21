@@ -171,10 +171,11 @@ const EmailAuthComp = ({ origin }) => {
             {origin === "login" && (
               <Button
                 mode="text"
+                style={{height:44, marginTop:12}}
+                contentStyle={{height:44}}
                 labelStyle={{
                   fontSize: 14,
                   fontWeight: "400",
-                  lineHeight: 34,
                   fontFamily: "Outfit-Light",
                   color: "rgb(87, 87, 87)",
                 }}
@@ -184,7 +185,7 @@ const EmailAuthComp = ({ origin }) => {
                   router.push("/forgetPass");
                 }}
               >
-                <Text style={{ textAlign: "center" }}>Forget Password?</Text>
+              Forget Password?
               </Button>
             )}
           </View>
