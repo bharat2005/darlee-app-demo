@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, Dimensions, Image } from 'react-native'
 import React, { useRef, useState } from 'react'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
@@ -55,6 +55,7 @@ const ProfileBuild = () => {
 
    
     <SafeAreaView style={{ flex:1, width:'100%'}}>
+        <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
         
 
         <Formik
