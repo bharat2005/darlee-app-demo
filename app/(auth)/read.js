@@ -13,7 +13,9 @@ import { Entypo } from '@expo/vector-icons'
 const Read = () => {
     const navigationRef = useRef(false)
     const readTerms = agreementStore(state => state.readTerms)
+    const markTerms = agreementStore(state => state.markTerms)
     const readPrivacy = agreementStore(state => state.readPrivacy)
+    const markPrivacy = agreementStore(state => state.markPrivacy)
 
 
     useFocusEffect(
@@ -80,6 +82,9 @@ labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy ? 'whit
             if(navigationRef.current) return
             navigationRef.current = true
             router.push('/register')
+            
+            markTerms(false)
+            markPrivacy(false)
         }}
         disabled={!(readPrivacy && readTerms)}
         style={{backgroundColor: readPrivacy && readTerms ? MyColors.DARK_GREY : 'lightgray', height:44}}

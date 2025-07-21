@@ -4,6 +4,7 @@ import { getWeekDays } from '../../utils/getWeekDays'
 import CuteMood from './WeekCalander/CuteMood'
 import { useRecords } from '../../hooks/useRecord'
 import { format } from 'date-fns'
+import MyColors from '../../constants/MyColors'
 
 
 
@@ -22,7 +23,7 @@ const MyFlowerMood = ({handleSheet, seletedDate, weekDays}) => {
 
 
   return (
-    <View style={{width:'100%', backgroundColor:'pink', paddingHorizontal:16}}>
+    <View style={{width:'100%', backgroundColor:MyColors.LIGHT_PRIMARY, paddingHorizontal:16}}>
 
       <FlatList
       horizontal

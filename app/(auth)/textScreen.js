@@ -57,7 +57,7 @@ const TextScreen = () => {
         labelStyle={{ fontWeight:'400',  fontFamily:'Outfit-Light', color:'white'}}
         theme={{roundness:2}}
         onPress={()=> {
-          id === 'terms' ? markTerms() : markPrivacy()
+          id === 'terms' ? markTerms(true) : markPrivacy(true)
           router.back()
         }}>
           Read

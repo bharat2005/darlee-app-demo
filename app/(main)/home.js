@@ -9,6 +9,7 @@ import { View } from 'react-native'
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import MyBottomSheet from '../../src/components/BottomSheet/MyBottomSheet'
 import { getWeekDays } from '../../src/utils/getWeekDays'
+import MyColors from '../../src/constants/MyColors'
 
 
 const TOTAL_ANGLE = 80
@@ -47,11 +48,11 @@ const Home = () => {
   }
 
   return (
-    <SafeAreaView style={{flex:1, backgroundColor:'white'}} edges={['top']}>
+    <SafeAreaView style={{flex:1, backgroundColor:MyColors.LIGHT_PRIMARY}} edges={['top']}>
 
 
-      <MainTopBar title='Home' type='home' />
-      <View style={{flex:1, backgroundColor:'pink', paddingTop:40}}>
+      <MainTopBar title={format(parseISO(selectedDate), 'yyyy.M.dd')} bgColor={MyColors.LIGHT_PRIMARY}  type='home' />
+      <View style={{flex:1, backgroundColor:MyColors.LIGHT_PRIMARY, paddingTop:40}}>
       
 
       <MyFlowerMood handleSheet={handleSheet} seletedDate={selectedDate} weekDays={weekDays} />
