@@ -1,17 +1,21 @@
 import { View, Text, Alert } from 'react-native'
-import React, { createContext, Profiler, useContext, useEffect, useState } from 'react'
+import React, { createContext, Profiler, useCallback, useContext, useEffect, useState } from 'react'
 import { router } from 'expo-router'
 import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
 import { auth, db } from '../services/firebase/firebaseConfig'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { deleteDoc, doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc } from '@react-native-firebase/firestore'
 import { useQueryClient } from '@tanstack/react-query'
+import * as SplashScreen from 'expo-splash-screen'
+
+SplashScreen.preventAutoHideAsync()
 
 const AuthContext = createContext()
 
 const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState(null)
   const queryClient = useQueryClient()
+
 
 
   useEffect(()=> {
@@ -27,12 +31,19 @@ const AuthContextProvider = ({children}) => {
         }
       } else{
         router.replace('/start')
-      }
+      } 
+        requestAnimationFrame(() => {
+          SplashScreen.hideAsync();
+        });
     })
 
-    return unsub
+    return ()=>{
+      unsub()
+    }
 
   },[])
+
+
 
 
     useEffect(()=> {
@@ -160,9 +171,11 @@ const AuthContextProvider = ({children}) => {
   }
   
   return (
-<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild, deleteAccount }}>
+
+<AuthContext.Provider value={{ googleLogin, logout, emailRegister, emailLogin, forgetPass, profileBuild, deleteAccount, user }}>
     {children}
 </AuthContext.Provider>
+
   )
 }
 
