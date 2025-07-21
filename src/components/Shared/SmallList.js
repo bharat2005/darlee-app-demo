@@ -1,5 +1,8 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
+import Images from '../../constants/Images'
+import { Feather } from '@expo/vector-icons'
+import MyColors from '../../constants/MyColors'
 
 const SmallList = ({array=[], setFieldValue}) => {
   const [localSelection, setLoacalSelection] = useState([])
@@ -18,20 +21,22 @@ const SmallList = ({array=[], setFieldValue}) => {
 
 
   return (
-    <View style={{width:'100%', gap:12, padding:18}}>
+    <View style={{width:'100%', gap:12}}>
 
         {
             array.map((item, index)=> (
-                <TouchableOpacity onPress={()=> handleOptionSelect(item?.id)} key={item?.id} style={{flexDirection:'row', alignItems:'center', paddingHorizontal:8, height:58, width:'100%', backgroundColor:'white', borderRadius:6}}>
+                <TouchableOpacity activeOpacity={0.7} onPress={()=> handleOptionSelect(item?.id)} key={item?.id} style={{flexDirection:'row', alignItems:'center', paddingHorizontal:18, height:67, width:'100%', backgroundColor:'white', borderRadius:20}}>
 
-                    <Image style={{height:30, width:30, backgroundColor:'pink'}} />
+                    <Image source={Images[item?.id]} style={{height:38, width:38}} />
 
-                    <Text style={{marginHorizontal:18}}>{item?.label}</Text>
+                    <Text style={{marginHorizontal:18, fontSize:16, fontFamily:'Outfit-Medium', color:'black'}}>{item?.label}</Text>
 
 
                     {
                       localSelection.some(i => i === item?.id) && (
-                        <View style={{height:40, width:40, backgroundColor:"green", borderRadius:20, position:'absolute', right:0, marginHorizontal:24}} />
+                        <View style={{ borderRadius:20, position:'absolute', right:0, marginHorizontal:24}} >
+                          <Feather name="check" size={24} color={MyColors.PRIMARY} />
+                        </View>
                       )
                     }
 

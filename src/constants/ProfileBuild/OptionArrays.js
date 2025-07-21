@@ -37,34 +37,34 @@ export const interests = [
   id: 'notVeryInterested'
 },
 {
-  label:'Little Interested',
+  label:"I'm a little Interested",
   id: 'littleInterested'
 },
 {
-  label:'I am Interested',
+  label:"I'm Interested",
   id: 'imInterested'
 },
 {
-  label:'Im very Interested',
+  label:"I'm very Interested",
   id: 'veryInterested'
 },
 ]
 
 export const concious = [
 {
-  label:'I dont have anything in perrticualr',
+  label:"I haven't done anything in particular",
   id: 'notPerticualr'
 },
 {
-  label:'I act a little consious',
+  label:"I act a little consious",
   id: 'littleConcious'
 },
 {
-  label:'Acting conciously',
+  label:"Acting conciously",
   id: 'actingConciously'
 },
 {
-  label:'Act Very conciously',
+  label:"Act Very conciously",
   id: 'actVeryConciously'
 },
 ]
@@ -72,19 +72,19 @@ export const concious = [
 
 export const control = [
 {
-  label:'Thres nothiing you can do',
+  label:"There's nothing you can do",
   id: 'cantDo'
 },
 {
-  label:'I dont think thres much i can do',
+  label:"I don't think there's much I can do",
   id: 'cantDoMuch'
 },
 {
-  label:'I think ther is somthing i can do',
+  label:"I think there's something I can do",
   id: 'somthingDo'
 },
 {
-  label:'I think thers are many things that can be done',
+  label:"I think there are many things that can be done",
   id: 'manyThingDo'
 },
 ]

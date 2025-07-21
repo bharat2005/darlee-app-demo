@@ -13,6 +13,7 @@ import End from '../../src/components/ProfileBuild/End'
 import NextButton from '../../src/components/ProfileBuild/NextButton'
 import { KeyboardAvoidingView } from 'react-native'
 import { useAuth } from '../../src/contexts/AuthContextProvider'
+import IndexIndicator from '../../src/components/Shared/IndexIndicator'
 
 
 const steps = [Name, DOB, Period, Symptom, Interest, Concious, Control, End]
@@ -54,9 +55,10 @@ const ProfileBuild = () => {
 
 
    
-    <SafeAreaView style={{ flex:1, width:'100%'}}>
+    <SafeAreaView style={{ flex:1, width:'100%', paddingTop:18}}>
         <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
-        
+
+        <IndexIndicator arrayLength={steps.length} currentIndex={currentIndex} />
 
         <Formik
         onSubmit={handleFormSubmit}

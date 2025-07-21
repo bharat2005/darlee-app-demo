@@ -37,6 +37,7 @@
     "expo-system-ui": "~5.0.10",
     "expo-web-browser": "~14.2.0",
     "formik": "^2.4.6",
+    "lottie-react-native": "^7.2.4",
     "ordinal": "^1.0.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",

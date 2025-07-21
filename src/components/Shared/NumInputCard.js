@@ -4,6 +4,7 @@ import { format, set } from 'date-fns'
 import DatePicker, {} from 'react-native-date-picker'
 import Feather from '@expo/vector-icons/Feather';
 import { Menu } from 'react-native-paper';
+import MyColors from '../../constants/MyColors';
 
 const NumInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFeildValue, exPrimaryText, exSecondaryText, expandable, numlength=5, startNum=1}) => {
   const [open, setOpen] = useState('')
@@ -11,12 +12,14 @@ const NumInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFe
   return (
     <View style={{width:'100%',paddingHorizontal:4}}>
      
-     <View style={{width:'100%', borderRadius:12, backgroundColor:'white', padding:12, gap:18}}>
+     <View style={{width:'100%', borderRadius:24, backgroundColor:'white', padding:18, gap:18}}>
 
-        <Text style={{fontSize:16, fontWeight:'700'}}>{primaryText}</Text>
+        <Text style={{fontSize:16, fontFamily:'Outfit-Medium'}}>{primaryText}{" "}{" "}
+          <Text style={{fontSize:14, color:'red', fontFamily:'Outfit-Light'}}>Required*</Text>
+        </Text>
 
         {isSecondaryText && (
-            <Text style={{fontSize:14, fontWeight:'400', color:'gray'}}>{secondaryText}</Text>
+            <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>{secondaryText}</Text>
         )}
 
 
@@ -25,9 +28,9 @@ const NumInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFe
         contentStyle={{width:300, height:400, backgroundColor:'white'}}
         onDismiss={()=>setOpen(false)}
         anchor={
-        <TouchableOpacity onPress={()=> setOpen(true)} style={{width:'100%', height:50, flexDirection:'row', borderWidth:1, borderColor:'black', borderRadius:6, justifyContent:'space-between', paddingHorizontal:8, alignItems:'center'}}>
-          <Text>{value}</Text>
-          <Feather name="chevron-down" size={24} color="black" />
+        <TouchableOpacity onPress={()=> setOpen(true)} activeOpacity={0.6} style={{width:'100%', height:50, flexDirection:'row', borderWidth:1, borderColor:MyColors.PRIMARY, borderRadius:6, justifyContent:'space-between', marginBottom:12, paddingHorizontal:18, alignItems:'center'}}>
+          <Text style={{fontSize:16, fontFamily:'Outfit-Light'}}>{value}</Text>
+          <Feather name="chevron-down" size={24} color={MyColors.PRIMARY} />
         </TouchableOpacity>
         }
         >
@@ -35,7 +38,7 @@ const NumInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFe
             {
               [...Array(numlength)].map((item, index)=> (
                 <React.Fragment key={index}>
-                    <Menu.Item title={index + startNum} onPress={()=> {setFeildValue(index + startNum); setOpen(false)}} />
+                    <Menu.Item titleStyle={{fontSize:16, fontFamily:'Outfit-Light'}} title={index + startNum} onPress={()=> {setFeildValue(index + startNum); setOpen(false)}} />
                 </React.Fragment>
               ))
             }
@@ -46,16 +49,16 @@ const NumInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFe
 
 
         {expandable && (
-        <TouchableOpacity onPress={()=> setIsExpanded(prev => !prev)} style={{width:'50%'}}>
-          <Text>{exPrimaryText}</Text>
+          <TouchableOpacity activeOpacity={0.6} onPress={()=> setIsExpanded(prev => !prev)} style={{width:'100%'}}>
+          <Text style={{fontFamily:'Outfit-Medium',fontSize:14, color:'black'}}>{exPrimaryText}</Text>
         </TouchableOpacity>
         )}
 
 
         {
           isExpanded && (
-            <View style={{paddingVertical:12, width:'100%'}}>
-              <Text>{exSecondaryText}</Text>
+            <View style={{width:'100%'}}>
+              <Text style={{fontSize:14, fontFamily:'Outfit-Medium', color:'rgb(129, 129, 129)'}}>{exSecondaryText}</Text>
               </View>
           )
 
