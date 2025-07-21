@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native'
-import React, { useCallback, useEffect, useRef } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { Button } from 'react-native-paper'
-import { GoogleSignin } from '@react-native-google-signin/google-signin'
-import { GoogleAuthProvider, signInWithCredential } from '@react-native-firebase/auth'
-import {auth, db} from '../../src/services/firebase/firebaseConfig'
+import { Image } from 'expo-image'
 import { router, useFocusEffect } from 'expo-router'
+import React, { useCallback, useRef } from 'react'
+import { Text, View } from 'react-native'
+import { Button } from 'react-native-paper'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Flower from '../../assets/svgs/Flower'
+import MyColors from '../../src/constants/MyColors'
+
 
 
 const Start = () => {
@@ -19,28 +20,52 @@ const Start = () => {
 
 
   return (
-    <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+    <SafeAreaView style={{flex:1, paddingTop:140}}>
+      <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0}} />
 
-      <Button onPress={()=> {
-        if(navigationRef.current) return
-        navigationRef.current = true
-        router.push('/read')
-      }} textColor='white' style={{backgroundColor:'black'}}>
-        Register
-      </Button>
+<View style={{width:'100%', justifyContent:'center', alignItems:'center', marginBottom:28}}>
+
+  <Flower height={60} widthP={60} />
+
+</View>
+
+<View style={{width:'100%', justifyContent:'center', alignItems:'center', paddingHorizontal:18, gap:24}}>
+<Text style={{fontFamily:'KaiseiDecol-Regular', fontSize:18, color:'black', textAlign:'center'}}>
+Built with love, not just logic
+  </Text>
+  <Text style={{fontFamily:'KaiseiDecol-Bold', fontSize:30, color:'black', textAlign:'center'}}>Made Soft for Your Stormy Days </Text>
+
+</View>
 
 
-     <Button
-     mode='text' 
-     onPress={()=> {
-        if(navigationRef.current) return
-        navigationRef.current = true
-        router.push('/login')
-      }} 
+<View style={{width:'100%', marginTop:180, paddingHorizontal:60, gap:16}}>
 
-      >
-        Login
-      </Button>
+<Button mode='contained' onPress={()=> {
+  if(navigationRef.current) return
+  navigationRef.current = true
+  router.push('/read')
+}}
+style={{backgroundColor:MyColors.DARK_GREY, height:44}}
+contentStyle={{height:44}}
+theme={{roundness:2}}
+labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'white'}}
+>
+  Start New
+</Button>   
+
+<Button mode='text' onPress={()=> {
+  if(navigationRef.current) return
+  navigationRef.current = true
+  router.push('/login')
+}}
+style={{backgroundColor:'transparent', height:44}}
+contentStyle={{height:44}}
+theme={{roundness:2}}
+labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'black'}}
+>
+  Click if you already have an account
+</Button>   
+      </View>
 
     
 

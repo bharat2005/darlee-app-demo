@@ -6,10 +6,21 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import Toast from "react-native-toast-message"
 import CustomeToast from "../src/components/Shared/CustomeToast";
+import { useFonts } from 'expo-font'
 
 const client = new QueryClient();
 
 export default function RootLayout() {
+
+  useFonts({
+    'KaiseiDecol-Regular': require('../assets/fonts/KaiseiDecol-Regular.ttf'),
+    "KaiseiDecol-Bold": require('../assets/fonts/KaiseiDecol-Bold.ttf'),
+    "NotoSansJP-Bold": require('../assets/fonts/NotoSansJP-Bold.ttf'),  
+    "NotoSansJP-Regular": require('../assets/fonts/NotoSansJP-Regular.ttf'),
+    "Outfit-Bold": require('../assets/fonts/Outfit-Bold.ttf'),  
+    "Outfit-Regular": require('../assets/fonts/Outfit-Regular.ttf'),
+  })
+
   return (
     <QueryClientProvider client={client}>
     <GestureHandlerRootView style={{flex:1}}>
