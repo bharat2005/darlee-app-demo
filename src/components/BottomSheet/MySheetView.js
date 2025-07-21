@@ -13,7 +13,6 @@ const MySheetView = ({handlSheet, weekDays}) => {
   const {data: dayLog, error} = useDayLog(selectedDate)
   const {mutateAsync: mutateDayLog, error: errorMutate} = useMutateDayLog(selectedDate, weekDays)
 
-  console.log(error, errorMutate)
 
 
 
