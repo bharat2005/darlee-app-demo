@@ -20,12 +20,12 @@ const Start = () => {
 
 
   return (
-    <SafeAreaView style={{flex:1, paddingTop:140}}>
-      <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0}} />
+    <SafeAreaView style={{flex:1, paddingTop:140, backgroundColor:'white'}}>
+      <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', marginBottom:28}}>
 
-  <Flower height={60} widthP={60} />
+  <Flower height={60} widthP={60} color={MyColors.PRIMARY} />
 
 </View>
 

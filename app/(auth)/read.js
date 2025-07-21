@@ -27,7 +27,7 @@ const Read = () => {
 
   return (
     <SafeAreaView style={{flex:1, paddingTop:240}} >
-        <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0}} />
+        <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', gap:30, paddingHorizontal:20,}}>
 
@@ -84,6 +84,7 @@ labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy ? 'whit
         disabled={!(readPrivacy && readTerms)}
         style={{backgroundColor: readPrivacy && readTerms ? MyColors.DARK_GREY : 'lightgray', height:44}}
         theme={{roundness:2}}
+        contentStyle={{height:44}}
         labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy && readTerms ? 'white' : 'gray'}}
         >
             Next
