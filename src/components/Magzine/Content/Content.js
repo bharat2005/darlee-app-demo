@@ -29,7 +29,7 @@ const renderScene = ({route}) => {
 }
 
   return (
-    <View style={{flex:1 , width:'100%'}}>
+    <View style={{flex:1 , width:'100%', backgroundColor:'white'}}>
 
       
     <ContentTabBar routes={routes}  setIndex={setIndex} index={index}/>

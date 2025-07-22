@@ -22,12 +22,12 @@ const HormoneGuide = ({type, starredCardIds}) => {
 
 
   return (
-    <View style={{flex:1, width:'100%'}}>
+    <View style={{flex:1, width:'100%', }}>
 
       <FlatList
       refreshing={refreshing}
       onRefresh={handleRefresh}
-      contentContainerStyle={{gap:12, paddingHorizontal:4, paddingVertical:18}}
+      contentContainerStyle={{gap:24, paddingHorizontal:4, paddingVertical:18}}
       data={cleandedList}
       onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
       onEndReachedThreshold={0}

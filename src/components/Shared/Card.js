@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Image } from 'react-native'
+import { View, Text, Pressable, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { router } from 'expo-router'
 import StartButton from './StartButton'
@@ -17,10 +17,10 @@ const Card = ({cardData, type, isStarred}) => {
             <LinearGradient colors={colors[type]} style={{height:'100%', width:'100%', borderRadius:8, position:'absolute', top:0, left:0, right:0, bottom:0, zIndex:-5}} start={{x:0, y:0}} end={{x:0, y:1}} />
     
 
-            <Pressable onPress={()=> router.push({pathname:'/magScreen', params: {cardId: cardData?.docId, type}})} style={{height:'100%', width:'100%', borderRadius:8, padding:12}}>
+            <TouchableOpacity activeOpacity={0.8} onPress={()=> router.push({pathname:'/magScreen', params: {cardId: cardData?.docId, type}})} style={{height:'100%', width:'100%', borderRadius:8, paddingVertical:12, paddingHorizontal:12}}>
             
             
-              <Text style={{color:'rgb(36, 36, 36)', fontSize:15, fontFamily:'Outfit-Medium', zIndex:5}}>{cardData?.titleText}</Text>
+              <Text style={{color:'rgb(36, 36, 36)', fontSize:13, fontFamily:'Outfit-Medium', zIndex:5}}>{cardData?.titleText}</Text>
             
             
             
@@ -31,7 +31,7 @@ const Card = ({cardData, type, isStarred}) => {
             }
 
             
-            </Pressable>
+            </TouchableOpacity>
 
             <View style={{position:'absolute', bottom:18, right:18, zIndex:1}}>
 
