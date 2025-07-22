@@ -9,6 +9,7 @@ import DatePicker from 'react-native-date-picker'
 import { Timestamp } from '@react-native-firebase/firestore'
 import Toast from 'react-native-toast-message'
 import { router } from 'expo-router'
+import MyColors from '../../constants/MyColors'
 
 const DateSettingComp = ({}) => {
   const {data: userData} = useCurrentUser()
@@ -36,11 +37,11 @@ const DateSettingComp = ({}) => {
 
   return (
     <View style={{width:'100%', backgroundColor:'white', paddingHorizontal:28, paddingVertical:16, gap:12}}>
-      <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>Change your date of birth. Select a date of birth you want to change.</Text>
+      <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray', marginBottom:8}}>Change your date of birth. Select a date of birth you want to change.</Text>
 
    <TouchableOpacity onPress={()=> setShowDatePicker(true)} style={{width:'100%', height:50, backgroundColor:'lightgray', justifyContent:'space-between', alignItems:'center', flexDirection:'row', paddingHorizontal:12, borderRadius:12}}>
-     <Text>{userData ? format(dob, 'yyyy/MM/dd') : 'Select Date of Birth'}</Text> 
-    <Entypo name="chevron-down" size={24} color="black" />
+     <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'black'}}>{userData ? format(dob, 'yyyy/MM/dd') : 'Select Date of Birth'}</Text> 
+    <Entypo name="chevron-down" size={24} color="gray" />
    </TouchableOpacity>
 
    <DatePicker
@@ -58,7 +59,16 @@ const DateSettingComp = ({}) => {
         }}
       />
 
-    <Button onPress={handleSave} loading={isLoading} disabled={isLoading} mode='contained' style={{width:'100%', marginTop:12, height:50}} contentStyle={{height:50}}>
+<Button
+    labelStyle={{fontSize:16, fontFamily:'Outfit-Medium', color:'white'}}
+    theme={{
+      roundness:2
+    }}
+    onPress={handleSave} loading={isLoading} disabled={isLoading} 
+    mode='contained' 
+    style={{width:'100%', marginTop:18, backgroundColor:isLoading ? 'lightgray' : MyColors.DARK_GREY, height:44}} 
+    contentStyle={{height:44}}
+    >
         Save Changes
     </Button>
 

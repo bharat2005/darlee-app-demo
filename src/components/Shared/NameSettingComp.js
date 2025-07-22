@@ -31,12 +31,12 @@ const NameSettingComp = ({}) => {
 
   return (
     <View style={{width:'100%', backgroundColor:'white', paddingHorizontal:28, paddingVertical:16, gap:12}}>
-      <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>Change your nickname. Enter a new nickname.</Text>
+      <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray', marginBottom:8}}>Change your nickname. Enter a new nickname that you want to set as a new one.</Text>
 
       <TextInput
       placeholder='Enter your name'
       style={{backgroundColor:'rgba(0, 0, 0, 0.05)'}}
-      theme={{colors:{primary:MyColors.PRIMARY, outline:'lightgray'}}}
+      theme={{colors:{primary:MyColors.PRIMARY, outline:'lightgray'}, roundness:12}}
       value={name}
       onChangeText={(v)=> setName(v)}
       mode='outlined'
