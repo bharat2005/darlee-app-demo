@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useLocalSearchParams } from 'expo-router'
@@ -36,7 +36,8 @@ const SettingsScreen = () => {
 
 
   return (
-    <SafeAreaView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex:1}}>
+    <SafeAreaView style={{flex:1, backgroundColor:'white'}}>
 
         <ScreenHeader title={data[id].title} />
 
@@ -51,6 +52,7 @@ const SettingsScreen = () => {
         }
         
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   )
 }
 

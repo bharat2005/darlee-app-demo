@@ -1,6 +1,8 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Pressable, Text, View } from 'react-native'
+import MyColors from '../../../constants/MyColors'
+import { Ionicons } from '@expo/vector-icons'
 
 const WeekDay = ({date, marking, state, onPress, seletedDate}) => {
     const isToday = state === 'today'
@@ -20,18 +22,23 @@ const WeekDay = ({date, marking, state, onPress, seletedDate}) => {
 
     const getBorderColor = () => {
         if(isToday){
-            return 'hotpink'
+            return MyColors.DARK_BLUE
         }
         if(isSelected){
-            return 'black'
+            return MyColors.DARK_BLUE
         }
         return 'transparent'
     }
   
     return (
         <View style={{width:'100%', height:'100%', justifyContent:'center', alignItems:'center'}}>
-            <TouchableOpacity onPress={onPress} style={{backgroundColor:getBGColor().backgroundColor, width:'65%', height:'100%', borderRadius:'40%', justifyContent:'center', alignItems:'center', borderWidth:isToday ? 3 : 2, borderColor:getBorderColor()}}>
-                <Text style={{fontSize:16, fontWeight:'medium', color:getBGColor().color}}>{date?.day}</Text>
+            <TouchableOpacity activeOpacity={0.7} onPress={onPress} style={{backgroundColor:getBGColor().backgroundColor, width:'65%', height:'100%', borderRadius:'38%', justifyContent:'center', alignItems:'center', borderWidth:isToday ? 3 : 2, borderColor:getBorderColor()}}>
+                <Text style={{fontSize:15, fontWeight:'medium', color:getBGColor().color, fontFamily:'Outfit-Medium'}}>{date?.day}</Text>
+
+            {
+                marking?.phase === 'ovulation' && <Ionicons style={{position:'absolute', bottom:0, right:0}} name="egg" size={13} color={MyColors.DARK_BLUE} />
+            }
+            
             </TouchableOpacity>
 
         </View>

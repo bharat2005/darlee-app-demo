@@ -65,12 +65,12 @@ const StandCircleView = ({seletedDate}) => {
   return (
       <View style={{width:275, height:275, marginTop:10,borderRadius:137.5,backgroundColor:'rgb(245, 230, 242)', justifyContent:'center', alignItems:'center', gap:12, overflow:'hidden'}}>
 
-<View style={{width:'100%', alignItems:'center', gap:20}}>
+<View style={{width:'100%', alignItems:'center', gap:18}}>
 <Text style={{color: isPeriod ? 'tomato' : MyColors.DARK_BLUE, fontSize:15, fontFamily:'Outfit-Light', textAlign:'center'}}>{text?.secondaryText}</Text>
 <Text style={{color: isPeriod ? 'tomato' : MyColors.DARK_BLUE, fontSize:30, fontFamily:'Outfit-Medium', textAlign:'center'}}>{text?.primaryText}</Text>
 </View>
 
-<View style={{borderRadius:24, overflow:'hidden', marginTop:38}}>
+<View style={{borderRadius:24, overflow:'hidden', marginTop:32}}>
       <Pressable android_ripple={{color:'rgb(57, 63, 103)'}}
       onPress={()=> router.push('/periodCalanderScreen')} 
        style={{ backgroundColor:MyColors.DARK_BLUE, padding:10, paddingHorizontal:32, flexDirection:'row', alignItems:'center', gap:8}}>

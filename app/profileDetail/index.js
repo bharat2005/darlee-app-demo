@@ -23,13 +23,13 @@ const ProfileDetial = () => {
 
 
     const renderItem = ({item}) => (
-      <TouchableOpacity onPress={()=>{
+      <TouchableOpacity activeOpacity={0.7} onPress={()=>{
             if(navigationRef.current) return
             navigationRef.current = true
             router.push({pathname:'/settingsScreen', params:{id:item.id}})
-        }} style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12, justifyContent:'space-between'}}>
-        <Text style={{fontSize:14, fontWeight:'300', color:item?.danger ? 'red' : 'black'}}>{item.title}</Text>
-        <Ionicons name="chevron-forward" size={24} color="gray" />
+        }} style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:18, justifyContent:'space-between'}}>
+        <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'black'}}>{item.title}</Text>
+        <Ionicons name="chevron-forward" size={22} color="gray" />
     </TouchableOpacity>
     )
 

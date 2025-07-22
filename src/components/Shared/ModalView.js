@@ -2,10 +2,11 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign';
+import HomeModalView from './HomeModalView'
 
 const modalData = {
     'home': {
-        title:'Home',
+        title:'Graph Description',
     },
     'chat': {
         title:'Chat',
@@ -20,17 +21,17 @@ const modalData = {
 
 const ModalView = ({setVisible, type}) => {
   return (
-    <View style={{width:300, padding:16, borderRadius:12, backgroundColor:'white', marginVertical:'auto', alignSelf:'center'}}>
-        <TouchableOpacity onPress={()=> setVisible(false)} style={{position:'absolute', top:12, right:12}}>
-            <AntDesign name="close" size={24} color="gray" />
+    <View style={{width:320, padding:28, borderRadius:12, backgroundColor:'white', marginVertical:'auto', alignSelf:'center', gap:18}}>
+        <TouchableOpacity onPress={()=> setVisible(false)} style={{position:'absolute', top:18, right:18}}>
+            <AntDesign name="close" size={22} color="gray" />
         </TouchableOpacity>
 
 
-        <Text style={{fontSize:18, fontWeight:'700', marginVertical:12, textAlign:'center'}}>{modalData[type]?.title}</Text>
+        <Text style={{fontSize:18, fontFamily:'Outfit-Medium', marginVertical:8, textAlign:'center'}}>{modalData[type]?.title}</Text>
 
             {
                 type === 'home' && (
-                    <></>
+                    <HomeModalView />
                 )
             }
                    {

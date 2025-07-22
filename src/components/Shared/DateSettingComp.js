@@ -35,8 +35,8 @@ const DateSettingComp = ({}) => {
 
 
   return (
-    <View style={{width:'100%', backgroundColor:'white', paddingHorizontal:12, paddingVertical:16}}>
-      <Text style={{fontSize:16, fontWeight:'400', color:'gray'}}>This is your public display name. It can be changed at any time.</Text>
+    <View style={{width:'100%', backgroundColor:'white', paddingHorizontal:28, paddingVertical:16, gap:12}}>
+      <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>Change your date of birth. Select a date of birth you want to change.</Text>
 
    <TouchableOpacity onPress={()=> setShowDatePicker(true)} style={{width:'100%', height:50, backgroundColor:'lightgray', justifyContent:'space-between', alignItems:'center', flexDirection:'row', paddingHorizontal:12, borderRadius:12}}>
      <Text>{userData ? format(dob, 'yyyy/MM/dd') : 'Select Date of Birth'}</Text> 

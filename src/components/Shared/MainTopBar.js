@@ -3,6 +3,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ModalView from './ModalView';
 import { router, useFocusEffect } from 'expo-router';
+import MyColors from '../../constants/MyColors'
 
 const MainTopBar = ({title="for my baby girl", type='home', bgColor}) => {
     const navigationRef = useRef(false)
@@ -44,7 +45,7 @@ const MainTopBar = ({title="for my baby girl", type='home', bgColor}) => {
             )
         }
 
-        <Text style={{fontSize:19, fontFamily:'Outfit-Bold'}}>{title}</Text>
+        <Text style={{fontSize:19, fontFamily:'Outfit-Bold', color:MyColors.DARK_BLUE}}>{title}</Text>
 
 
                 <TouchableOpacity activeOpacity={0.7} onPress={()=>setVisible(true)} style={{position:'absolute', right:0, marginHorizontal:18, borderWidth:2, borderColor:'rgb(60, 60, 60)', borderRadius:6}}>

@@ -1,8 +1,9 @@
 import { View, Text, SectionList, TouchableOpacity } from 'react-native'
 import React, { useCallback, useRef, useState } from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import { AntDesign, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { router, useFocusEffect } from 'expo-router'
 import ProfileModal from './ProfileModal'
+import MyColors from '../../constants/MyColors'
 
 
 
@@ -26,7 +27,7 @@ const MySectionList = ({user}) => {
             data: [
                 {
                     label: 'Proifle',
-                    icon:'person',
+                    icon:<Ionicons name='person' size={24} color='gray' />,
                         onPress:()=>{
                         if(navigationRef.current) return
                         navigationRef.current = true
@@ -35,7 +36,7 @@ const MySectionList = ({user}) => {
                 },
                 {
                     label: 'UserId',
-                    icon:'person',
+                    icon:<AntDesign name="idcard" size={22} color="gray" />,
                     info:true,
                     text:user?.uid?.slice(0,17)
                 },
@@ -47,7 +48,7 @@ const MySectionList = ({user}) => {
             data: [
                 {
                     label: 'Terms',
-                    icon:'document-text',
+                    icon:<Ionicons name='document-text' size={24} color='gray' />,
                     onPress:()=>{
                         if(navigationRef.current) return
                         navigationRef.current = true
@@ -56,7 +57,7 @@ const MySectionList = ({user}) => {
                 },
                 {
                     label: 'Privacy Procily',
-                    icon:'document-text',
+                    icon:<MaterialIcons name="privacy-tip" size={22} color="gray" />,
                     onPress:()=>{
                     if(navigationRef.current) return
                     navigationRef.current = true
@@ -71,7 +72,7 @@ const MySectionList = ({user}) => {
             data: [
                 {
                     label: 'Logout',
-                    icon:'log-out',
+                    icon:<MaterialIcons name="logout" size={22} color="gray" />,
                     danger: true,
                     onPress:()=> {
                       setModalType('logout')
@@ -81,7 +82,7 @@ const MySectionList = ({user}) => {
                 },
                 {
                     label: 'Delete Account',
-                    icon:'trash',
+                    icon:<Ionicons name='trash' size={22} color='gray' />,
                     danger:true,
                     onPress:()=>{
                       setModalType('delete')
@@ -98,21 +99,21 @@ const MySectionList = ({user}) => {
 
 const renderHeader = ({section}) => (
     <View style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12}}>
-        <Text style={{fontSize:16, fontWeight:'400'}}>{section.title}</Text>
+        <Text style={{fontSize:16, fontFamily:'Outfit-Medium', color:MyColors.DARK_BLUE}}>{section.title}</Text>
     </View>
 )
 
 
 const renderItem = ({item}) => (
-    <TouchableOpacity onPress={item?.onPress} style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12, justifyContent:'space-between'}}>
+    <TouchableOpacity activeOpacity={0.7} onPress={item?.onPress} style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:12, justifyContent:'space-between'}}>
         
         <View style={{flexDirection:'row', alignItems:'center', gap:12}}>
-        <Ionicons name={item.icon} size={24} color="gray" />
-        <Text style={{fontSize:14, fontWeight:'300', color:item?.danger ? 'red' : 'black'}}>{item.label}</Text>
+       {item?.icon}
+        <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:item?.danger ? 'red' : 'black'}}>{item.label}</Text>
         </View>
 
-        {item.onPress && <Ionicons name="chevron-forward" size={24} color="gray" />}
-        {item.info && <Text style={{fontSize:14, fontWeight:'300', color:'gray'}}>{item.text}</Text>}
+        {item.onPress && <Ionicons name="chevron-forward" size={22} color="gray" />}
+        {item.info && <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>{item.text}</Text>}
     </TouchableOpacity>
 )
 

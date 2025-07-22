@@ -5,6 +5,7 @@ import { useCurrentUser } from '../../hooks/useCurrentUser'
 import { useDetailsChange } from '../../hooks/useDetailsChange'
 import Toast from 'react-native-toast-message'
 import { router } from 'expo-router'
+import MyColors from '../../constants/MyColors'
 
 const NameSettingComp = ({}) => {
   const {data: userData} = useCurrentUser()
@@ -29,17 +30,29 @@ const NameSettingComp = ({}) => {
   }
 
   return (
-    <View style={{width:'100%', backgroundColor:'white', paddingHorizontal:12, paddingVertical:16}}>
-      <Text style={{fontSize:16, fontWeight:'400', color:'gray'}}>This is your public display name. It can be changed at any time.</Text>
+    <View style={{width:'100%', backgroundColor:'white', paddingHorizontal:28, paddingVertical:16, gap:12}}>
+      <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>Change your nickname. Enter a new nickname.</Text>
 
       <TextInput
+      placeholder='Enter your name'
+      style={{backgroundColor:'rgba(0, 0, 0, 0.05)'}}
+      theme={{colors:{primary:MyColors.PRIMARY, outline:'lightgray'}}}
       value={name}
       onChangeText={(v)=> setName(v)}
       mode='outlined'
-      right={ name && <TextInput.Icon icon='close' onPress={()=> setName('')} />}
+      right={ name && <TextInput.Icon icon='close' color='gray' onPress={()=> setName('')} />}
       />
 
-    <Button onPress={handleSave} loading={isLoading} disabled={isLoading} mode='contained' style={{width:'100%', marginTop:12, height:50}} contentStyle={{height:50}}>
+    <Button
+    labelStyle={{fontSize:16, fontFamily:'Outfit-Medium', color:'white'}}
+    theme={{
+      roundness:2
+    }}
+    onPress={handleSave} loading={isLoading} disabled={isLoading} 
+    mode='contained' 
+    style={{width:'100%', marginTop:18, backgroundColor:isLoading ? 'lightgray' : MyColors.DARK_GREY, height:44}} 
+    contentStyle={{height:44}}
+    >
         Save Changes
     </Button>
 

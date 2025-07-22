@@ -35,22 +35,24 @@ const StandRecordView = ({weekDays, selectedDate, handleSheet}) => {
     
     if(record === null) {
         return (
-          <View style={{width:'100%', backgroundColor:'snow', height:'30%', marginVertical:'auto', justifyContent:'center', alignItems:'center'}}>
-         <TouchableOpacity onPress={onRecordPress} style={{backgroundColor:'tomato', padding:10, borderRadius:10, marginVertical:'auto'}}>
-          <Text>Add Record</Text>
-         </TouchableOpacity>
-          </View>
+          <View style={{width:'84%', marginHorizontal:'auto', backgroundColor:MyColors.LIGHT_PURPLE, borderRadius:44,flex:1, marginVertical:16, justifyContent:'center', alignItems:'center', padding:8, paddingVertical:16, gap:8}}>
+          <Text style={{color:MyColors.DARK_BLUE, fontSize:16, fontFamily:'Outfit-Medium', textAlign:'center', marginTop:'auto'}}>No Record Found</Text>
+    
+            <TouchableOpacity activeOpacity={0.7} onPress={onRecordPress} style={{backgroundColor:'rgb(233, 236, 255)', padding:10, borderRadius:14, marginTop:'auto', paddingHorizontal:24, elevation:1}}>
+              <Text style={{color:MyColors.DARK_BLUE, fontSize:14, fontFamily:'Outfit-Medium', textAlign:'center'}}>Add Record</Text>
+             </TouchableOpacity>
+        </View>
         )
     }
 
 
   return (
-    <View style={{width:'84%', marginHorizontal:'auto', backgroundColor:MyColors.LIGHT_PURPLE, borderRadius:44,flex:1, marginVertical:16, justifyContent:'center', alignItems:'center', padding:8, gap:8}}>
+    <View style={{width:'84%', marginHorizontal:'auto', backgroundColor:MyColors.LIGHT_PURPLE, borderRadius:44,flex:1, marginVertical:16, justifyContent:'center', alignItems:'center', padding:8, paddingVertical:16, gap:8}}>
       <Text style={{color:MyColors.DARK_BLUE, fontSize:16, fontFamily:'Outfit-Medium', textAlign:'center'}}>Your Record</Text>
         <IconsPreview array={record} />
 
-        <TouchableOpacity onPress={onRecordPress} style={{backgroundColor:'tomato', padding:10, borderRadius:10, marginTop:'auto'}}>
-          <Text>Edit Record</Text>
+        <TouchableOpacity activeOpacity={0.7} onPress={onRecordPress} style={{backgroundColor:'rgb(233, 236, 255)', padding:10, borderRadius:14, marginTop:'auto', paddingHorizontal:24, elevation:1}}>
+          <Text style={{color:MyColors.DARK_BLUE, fontSize:14, fontFamily:'Outfit-Medium', textAlign:'center'}}>Edit Record</Text>
          </TouchableOpacity>
     </View>
   )

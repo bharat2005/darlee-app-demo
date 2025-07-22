@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { addDays, format, parseISO, subDays } from 'date-fns'
+import MyColors from '../../../constants/MyColors'
+import { Entypo } from '@expo/vector-icons'
 
 const WeekNextButtons = ({seletedDate, setSelectedDate}) => {
     const handlePrev = ()=> {
@@ -14,12 +16,12 @@ const WeekNextButtons = ({seletedDate, setSelectedDate}) => {
   return (
     <View style={{flexDirection:'row', height:50, justifyContent:'space-between', alignItems:'center'}}>
         
-        <TouchableOpacity style={{ backgroundColor:'rgb(36, 186, 255)', borderRadius:4, padding:10}} onPress={handlePrev}>
-            <Text>Prev</Text>
+        <TouchableOpacity activeOpacity={0.7} style={{ backgroundColor:MyColors.DARK_BLUE, padding:10, paddingHorizontal:14, borderTopRightRadius:18, borderBottomRightRadius:18}} onPress={handlePrev}>
+        <Entypo name="chevron-thin-left" size={18} color="white" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={{backgroundColor:'rgb(36, 186, 255)', borderRadius:4, padding:10}} onPress={handleNext}>
-            <Text>Next</Text>
+        <TouchableOpacity activeOpacity={0.7} style={{backgroundColor:MyColors.DARK_BLUE,  padding:10, paddingHorizontal:14, borderTopLeftRadius:18, borderBottomLeftRadius:18}} onPress={handleNext}>
+        <Entypo name="chevron-thin-right" size={18} color="white" />
         </TouchableOpacity>
 
     </View>

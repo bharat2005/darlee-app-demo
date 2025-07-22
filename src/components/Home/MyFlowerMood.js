@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { getWeekDays } from '../../utils/getWeekDays'
 import CuteMood from './WeekCalander/CuteMood'
@@ -15,7 +15,7 @@ const MyFlowerMood = ({handleSheet, seletedDate, weekDays}) => {
   if(records === undefined) {
     return (
       <View style={{width:'100%', height:100,  backgroundColor:MyColors.LIGHT_PRIMARY,  paddingHorizontal:16, justifyContent:'center', alignItems:'center'  }}>
-        <Text>Loading...</Text>
+        <ActivityIndicator size='large' color={MyColors.DARK_BLUE} />
       </View>
     )
   }
