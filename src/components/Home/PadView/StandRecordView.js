@@ -4,6 +4,8 @@ import { useRecords } from '../../../hooks/useRecord'
 import { TouchableOpacity } from 'react-native'
 import { dateStore } from '../../../stores/dateStore'
 import IconsPreview from '../../Shared/IconsPreview'
+import MyColors from '../../../constants/MyColors'
+
 
 const StandRecordView = ({weekDays, selectedDate, handleSheet}) => {
     const {data:records} = useRecords(weekDays, {refetchOnWindowFocus:false, refetchOnMount:false})
@@ -28,6 +30,8 @@ const StandRecordView = ({weekDays, selectedDate, handleSheet}) => {
     }
 
 
+
+
     
     if(record === null) {
         return (
@@ -41,8 +45,8 @@ const StandRecordView = ({weekDays, selectedDate, handleSheet}) => {
 
 
   return (
-    <View style={{width:'100%', backgroundColor:'snow', height:'30%', marginVertical:'auto', justifyContent:'center', alignItems:'center', padding:18}}>
-
+    <View style={{width:'84%', marginHorizontal:'auto', backgroundColor:MyColors.LIGHT_PURPLE, borderRadius:44,flex:1, marginVertical:16, justifyContent:'center', alignItems:'center', padding:8, gap:8}}>
+      <Text style={{color:MyColors.DARK_BLUE, fontSize:16, fontFamily:'Outfit-Medium', textAlign:'center'}}>Your Record</Text>
         <IconsPreview array={record} />
 
         <TouchableOpacity onPress={onRecordPress} style={{backgroundColor:'tomato', padding:10, borderRadius:10, marginTop:'auto'}}>

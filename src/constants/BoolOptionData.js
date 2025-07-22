@@ -1,11 +1,13 @@
 import Fontisto from '@expo/vector-icons/Fontisto';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import MyColors from './MyColors';
 
 export default {
     'DuringMensuration': {
-        title: 'During Mensuration',
-        icon:<Fontisto name="blood-drop" size={24} color="black" />,
+        title: 'Physiological',
+        miniTitle: 'During Mensuration',
+        icon:<FontAwesome6 name="droplet" size={22} color={MyColors.DARK_GREY} />,
         subTitle: 'If you have menstrual bleeding, please select your condition',
         options: [
             {
@@ -35,7 +37,7 @@ export default {
     'VaginalDischarge': {
         title: 'Amount of Vaginal Discharge',
         bigOptions : ['None', 'Few', 'Ordinary', 'Many'],
-        icon: <Fontisto name="blood-drop" size={24} color="black" />,
+        icon:<FontAwesome6 name="droplet" size={22} color={MyColors.DARK_GREY} />,
         subTitle: 'Please select the condition of your discharge',
         options: [
             {
@@ -64,7 +66,8 @@ export default {
 
     'AbnormalBleeding': {
         title: 'Abnormal Bleeding',
-        icon: <Fontisto name="blood-drop" size={24} color="black" />
+        miniTitle: 'Can be',
+        icon: <FontAwesome6 name="droplet" size={22} color={MyColors.DARK_GREY} />
     },
     
 

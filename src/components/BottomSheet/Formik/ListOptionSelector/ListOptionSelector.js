@@ -16,7 +16,7 @@ const ListOptionSelector = ({data,value, setFieldValue, subValues, setSubFieldVa
 
 
   return (
-    <View style={{width: '100%'}}>
+    <View style={{width: '100%', paddingHorizontal:12}}>
         <OptionsHeader data={data} />
 
 

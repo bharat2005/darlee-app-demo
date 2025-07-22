@@ -7,11 +7,11 @@ const MySheetViewHeader = ({handlSheet}) => {
     <View style={{width:'100%', height:44, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
 
         <View style={{width:'30%', height:44, justifyContent:'center', alignItems:'center'}}>
-            <Text>Record</Text>
+            <Text style={{fontSize:16, fontFamily:'Outfit-Medium'}}>Record</Text>
         </View>
 
-        <TouchableOpacity style={{position:'absolute', right:0, marginHorizontal:18}} onPress={()=> handlSheet('close')}>
-            <AntDesign name='close' size={24} color='gray' />
+        <TouchableOpacity style={{position:'absolute', right:0, marginHorizontal:20}} onPress={()=> handlSheet('close')}>
+            <AntDesign name='close' size={22} color='gray' />
         </TouchableOpacity>
         
     </View>

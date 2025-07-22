@@ -1,15 +1,21 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React, { useMemo } from 'react'
+import { View, Text, TouchableOpacity, Pressable } from 'react-native'
+import React, { useMemo, useState } from 'react'
 import { router } from 'expo-router'
 import { usePeriods } from '../../../hooks/usePeriods'
 import { differenceInCalendarDays, isAfter, isWithinInterval, parseISO } from 'date-fns'
 import ordinal from 'ordinal'
+import MyColors from '../../../constants/MyColors'
+import { FontAwesome6 } from '@expo/vector-icons'
 
 const StandCircleView = ({seletedDate}) => {
   const {data: periods} = usePeriods()
+  const [isPeriod, setIsPeriod] = useState(false)
 
   const text = useMemo(()=> {
-    if(periods?.length === 0 || !periods) return 'No Periods Yet'
+    if(periods?.length === 0 || !periods) return {
+      primaryText: 'No Periods Yet',
+      secondaryText: 'Track your periods to get started'
+    }
 
     const today = parseISO(seletedDate)
     const sortedPeriods = periods?.filter(period => period.phase === 'period')?.sort((a,b)=> parseISO(a.start) - parseISO(b.start))
@@ -22,7 +28,11 @@ const StandCircleView = ({seletedDate}) => {
 
     if(currentPeriod){
       const number = ordinal(differenceInCalendarDays(today, parseISO(currentPeriod.start)) + 1)
-      return `${number} day of period`
+      setIsPeriod(true)
+      return {
+        primaryText: `${number} day of period`,
+        secondaryText: `Predictated Peirod Date`
+      }
     }
 
     const upcomingPeriod = sortedPeriods?.find(period => {
@@ -33,10 +43,17 @@ const StandCircleView = ({seletedDate}) => {
 
     if(upcomingPeriod){
       const number = differenceInCalendarDays(parseISO(upcomingPeriod.start), today)
-      return `${number} day${number === 1 ? '' : 's'} left for period`
+      setIsPeriod(false)
+      return {
+        primaryText: `${number} day${number === 1 ? '' : 's'} left`,
+        secondaryText: `Until the period date`
+      }
     }
 
-    return 'No Periods Yet'
+    return {
+      primaryText: 'No Periods Yet',
+      secondaryText: 'Track your periods to get started'
+    }
 
 
   },[seletedDate, periods])
@@ -46,17 +63,22 @@ const StandCircleView = ({seletedDate}) => {
 
 
   return (
-    <View style={{width:275, height:275, marginTop:10,borderRadius:'50%', backgroundColor:'pink', justifyContent:'center', alignItems:'center'}}>
+      <View style={{width:275, height:275, marginTop:10,borderRadius:137.5,backgroundColor:'rgb(245, 230, 242)', justifyContent:'center', alignItems:'center', gap:12, overflow:'hidden'}}>
 
-<Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>{text}</Text>
+<View style={{width:'100%', alignItems:'center', gap:20}}>
+<Text style={{color: isPeriod ? 'tomato' : MyColors.DARK_BLUE, fontSize:15, fontFamily:'Outfit-Light', textAlign:'center'}}>{text?.secondaryText}</Text>
+<Text style={{color: isPeriod ? 'tomato' : MyColors.DARK_BLUE, fontSize:30, fontFamily:'Outfit-Medium', textAlign:'center'}}>{text?.primaryText}</Text>
+</View>
 
+<View style={{borderRadius:24, overflow:'hidden', marginTop:38}}>
+      <Pressable android_ripple={{color:'rgb(57, 63, 103)'}}
+      onPress={()=> router.push('/periodCalanderScreen')} 
+       style={{ backgroundColor:MyColors.DARK_BLUE, padding:10, paddingHorizontal:32, flexDirection:'row', alignItems:'center', gap:8}}>
+<FontAwesome6 name="droplet" size={16} color="white" />
+        <Text style={{color:'white', fontSize:16, fontFamily:'Outfit-Medium'}}>Track Periods</Text>
 
-
-      <TouchableOpacity onPress={()=> router.push('/periodCalanderScreen')} style={{ borderRadius:13, backgroundColor:'rgb(0, 195, 255)', padding:10}}>
-
-        <Text style={{color:'white', fontSize:16, fontWeight:'bold'}}>Track Period</Text>
-
-      </TouchableOpacity>
+      </Pressable>
+      </View>
         
       
     </View>

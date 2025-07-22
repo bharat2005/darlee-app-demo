@@ -16,12 +16,12 @@ const BoolOptionSelector = ({data,value, setFieldValue, subValues, setSubFieldVa
     <View style={{width: '100%'}}>
         <OptionsHeader data={data} />
 
-        <View style={{width: 340, marginHorizontal:'auto', marginVertical:12}}>
-            <TouchableOpacity onPress={handleBoolValue} style={{flexDirection:'row', alignItems:'center', gap:12}}>
-                <View style={{width: 44, height: 44, borderRadius: '30%', backgroundColor:loaclBoolValue ? 'rgb(86, 204, 255)' : 'lightGray', justifyContent:'center', alignItems:'center'}}>
+        <View style={{ marginRight:'auto', marginVertical:12, marginHorizontal:38}}>
+            <TouchableOpacity activeOpacity={0.7} onPress={handleBoolValue} style={{flexDirection:'row', alignItems:'center', gap:12, overflow:'hidden'}}>
+                <View style={{width: 44, height: 44, borderRadius: 12, backgroundColor:loaclBoolValue ? 'rgba(19, 184, 255, 0.49)' : 'lightgray', justifyContent:'center', alignItems:'center'}}>
                 <MaterialIcons name="done" size={18} color={loaclBoolValue ? 'black' : 'gray'} />
                 </View>
-                <Text style={{fontSize: 16, fontWeight: 'medium'}}>{data?.title}</Text>
+                <Text style={{fontSize: 16, fontFamily:'Outfit-Light'}}>{data?.miniTitle}</Text>
             </TouchableOpacity>
         </View>
 

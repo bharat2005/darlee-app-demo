@@ -1,8 +1,9 @@
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { dateStore } from '../../../stores/dateStore'
 import { date } from 'yup';
+import Images from '../../../constants/Images'
 
 const CuteMood = ({data, handleSheet, dateString, isFutureToday}) => {
     const setSelectedDate = dateStore(state => state.setSelectedDate)
@@ -31,8 +32,8 @@ const CuteMood = ({data, handleSheet, dateString, isFutureToday}) => {
     
   return (
     <View style={{width:(Dimensions.get('window').width - 32)/7, height:100, padding:2}}>
-        <View style={{width:'100%', height:'100%',  backgroundColor:'white'}}>
-        <Text>{data?.condition}</Text>
+        <View style={{width:'100%', height:'100%', justifyContent:'center', alignItems:'center'}}>
+       <Image source={Images[data?.condition]} style={{width:'90%', height:'60%'}} />
         </View>
     </View>
   )

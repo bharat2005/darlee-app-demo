@@ -4,4 +4,5 @@ export default {
     LIGHT_PRIMARY: '#FFC4C3',
     LIGHT_PINK :'#fff3f7',
     LIGHT_PURPLE :'#f8f3f7',
+    DARK_BLUE:'#1C2141'
 }

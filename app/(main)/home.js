@@ -52,7 +52,7 @@ const Home = () => {
 
 
       <MainTopBar title={format(parseISO(selectedDate), 'yyyy.M.dd')} bgColor={MyColors.LIGHT_PRIMARY}  type='home' />
-      <View style={{flex:1, backgroundColor:MyColors.LIGHT_PRIMARY, paddingTop:40}}>
+      <View style={{flex:1, backgroundColor:MyColors.LIGHT_PRIMARY, paddingTop:0}}>
       
 
       <MyFlowerMood handleSheet={handleSheet} seletedDate={selectedDate} weekDays={weekDays} />

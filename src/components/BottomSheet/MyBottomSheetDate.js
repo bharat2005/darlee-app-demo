@@ -8,7 +8,7 @@ const MyBottomSheetDate = ({selectedDate}) => {
 
   return (
     <View style={{width:'100%', height:40, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-      <Text style={{fontSize:16, fontWeight:'bold'}}>{format(parseISO(selectedDate), 'yyyy.M.dd')}</Text>
+      <Text style={{fontSize:20, fontFamily:'Outfit-Bold'}}>{format(parseISO(selectedDate), 'yyyy.M.dd')}</Text>
     </View>
   )
 }

@@ -8,12 +8,12 @@ const SubOptionBox = ({data, subValues, setFieldValue}) => {
 
 
   return (
-    <View style={{width: '100%', alignItems:'flex-end'}}>
+    <View style={{width: '100%',paddingHorizontal:12}}>
         
-        <View style={{width: '80%', gap:8}}>
-            <Text>{data?.subTitle}</Text>
+        <View style={{width: '90%', gap:8, marginLeft:'auto', marginTop:12}}>
+            <Text style={{fontSize:14, fontFamily:'Outfit-Light'}}>{data?.subTitle}</Text>
 
-            <View style={{borderWidth:1, borderColor:'lightgray', borderRadius:12, padding:8}}>
+            <View style={{borderWidth:0.8, borderColor:'lightgray', borderRadius:12, padding:14}}>
 
                 <FlatList
                 scrollEnabled={false}

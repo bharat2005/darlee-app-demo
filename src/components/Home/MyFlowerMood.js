@@ -14,7 +14,7 @@ const MyFlowerMood = ({handleSheet, seletedDate, weekDays}) => {
 
   if(records === undefined) {
     return (
-      <View style={{width:'100%', height:100, backgroundColor:'pink', paddingHorizontal:16, justifyContent:'center', alignItems:'center'  }}>
+      <View style={{width:'100%', height:100,  backgroundColor:MyColors.LIGHT_PRIMARY,  paddingHorizontal:16, justifyContent:'center', alignItems:'center'  }}>
         <Text>Loading...</Text>
       </View>
     )

@@ -33,10 +33,6 @@ const End = ({width, handleSubmit, isSubmitting}) => {
          Let’s Begin
         </Button>
 
-      {/* <Button mode='contained' onPress={handleSubmit} disabled={isSubmitting} loading={isSubmitting} >
-        Care me!
-      </Button> */}
-
       </View>
 
 

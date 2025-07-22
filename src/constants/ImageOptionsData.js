@@ -1,30 +1,32 @@
 import { AntDesign } from "@expo/vector-icons";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MyColors from "./MyColors";
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 export default {
     'ConditionOption' : {
     title:'Condition',
-    icon:<AntDesign name="smileo" size={24} color="black" />,
+    icon:<AntDesign name="smileo" size={22} color={MyColors.DARK_GREY} />,
     options: [
         
         {
-            optionName:'Perfect',
+            optionName:'perfectly',
             optionId: 'perfect',
             optionImage: ''
         },
                 {
-            optionName:'Fair',
+            optionName:'fair Enough',
             optionId: 'fair',
             optionImage: ''
         },
                 {
-            optionName:'Normal',
+            optionName:'normal',
             optionId: 'normal',
             optionImage: ''
         },
                 {
-            optionName:'Not',
+            optionName:'not so good',
             optionId: 'notGood',
             optionImage: ''
         },
@@ -34,61 +36,61 @@ export default {
 
   'HeartOption' : {
     title:'Heart',
-    icon:<AntDesign name="hearto" size={24} color="black" />,
+    icon:<AntDesign name="hearto" size={22} color={MyColors.DARK_GREY} />,
     options: [
         
         {
-            optionName:'Happy',
+            optionName:'happy',
             optionId: 'happy',
             optionImage: ''
         },
               {
-            optionName:'Exicted',
+            optionName:'exicted',
             optionId: 'exicted',
             optionImage: ''
         },
               {
-            optionName:'Fine',
+            optionName:'fine',
             optionId: 'fine',
             optionImage: ''
         },
               {
-            optionName:'Neat',
+            optionName:'neat',
             optionId: 'neat',
             optionImage: ''
         },
               {
-            optionName:'Calm',
+            optionName:'calm',
             optionId: 'calm',
             optionImage: ''
         },
               {
-            optionName:'Irritation',
+            optionName:'irritation',
             optionId: 'irritation',
             optionImage: ''
         },
               {
-            optionName:'Emotionally Unstable',
+            optionName:'emotionally unstable',
             optionId: 'unstable',
             optionImage: ''
         },
               {
-            optionName:'Yusstus',
+            optionName:'yuutsu',
             optionId: 'yutu',
             optionImage: ''
         },
               {
-            optionName:'Anxity',
+            optionName:'anxity',
             optionId: 'anxity',
             optionImage: ''
         },
         {
-            optionName:'Poor concentration',
+            optionName:'poor concentration',
             optionId: 'poor',
             optionImage: ''
         },
               {
-            optionName:'Ordinary',
+            optionName:'ordinary',
             optionId: 'ordinary',
             optionImage: ''
         },
@@ -100,81 +102,81 @@ export default {
 
   'BodyOption' : {
     title:'Body',
-    icon:<MaterialIcons name="cyclone" size={24} color="black" />,
+    icon:<MaterialIcons name="cyclone" size={24} color={MyColors.DARK_GREY} />,
     options: [
         
         {
-            optionName:'No complaints',
+            optionName:'no complaints',
             optionId: 'noComplaints',
             optionImage: ''
         },
               {
-            optionName:'Headeache',
+            optionName:'headeache',
             optionId: 'headache',
             optionImage: ''
         },
               {
-            optionName:'Stomach ache',
+            optionName:'stomach ache',
             optionId: 'stomachAche',
             optionImage: ''
         },
               {
-            optionName:'Lower Back Pain',
+            optionName:'lowerback pain',
             optionId: 'backPain',
             optionImage: ''
         },
               {
-            optionName:'Ovulation Pain',
+            optionName:'ovulation pain',
             optionId: 'ovulationPain',
             optionImage: ''
         },
               {
-            optionName:'Tired',
+            optionName:'tired',
             optionId: 'tired',
             optionImage: ''
         },
               {
-            optionName:'Fatigue',
+            optionName:'fatigue',
             optionId: 'fatigue',
             optionImage: ''
         },
               {
-            optionName:'Swelling',
+            optionName:'swelling',
             optionId: 'swelling',
             optionImage: ''
         },
               {
-            optionName:'Sleepiness',
+            optionName:'sleepiness',
             optionId: 'sleepiness',
             optionImage: ''
         },
         {
-            optionName:'Rough skin',
+            optionName:'rough skin',
             optionId: 'skin',
             optionImage: ''
         },
               {
-            optionName:'Appetite Increase',
+            optionName:'appetite increase',
             optionId: 'appIncrease',
             optionImage: ''
         },
                       {
-            optionName:'Cold',
+            optionName:'cold',
             optionId: 'cold',
             optionImage: ''
         },
         {
-            optionName:'Chest Swelling',
+            optionName:'chest swelling',
             optionId: 'chest',
             optionImage: ''
         },
               {
-            optionName:'Nausea',
+            optionName:'nausea',
             optionId: 'nausea',
             optionImage: ''
         },
         {
-            optionName:'Dizziness',
+            optionName:'dizziness',
             optionId: 'dizziness',
             optionImage: ''
         },
@@ -187,21 +189,21 @@ export default {
 
   'Messagee' : {
     title:'Message',
-    icon: <MaterialCommunityIcons name="emoticon-poop" size={24} color="black" />,
+    icon:<FontAwesome6 name="poop" size={20} color={MyColors.DARK_GREY} />   ,
     options: [
         
         {
-            optionName:'Consitpate',
+            optionName:'constipate',
             optionId: 'constipate',
             optionImage: ''
         },
               {
-            optionName:'Diarrhea',
+            optionName:'diarrhea',
             optionId: 'diarrhea',
             optionImage: ''
         },
               {
-            optionName:'Express Delivery',
+            optionName:'express',
             optionId: 'expressDelivery',
             optionImage: ''
         },
@@ -213,21 +215,21 @@ export default {
 
   'Medecine' : {
     title:'Medecine',
-    icon: <MaterialCommunityIcons name="pill" size={24} color="black" />,
+    icon: <MaterialCommunityIcons name="pill" size={22} color={MyColors.DARK_GREY} />,
     options: [
         
         {
-            optionName:'Pills',
+            optionName:'pills',
             optionId: 'pills',
             optionImage: ''
         },
               {
-            optionName:'PainKillers',
+            optionName:'painkillers',
             optionId: 'painKillers',
             optionImage: ''
         },
               {
-            optionName:'Suppliments',
+            optionName:'suppliments',
             optionId: 'supplients',
             optionImage: ''
         },
