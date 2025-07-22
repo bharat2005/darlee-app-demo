@@ -37,7 +37,9 @@ const ModalView = ({setVisible, type}) => {
             }
                    {
                 type === 'chat' && (
-                 <></>
+              <Text style={{fontSize:16, fontFamily:'Outfit-Light',lineHeight:24, textAlign:'center', color:'rgb(100, 100, 100)'}}>
+                The answers given by DarLee Ai chat are for general advice only and do not constitute medical treatment, including advice on diagnosis, treatment, etc.
+              </Text>
                 )
             }
             

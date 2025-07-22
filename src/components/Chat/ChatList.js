@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import ChatMessageItem from './ChatMessageItem'
 import { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import Animated from 'react-native-reanimated'
+import LottieView from 'lottie-react-native'
 
 const ChatList = ({messagesList=[], loading}) => {
   const scrollValue = useSharedValue(0)
@@ -42,7 +43,11 @@ const scrollToBottom = () => {
         inverted
         onScroll={scrollHandler}
         contentContainerStyle={{paddingVertical:12}}
-        ListHeaderComponent={ loading && <View style={{flexDirection:'row', width:'100%', height:48, paddingHorizontal:24}}><ActivityIndicator color='black' size={30} /></View>}
+        ListHeaderComponent={ loading && (
+        <View style={{flexDirection:'row', width:'100%', height:48, paddingHorizontal:2}}>
+          <LottieView source={require('../../../assets/lottie/loading.json')} autoPlay loop style={{width:110, height:55}} />
+        </View>
+        )}
         data={messagesList}
         keyExtractor={(item, index)=> index.toString()}
         renderItem={({item,index})=> <ChatMessageItem item={item} />}
