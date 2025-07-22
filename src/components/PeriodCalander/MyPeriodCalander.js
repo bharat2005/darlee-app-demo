@@ -5,6 +5,7 @@ import CalandarHeaader from '../Shared/CalandarHeaader'
 import { eachDayOfInterval, format, getDay, parseISO } from 'date-fns'
 import Toast from 'react-native-toast-message'
 import { usePeriods } from '../../hooks/usePeriods'
+import MyColors from '../../constants/MyColors'
 
 const MyPeriodCalander = ({periods, setPeriods}) => {
     const [currentStart, setCurrentStart] = useState(null)
@@ -77,19 +78,19 @@ const MyPeriodCalander = ({periods, setPeriods}) => {
             const range = eachDayOfInterval({start: parseISO(item.start), end: parseISO(item.end)}).map(date => format(date, 'yyyy-MM-dd'))
             range.forEach((dateString, index) => {
                 if(index === 0){
-                    markedObj[dateString] = { startingDay: true, color: item.source === 'user' ? 'hotpink' : 'tomato', textColor:'white'}
+                    markedObj[dateString] = { startingDay: true, color: item.source === 'user' ? MyColors.LIGHT_PRIMARY : MyColors.PERIOD_COLOR, textColor: item.source === 'user' ? MyColors.DARK_BLUE : 'white'}
                 }
                else if(index === range.length - 1){
-                    markedObj[dateString] = {endingDay: true, color: item.source === 'user' ? 'hotpink' : 'tomato', textColor:'white'}
+                    markedObj[dateString] = {endingDay: true, color: item.source === 'user' ? MyColors.LIGHT_PRIMARY : MyColors.PERIOD_COLOR, textColor: item.source === 'user' ? MyColors.DARK_BLUE : 'white'}
                 }
             else{
-                    markedObj[dateString] = {color: item.source === 'user' ? 'lightpink' : 'tomato', textColor:'white'}
+                    markedObj[dateString] = {color: item.source === 'user' ? MyColors.DARK_PURPLE : MyColors.PERIOD_COLOR, textColor: item.source === 'user' ? MyColors.DARK_BLUE : 'white'}
                 }
             })
         })
 
         if(currentStart && (!(periods.some(p => p?.start === currentStart)) || periods.length === 0)){
-            markedObj[currentStart] = {startingDay: true, endingDay: true, color:'tomato', textColor:'white'}
+            markedObj[currentStart] = {startingDay: true, endingDay: true, color:MyColors.LIGHT_PRIMARY, textColor:MyColors.DARK_BLUE}
         }
 
         return markedObj
@@ -106,8 +107,11 @@ const MyPeriodCalander = ({periods, setPeriods}) => {
         markedDates={getMarkedDates()}
         onDayPress={handleDayPress}
         theme={{
-            todayTextColor: 'red',
-            todayBackgroundColor: 'yellow',
+            todayTextColor: 'white',
+            textSectionTitleColor: MyColors.DARK_BLUE,
+            todayBackgroundColor: MyColors.DARK_BLUE,
+            textDayFontFamily: 'Outfit-Medium',
+            textDayFontSize: 14,
         }}
         />
 

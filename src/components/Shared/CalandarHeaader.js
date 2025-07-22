@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 const CalandarHeaader = ({date}) => {
   return (
     <View style={{justifyContent:'center', alignItems:'center', paddingVertical:24}}>
-      <Text style={{fontSize:16, fontWeight:'bold'}}>{format(date, "yyyy 'y' M 'month'")}</Text>
+      <Text style={{fontSize:18, fontFamily:'Outfit-Medium'}}>{format(date, "yyyy 'y' M 'month'")}</Text>
     </View>
   )
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import HomeModalView from './HomeModalView'
+import PeriodCalanderModalView from '../Shared/PeriodCaleanderModalVeiw'
 
 const modalData = {
     'home': {
@@ -12,7 +13,7 @@ const modalData = {
         title:'Chat',
     },
     'periodCalander': {
-        title:'Period Calander',
+        title:'Calander Description',
     },
     'calander': {
         title:'Calander',
@@ -42,7 +43,7 @@ const ModalView = ({setVisible, type}) => {
             
             {
                 type === 'periodCalander' && (
-                    <></>
+                   <PeriodCalanderModalView />
                 )
             }
             {

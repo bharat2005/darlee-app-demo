@@ -126,6 +126,7 @@ const renderItem = ({item}) => (
       <SectionList
       renderSectionFooter={()=> <View style={{height:1, backgroundColor:'lightgray', width:'100%'}}/>}
       sections={sectionListData}
+      ListFooterComponent={<View style={{height:100, backgroundColor:'white', width:'100%', justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'gray'}}>Version 1.0.0</Text></View>}
       renderSectionHeader={renderHeader}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}

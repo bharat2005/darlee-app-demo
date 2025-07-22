@@ -6,6 +6,7 @@ import { router } from 'expo-router'
 import { Button } from 'react-native-paper'
 import { geminiPeriodPrediction } from '../../services/gemini/geminiPeriodPrediction'
 import { useQueryClient } from '@tanstack/react-query'
+import MyColors from '../../constants/MyColors'
 
 const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -27,15 +28,22 @@ const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
     }
 
   return (
-    <View style={{width:'100%', height:50, backgroundColor:'white', paddingHorizontal:12}}>
+    <View style={{width:'100%', height:50, backgroundColor:'white', paddingHorizontal:24, justifyContent:'center'}}>
         
-        <Button mode='contained'  style={{width:'100%', height:'100%',backgroundColor:'hotpink'}} contentStyle={{height:'100%', width:'100%'}} onPress={handleAddPeriod} >
+        <Button mode='contained'  
+        labelStyle={{fontSize:16, fontFamily:'Outfit-Medium', color:'white'}}
+        theme={{
+            roundness:2
+        }}
+        style={{ height:44,backgroundColor:MyColors.DARK_GREY}} 
+        contentStyle={{height:44, width:'100%'}} 
+        onPress={handleAddPeriod} >
         Add Period
         </Button>
 
 
         <Modal visible={isLoading} backdropColor={1} animationType='none'>
-            <ActivityIndicator size='large' color='hotpink' style={{marginVertical:'auto', marginHorizontal:'auto'}} />
+            <ActivityIndicator size='large' color={MyColors.DARK_BLUE} style={{marginVertical:'auto', marginHorizontal:'auto'}} />
         </Modal>
     </View>
   )
