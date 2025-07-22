@@ -16,7 +16,7 @@ const SelfCare = ({type, starredCardIds}) => {
     <View style={{flex:1, width:'100%'}}>
 
       <FlatList
-      contentContainerStyle={{gap:12, paddingHorizontal:4}}
+      contentContainerStyle={{gap:12, paddingHorizontal:4, paddingVertical:12}}
       data={cleandedList}
       ListFooterComponent={isFetchingNextPage && <View style={{ width:'100%', padding:12}} ><ActivityIndicator color={'black'} size={44}  style={{alignSelf:'center'}} /></View>}
       onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}

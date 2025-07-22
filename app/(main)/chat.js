@@ -58,11 +58,6 @@ const Chat = () => {
         <ChatList loading={loading} messagesList={messagesList} />
 
         <ChatTextInput setLoading={setLoading} setMessagesList={setMessagesList} loading={loading} />
-
-        
-
-
-
       </SafeAreaView>
     </KeyboardAvoidingView>
   )

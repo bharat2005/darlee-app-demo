@@ -11,11 +11,15 @@ const CustomeToast = ({text1, text2, props}) => {
     props?.type === 'error' ? (
         <Foundation name="alert" size={24} color="rgb(255, 0, 0)" />
     ) : (
-      <MaterialIcons name="done" size={24} color="rgb(0, 255, 0)" />
+ 
+        <View style={{backgroundColor:'green', borderRadius:'50%', justifyContent:'center', alignItems:'center', padding:2}}>
+      <MaterialIcons name="done" size={18} color="white" />
+        </View>
+     
     )
    }
    
-   <Text style={{fontSize:14, fontFamily:'Outfit-Medium', color:props?.type === 'error' ? "rgb(255, 0, 0)" : "black"}}>{text2}</Text>
+   <Text style={{fontSize:14, fontFamily:'Outfit-Medium', color:props?.type === 'error' ? "rgb(255, 0, 0)" : "green"}}>{text2}</Text>
     </View>
     </View>
   )
