@@ -14,4 +14,5 @@ export default {
     SELF_CARE_BOTTOM:'rgb(255, 217, 221)',
     HORMONE_TOP: 'rgb(255, 219, 219)',
     HORMONE_BOTTOM: 'rgb(255, 232, 193)',
+    SCREEN_BOX_COLOR:'#FFF1EE',
 }
