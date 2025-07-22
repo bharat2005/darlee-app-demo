@@ -14,14 +14,14 @@ const Magzines = () => {
     {title: 'Content', key: 'content'},
     {title: 'Favorite', key: 'fav'},
   ])
-    const {data = [], error} = useAllStarred()
+    const {data = [], error, isLoading, refetch, isFetching} = useAllStarred()
 
 
 
 
 
   const renderScene = ({route}) => {
-    const props = {data}
+    const props = {data, isLoading, refetch, isFetching}
     switch (route.key){
       case 'content' :
         return <Content  {...props} />

@@ -1,16 +1,23 @@
 import { View, Text, FlatList, ActivityIndicator } from 'react-native'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import CardList from './CardList'
 import { useCardList } from '../../../hooks/useCardList'
 
 
 const HormoneGuide = ({type, starredCardIds}) => {
-  const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage} = useCardList(type)
+  const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage, refetch} = useCardList(type)
+  const [refreshing, setRefreshing] = useState(false)
 
 
   const cleandedList = useMemo(()=> {
     return data?.pages?.flatMap(page => page?.list) || []
   })
+
+  const handleRefresh = async () => {
+    setRefreshing(true)
+    await refetch()
+    setRefreshing(false)
+  }
 
 
 
@@ -18,7 +25,9 @@ const HormoneGuide = ({type, starredCardIds}) => {
     <View style={{flex:1, width:'100%'}}>
 
       <FlatList
-      contentContainerStyle={{gap:12, paddingHorizontal:4}}
+      refreshing={refreshing}
+      onRefresh={handleRefresh}
+      contentContainerStyle={{gap:12, paddingHorizontal:4, paddingVertical:18}}
       data={cleandedList}
       onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
       onEndReachedThreshold={0}

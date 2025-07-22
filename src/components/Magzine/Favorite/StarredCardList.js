@@ -14,12 +14,13 @@ if(data?.length === 0) return null
 
 
   return (
-    <View style={{height:200, width:'100%',}}>
+    <View style={{height:190, width:'100%',}}>
         
          <CardListTitle listData={listData} />
 
         <FlatList
         horizontal
+        style={{paddingHorizontal:12}}
         data={data}
         renderItem={({item, index})=> <Card type={listData?.type} cardData={item} isStarred={listData?.starredCardsIds?.includes(item?.docId)} />}
         keyExtractor={(item, index)=> index.toString()}

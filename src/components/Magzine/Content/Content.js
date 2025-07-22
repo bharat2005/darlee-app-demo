@@ -8,8 +8,8 @@ import ContentTabBar from './ContentTabBar';
 const Content = ({data}) => {
     const [index, setIndex] = useState(0);
     const [routes, setRoutes] = useState([
-  { key: 'selfCare', title: 'Selfcare' },
-  { key: 'hormoneGuide', title: 'Hormoneguide' },
+  { key: 'selfCare', title: 'Self Care' },
+  { key: 'hormoneGuide', title: 'Hormone Guide' },
 ])
 
   const starredCardIds = useMemo(()=> {

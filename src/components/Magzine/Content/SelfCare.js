@@ -1,14 +1,21 @@
 import { View, Text, FlatList, ActivityIndicator } from 'react-native'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import CardList from './CardList'
 import { useCardList } from '../../../hooks/useCardList'
 
 const SelfCare = ({type, starredCardIds}) => {
-  const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage} = useCardList(type)
+  const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage, refetch} = useCardList(type)
+  const [refreshing, setRefreshing] = useState(false)
 
   const cleandedList = useMemo(()=> {
     return data?.pages?.flatMap(page => page?.list) || []
   })
+
+  const handleRefresh = async () => {
+    setRefreshing(true)
+    await refetch()
+    setRefreshing(false)
+  }
 
 
 
@@ -16,7 +23,9 @@ const SelfCare = ({type, starredCardIds}) => {
     <View style={{flex:1, width:'100%'}}>
 
       <FlatList
-      contentContainerStyle={{gap:24, paddingHorizontal:4, paddingVertical:12}}
+      refreshing={refreshing}
+      onRefresh={handleRefresh}
+      contentContainerStyle={{gap:24, paddingHorizontal:4, paddingVertical:18}}
       data={cleandedList}
       ListFooterComponent={isFetchingNextPage && <View style={{ width:'100%', padding:12}} ><ActivityIndicator color={'black'} size={44}  style={{alignSelf:'center'}} /></View>}
       onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
