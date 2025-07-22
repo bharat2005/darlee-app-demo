@@ -32,7 +32,7 @@ const Magzines = () => {
   }
 
   return (
-    <SafeAreaView style={{flex:1}} edges={['top']}>
+    <SafeAreaView style={{flex:1, backgroundColor:'white'}} edges={['top']}>
 
       
     <MagzineTabBar routes={routes} index={index} setIndex={setIndex} /> 

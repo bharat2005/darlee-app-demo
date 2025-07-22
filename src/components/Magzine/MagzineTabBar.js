@@ -4,7 +4,7 @@ import MyColors from '../../constants/MyColors'
 
 const MagzineTabBar = ({routes, setIndex, index}) => {
   return (
-    <View style={{width:'100%', height:48, flexDirection:'row'}}>
+    <View style={{width:'100%', height:48, flexDirection:'row', backgroundColor:'white'}}>
 
         {
             routes.map((item, i)=>(
