@@ -10,5 +10,8 @@ export default {
     FOLICULAR_COLOR:'rgb(60, 177, 255)',
     OVULATION_COLOR:'rgba(0, 223, 231, 0.94)',
     LUTEAL_COLOR:'rgb(160, 160, 160)',
-    CHAT_BOX_PINK:'#FFECEE'
+    CHAT_BOX_PINK:'#FFECEE',
+    SELF_CARE_BOTTOM:'rgb(255, 217, 221)',
+    HORMONE_TOP: 'rgb(255, 219, 219)',
+    HORMONE_BOTTOM: 'rgb(255, 232, 193)',
 }

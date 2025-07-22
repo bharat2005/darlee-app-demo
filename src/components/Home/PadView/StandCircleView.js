@@ -14,7 +14,7 @@ const StandCircleView = ({seletedDate}) => {
   const text = useMemo(()=> {
     if(periods?.length === 0 || !periods) return {
       primaryText: 'No Periods Yet',
-      secondaryText: 'Track your periods to get started'
+      secondaryText: 'Track periods to get started'
     }
 
     const today = parseISO(seletedDate)
@@ -51,8 +51,8 @@ const StandCircleView = ({seletedDate}) => {
     }
 
     return {
-      primaryText: 'No Periods Yet',
-      secondaryText: 'Track your periods to get started'
+      primaryText: 'No Periods Yet!',
+      secondaryText: 'Track periods to get started'
     }
 
 
