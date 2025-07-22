@@ -35,7 +35,7 @@ const scrollToBottom = () => {
   
 
   return (
-    <View style={{flex:1, width:'100%', backgroundColor:'pink'}}>
+    <View style={{flex:1, width:'100%', backgroundColor:'rgb(247, 247, 247)'}}>
 
         <Animated.FlatList
         ref={flatListRef}

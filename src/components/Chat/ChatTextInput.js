@@ -1,10 +1,30 @@
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { geminiMessageSend } from '../../services/gemini/geminiMessageSend'
+import Feather from '@expo/vector-icons/Feather'
+import MyColors from '../../constants/MyColors'
+import { Entypo } from '@expo/vector-icons'
 
 
 const ChatTextInput = ({setMessagesList, setLoading, loading}) => {
     const [text, setText] = useState('')
+    const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
+
+    useEffect(()=>{
+      const unsubOpenKeyboard = Keyboard.addListener(
+        'keyboardDidShow',
+        ()=>setIsKeyboardVisible(true)
+      )
+      const unsubCloseKeyboard = Keyboard.addListener(
+        'keyboardDidHide',
+        ()=>setIsKeyboardVisible(false)
+      )
+
+      return ()=>{
+        unsubOpenKeyboard.remove()
+        unsubCloseKeyboard.remove()
+      } 
+    },[])
 
     const handleSend = async() => {
         if(!text.trim()) return
@@ -22,15 +42,29 @@ const ChatTextInput = ({setMessagesList, setLoading, loading}) => {
 
 
   return (
-    <View style={{width:'100%', flexDirection:'row', alignItems:'flex-end', padding:4, backgroundColor:'pink'}}>
+    <View style={{width:'100%', flexDirection:'row', alignItems:'flex-end', padding:4,paddingVertical:8, backgroundColor:'white'}}>
 
-      <View style={{flex:1, paddingHorizontal:2 }}>
+      
+
+{
+  isKeyboardVisible && (
+    <TouchableOpacity disabled={loading} onPress={()=> Keyboard.dismiss()} style={{height:50, alignItems:'center', justifyContent:'center', paddingHorizontal:4}} >
+    <Entypo name="chevron-small-down" size={24} color={MyColors.DARK_BLUE} />
+    </TouchableOpacity>
+  )
+}
+
+
+      <View style={{flex:1, paddingHorizontal:8 }}>
+
+
 
         <TextInput
+        placeholder='Ask anything!'
         value={text}
         multiline
         numberOfLines={6}
-        style={{ fontSize:18, paddingHorizontal:12, minHeight:53, backgroundColor:'white',borderRadius:8, borderWidth:1, borderColor:'black'}}
+        style={{ fontSize:18, paddingHorizontal:12, minHeight:48, backgroundColor:'lightgray',borderRadius:8}}
         onChangeText={(v)=> setText(v)}
         />
 
@@ -39,9 +73,11 @@ const ChatTextInput = ({setMessagesList, setLoading, loading}) => {
 
 
 
-        <View style={{width:75, height:50}}>
-            <TouchableOpacity disabled={loading} onPress={handleSend} style={{height:'100%', width:'100%', backgroundColor:'black'}} />
-        </View>
+
+            <TouchableOpacity disabled={loading} onPress={handleSend} style={{height:50, alignItems:'center', justifyContent:'center', paddingHorizontal:8}} >
+            <Feather name="send" size={24} color={MyColors.DARK_BLUE} />
+            </TouchableOpacity>
+ 
         
     </View>
   )

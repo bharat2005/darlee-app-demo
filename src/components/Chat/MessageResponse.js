@@ -22,10 +22,10 @@ const MessageResponse = ({messageId}) => {
 
 
   return (
-    <View style={{width:'100%', flexDirection:'row', justifyContent:'flex-start', alignItems:'center', paddingHorizontal:18, paddingVertical:6, gap:12}}>
+    <View style={{width:'100%', flexDirection:'row', justifyContent:'flex-start', alignItems:'center', paddingHorizontal:18, paddingVertical:6, gap:8}}>
         {
             responseButtons.map((item, index)=> (
-                <TouchableOpacity onPress={()=> mutateMessageResponse({currentResponse: item.id, pastResponse})} key={index} style={{ padding:6, backgroundColor: pastResponse === item.id ? 'blue' : 'gray', borderRadius:24}}>
+                <TouchableOpacity onPress={()=> mutateMessageResponse({currentResponse: item.id, pastResponse})} key={index} style={{ padding:6, backgroundColor: pastResponse === item.id ? 'rgba(19, 184, 255, 0.49)' : 'transparent', borderRadius:24}}>
                     {item.icon}
                 </TouchableOpacity>
             ))

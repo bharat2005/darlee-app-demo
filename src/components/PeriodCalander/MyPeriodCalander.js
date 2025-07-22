@@ -16,7 +16,7 @@ const MyPeriodCalander = ({periods, setPeriods}) => {
             Toast.show({
                 type: 'custome',
                 text1: 'Cannot select future dates',
-                text2: 'Please select a past date',
+                text2: 'You cannot select a future date for your period.',
                 props: {type: 'error'}
             })
             return

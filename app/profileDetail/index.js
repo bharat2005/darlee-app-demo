@@ -6,6 +6,7 @@ import ScreenHeader from '../../src/components/Shared/ScreenHeader'
 import { TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { router, useFocusEffect } from 'expo-router'
+import Toast from 'react-native-toast-message'
 
 const ProfileDetial = () => {
   const navigationRef = useRef(false)
@@ -23,11 +24,13 @@ const ProfileDetial = () => {
 
 
     const renderItem = ({item}) => (
-      <TouchableOpacity activeOpacity={0.7} onPress={()=>{
+      <TouchableOpacity activeOpacity={0.7} 
+      onPress={()=>{
             if(navigationRef.current) return
             navigationRef.current = true
             router.push({pathname:'/settingsScreen', params:{id:item.id}})
-        }} style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:18, justifyContent:'space-between'}}>
+        }} 
+        style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:18, justifyContent:'space-between'}}>
         <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'black'}}>{item.title}</Text>
         <Ionicons name="chevron-forward" size={22} color="gray" />
     </TouchableOpacity>

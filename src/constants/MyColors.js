@@ -9,5 +9,6 @@ export default {
     PERIOD_COLOR:'rgba(255, 35, 35, 0.54)',
     FOLICULAR_COLOR:'rgb(60, 177, 255)',
     OVULATION_COLOR:'rgba(0, 223, 231, 0.94)',
-    LUTEAL_COLOR:'rgb(160, 160, 160)'
+    LUTEAL_COLOR:'rgb(160, 160, 160)',
+    CHAT_BOX_PINK:'#FFECEE'
 }
