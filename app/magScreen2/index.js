@@ -10,10 +10,22 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import Mag2FlatIndicator from '../../src/components/Mag2Screen/Mag2FlatIndicator'
 import MagScreenBoxView from '../../src/components/Mag2Screen/MagScreenBoxView'
+import MagScreenBottomView from '../../src/components/Mag2Screen/MagScreenBottomView'
 
 
 
 const MagScreen2 = () => {
+  const {cardId, type} = useLocalSearchParams()
+  const {data} = useAllStarred({
+    staleTime:Infinity
+  })
+  const {data:fuckData, error} = useCardHydrate(cardId)
+
+const starredCardIds = useMemo(()=> {
+return data?.map(item => item?.docId)
+},[data])
+
+
   
     
 
@@ -36,7 +48,9 @@ const MagScreen2 = () => {
     <SafeAreaView style={{flex:1, width:'100%', backgroundColor:'white'}}>
       <View style={{flex:1, width:'100%', backgroundColor:MyColors.DARK_GREY, paddingTop:12}}>
 
-<MagScreenBoxView  />
+<MagScreenBoxView cardId={cardId} type={type} starredCardIds={starredCardIds} fuckData={fuckData} />
+
+<MagScreenBottomView cardId={cardId} type={type} isStarred={starredCardIds.includes(cardId)} fuckData={fuckData} />
       
       </View>   
     </SafeAreaView>

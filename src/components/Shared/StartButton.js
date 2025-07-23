@@ -4,7 +4,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useStarred } from '../../hooks/useAllStarred';
 import { useMutateStarred } from '../../hooks/useMutateStarred';
 
-const StartButton = ({cardId, type, isStarred}) => {
+const StartButton = ({cardId, type, isStarred, size}) => {
     const {mutate, error:err} = useMutateStarred(cardId, type)
 
 
@@ -12,7 +12,7 @@ const StartButton = ({cardId, type, isStarred}) => {
 
   return (
     <TouchableOpacity onPress={()=> {mutate({isStarred: isStarred})}}>
-        <AntDesign name= { isStarred ? 'star' : 'staro'} size={24} color={isStarred ? 'orange' : 'gray'} />
+          <AntDesign name= { isStarred ? 'star' : 'staro'} size={size || 24} color={isStarred ? 'orange' : 'gray'} />
     </TouchableOpacity>
   )
 }

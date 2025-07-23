@@ -2,7 +2,7 @@ import { View, Text, TouchableWithoutFeedback, Pressable } from 'react-native'
 import React from 'react'
 import { router } from 'expo-router'
 import MagCardDataView from './MagCardDataView'
-const MagScreenCardView = ({currentIndex, setCurrentIndex, localData}) => {
+const MagScreenCardView = ({currentIndex, setCurrentIndex, cardId, type, starredCardIds, fuckData}) => {
 
     
   return (
@@ -17,7 +17,7 @@ const MagScreenCardView = ({currentIndex, setCurrentIndex, localData}) => {
     }}/>
 
     <Pressable style={{position:'absolute', top:0, right:0, height:'100%', width:'50%', backgroundColor:'transparent', zIndex:1000}} onPress={()=> {
-        if(currentIndex < localData?.length - 1) {
+        if(currentIndex < fuckData?.stepsData?.length - 1) {
             setCurrentIndex(currentIndex + 1)
         } else {
             router.back()
@@ -25,7 +25,7 @@ const MagScreenCardView = ({currentIndex, setCurrentIndex, localData}) => {
     }} />
 
 
-<MagCardDataView localData={localData} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
+<MagCardDataView currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} cardId={cardId} type={type} starredCardIds={starredCardIds} fuckData={fuckData} />
 
 </View>
 
