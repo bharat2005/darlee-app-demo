@@ -9,8 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 
 
-const MagScreenBoxView = ({cardId, type, starredCardIds, fuckData}) => {
-    const [currentIndex, setCurrentIndex] = useState(0)
+const MagScreenBoxView = ({cardId, type, starredCardIds, fuckData, currentIndex, setCurrentIndex}) => {
 
 
 

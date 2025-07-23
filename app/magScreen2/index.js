@@ -16,6 +16,7 @@ import MagScreenBottomView from '../../src/components/Mag2Screen/MagScreenBottom
 
 const MagScreen2 = () => {
   const {cardId, type} = useLocalSearchParams()
+  const [currentIndex, setCurrentIndex] = useState(0)
   const {data} = useAllStarred({
     staleTime:Infinity
   })
@@ -48,9 +49,9 @@ return data?.map(item => item?.docId)
     <SafeAreaView style={{flex:1, width:'100%', backgroundColor:'white'}}>
       <View style={{flex:1, width:'100%', backgroundColor:MyColors.DARK_GREY, paddingTop:12}}>
 
-<MagScreenBoxView cardId={cardId} type={type} starredCardIds={starredCardIds} fuckData={fuckData} />
+<MagScreenBoxView currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} cardId={cardId} type={type} starredCardIds={starredCardIds} fuckData={fuckData} />
 
-<MagScreenBottomView cardId={cardId} type={type} isStarred={starredCardIds.includes(cardId)} fuckData={fuckData} />
+<MagScreenBottomView currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} cardId={cardId} type={type} isStarred={starredCardIds.includes(cardId)} fuckData={fuckData} />
       
       </View>   
     </SafeAreaView>
