@@ -1,7 +1,9 @@
-
+//index.js
 
 const index = () => {
-  return
+  return (
+<></>
+  )
 }
 
 export default index

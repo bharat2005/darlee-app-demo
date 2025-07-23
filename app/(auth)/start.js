@@ -21,19 +21,19 @@ const Start = () => {
 
   return (
     <SafeAreaView style={{flex:1, paddingTop:140, backgroundColor:'white'}}>
-      <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
+      <Image source={require('../../assets/images/download.jpg')}  style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', marginBottom:28}}>
 
-  <Flower height={60} widthP={60} color={MyColors.PRIMARY} />
+  <Flower height={60} widthP={60} color={'white'} />
 
 </View>
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', paddingHorizontal:14, gap:18}}>
-<Text style={{fontFamily:'KaiseiDecol-Regular', fontSize:18, color:'black', textAlign:'center'}}>
+<Text style={{fontFamily:'Outfit-Regular', fontSize:18, color:'black', textAlign:'center'}}>
 Built with love, not just logic
   </Text>
-  <Text style={{fontFamily:'KaiseiDecol-Bold', fontSize:28, color:'black', textAlign:'center'}}>Made Soft for Your Stormy Days </Text>
+  <Text style={{fontFamily:'Outfit-Medium', fontSize:34, color:'black', textAlign:'center', paddingHorizontal:24}}>Made Soft for Your Stormy Days </Text>
 
 </View>
 
@@ -50,7 +50,7 @@ contentStyle={{height:44}}
 theme={{roundness:2}}
 labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'white'}}
 >
-  Start New
+  Start
 </Button>   
 
 <Button mode='text' onPress={()=> {
@@ -63,7 +63,7 @@ contentStyle={{height:44}}
 theme={{roundness:2}}
 labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'black'}}
 >
-  Click if you already have an account
+  Already have an account?
 </Button>   
       </View>
 

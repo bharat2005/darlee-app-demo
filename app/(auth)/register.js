@@ -10,7 +10,7 @@ const Register = () => {
   return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <SafeAreaView style={{flex:1, gap:28}}>
-      <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}}/>
+      <Image source={require('../../assets/images/download.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}}/>
 
       <TransHeader />
       
