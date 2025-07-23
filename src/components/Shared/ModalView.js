@@ -50,7 +50,7 @@ const ModalView = ({setVisible, type}) => {
             }
             {
                 type === 'calander' && (
-                    <></>
+                    <HomeModalView />
                 )
             }
 

@@ -6,6 +6,8 @@ import { eachDayOfInterval, format, parseISO } from 'date-fns'
 import { useAllMarkedDates } from '../../hooks/useAllMarkedDates'
 import CalandarHeaader from '../Shared/CalandarHeaader'
 import { usePeriods } from '../../hooks/usePeriods'
+import MyColors from '../../constants/MyColors'
+import WeekHeader from './WeekHeader'
 
 
 const MyCalendarList = ({handlSheet}) => {
@@ -15,10 +17,10 @@ const MyCalendarList = ({handlSheet}) => {
   const getMarkedDates = () => {
     const markedObj = {}
     const colorTypes = {
-      period: 'red',
-      follicular:'blue',
-      ovulation:'cyan',
-      luteal:'gray'
+      period: MyColors.PERIOD_COLOR,
+      follicular: MyColors.FOLICULAR_COLOR,
+      ovulation:MyColors.OVULATION_COLOR,
+      luteal:MyColors.LUTEAL_COLOR
     }
     periods?.forEach((item, index) => {
       const range = eachDayOfInterval({start: parseISO(item.start), end: parseISO(item.end)}).map(date => format(date, 'yyyy-MM-dd'))
@@ -34,6 +36,8 @@ const MyCalendarList = ({handlSheet}) => {
 
   return (
     <View style={{flex:1, width:'100%'}}>
+
+      <WeekHeader />
 
       <CalendarList
       markedDates={getMarkedDates()}

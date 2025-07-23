@@ -31,6 +31,7 @@ return data?.map(item => item?.docId)
     
 
     useEffect(()=> {
+      if(!fuckData?.stepsData) return
       const unsub = BackHandler.addEventListener('hardwareBackPress', ()=> {
         return true
       })
@@ -38,9 +39,13 @@ return data?.map(item => item?.docId)
         unsub.remove()
       }
 
-    },[])
+    },[fuckData?.stepsData])
 
-
+if(!fuckData?.stepsData) {
+return  (<View style={{flex:1, width:'100%', backgroundColor:MyColors.DARK_GREY, justifyContent:'center', alignItems:'center'}}>
+  <Text style={{fontSize:16, fontFamily:'Outfit-Medium', color:'white'}}>No data found</Text>
+</View>)
+}
 
 
 

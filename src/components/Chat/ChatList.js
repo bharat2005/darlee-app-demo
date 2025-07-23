@@ -4,6 +4,8 @@ import ChatMessageItem from './ChatMessageItem'
 import { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import Animated from 'react-native-reanimated'
 import LottieView from 'lottie-react-native'
+import MyColors from '../../constants/MyColors'
+import { Ionicons } from '@expo/vector-icons'
 
 const ChatList = ({messagesList=[], loading}) => {
   const scrollValue = useSharedValue(0)
@@ -54,8 +56,8 @@ const scrollToBottom = () => {
         />
 
         <Animated.View style={[{position:'absolute', bottom:18, right:18, justifyContent:'center', alignItems:'center'}, animatedStyle]}>
-          <TouchableOpacity onPress={scrollToBottom} style={{  height:54,width:54, justifyContent:'center', alignItems:'center', backgroundColor:'blue', borderRadius:30}}>
-
+          <TouchableOpacity activeOpacity={0.8} onPress={scrollToBottom} style={{  height:48,width:48, justifyContent:'center', alignItems:'center', backgroundColor:MyColors.DARK_BLUE, borderRadius:30}}>
+            <Ionicons name="arrow-down" size={22} color="white" />
           </TouchableOpacity>
         </Animated.View>
 
