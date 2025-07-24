@@ -1,6 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Images  from '../../constants/Images'
+import MyColors from '../../constants/MyColors'
 
 const change = {
     'normal': 'normal',
@@ -45,7 +46,7 @@ const IconsPreview = ({array}) => {
   if(array.length === 0) {
     return (
       <View style={{width:'100%', flexDirection:'row', gap:4, justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
-        <Text>No predictions</Text>
+        <Text style={{fontSize:13, fontFamily:'Outfit-Medium', color:MyColors.DARK_BLUE}} >No records to predict!</Text>
       </View>
     )
   }
