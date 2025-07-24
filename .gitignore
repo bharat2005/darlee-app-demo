@@ -39,6 +39,11 @@ yarn-error.*
 
 app-example
 
-android
-ios
+# Firebase config
+android/app/google-services.json
+
+# Build folders
+android/app/build/
+android/build/
+
 
