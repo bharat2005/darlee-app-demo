@@ -36,7 +36,7 @@ const Read = () => {
 
 <Image source={require('../../assets/images/people.png')} style={{width:220, height:220}} />
 <Text style={{fontFamily:'Outfit-Regular', fontSize:16, color:'black', textAlign:'center'}}>
-    Once you confirmed, you can proceed to the next step
+    Once you confirmed, you can proceed to the next ste
 </Text>
 
 </View>
