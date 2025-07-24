@@ -6,6 +6,7 @@ import { Button } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Flower from '../../assets/svgs/Flower'
 import MyColors from '../../src/constants/MyColors'
+import MyVideoView from '../../src/components/Shared/MyVideoView'
 
 
 
@@ -20,8 +21,8 @@ const Start = () => {
 
 
   return (
-    <SafeAreaView style={{flex:1, paddingTop:140, backgroundColor:'white'}}>
-      <Image source={require('../../assets/images/download.jpg')}  style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
+    <SafeAreaView style={{flex:1, paddingTop:120, backgroundColor:'white'}}>
+      <MyVideoView />
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', marginBottom:28}}>
 
@@ -38,9 +39,10 @@ Built with love, not just logic
 </View>
 
 
-<View style={{width:'100%', marginTop:190, paddingHorizontal:60, gap:16}}>
+<View style={{width:'100%', marginTop:220, paddingHorizontal:60, gap:16}}>
 
-<Button mode='contained' onPress={()=> {
+<Button mode='contained' 
+onPress={()=> {
   if(navigationRef.current) return
   navigationRef.current = true
   router.push('/read')
@@ -48,9 +50,9 @@ Built with love, not just logic
 style={{backgroundColor:MyColors.DARK_GREY, height:44}}
 contentStyle={{height:44}}
 theme={{roundness:2}}
-labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'white'}}
+labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'white',}}
 >
-  Start
+Start New
 </Button>   
 
 <Button mode='text' onPress={()=> {
@@ -58,12 +60,12 @@ labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'white'}}
   navigationRef.current = true
   router.push('/login')
 }}
-style={{backgroundColor:'transparent', height:44}}
+style={{ height:44, borderWidth:0.5, borderColor:'black', backgroundColor:'white'}}
 contentStyle={{height:44}}
 theme={{roundness:2}}
-labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'black'}}
+labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:'black',}}
 >
-  Already have an account?
+Already have an account?
 </Button>   
       </View>
 

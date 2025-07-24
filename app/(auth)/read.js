@@ -7,6 +7,7 @@ import { agreementStore } from '../../src/stores/aggrementStore'
 import { Image } from 'expo-image'
 import MyColors from '../../src/constants/MyColors'
 import { Entypo } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient'
 
 
 
@@ -28,12 +29,12 @@ const Read = () => {
 
 
   return (
-    <SafeAreaView style={{flex:1, paddingTop:240}} >
-        <Image source={require('../../assets/images/download.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
+    <SafeAreaView style={{flex:1, paddingTop:180}} >
+          <LinearGradient colors={['rgb(255, 120, 120)','rgb(255, 154, 154)','rgb(255, 214, 247)', "rgb(255, 213, 142)",'rgb(252, 204, 120)']} start={{x:0, y:0}} end={{x:1, y:1}} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.8}} />
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', gap:30, paddingHorizontal:20,}}>
 
-<Image source={require('../../assets/images/people.png')} style={{width:200, height:200}} />
+<Image source={require('../../assets/images/people.png')} style={{width:220, height:220}} />
 <Text style={{fontFamily:'Outfit-Regular', fontSize:16, color:'black', textAlign:'center'}}>
     Once you confirmed, you can proceed to the next step
 </Text>
@@ -48,9 +49,9 @@ const Read = () => {
         navigationRef.current = true
         router.push({pathname:'/textScreen', params:{id:'terms'}})
     }}
-    style={{backgroundColor:readTerms ? MyColors.DARK_GREY : 'lightgray'}}
+    style={{backgroundColor:readTerms ? MyColors.DARK_GREY : 'rgb(222, 222, 222)'}}
     theme={{roundness:2}}
-    labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readTerms ? 'white' : 'gray'}}
+    labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readTerms ? 'white' : 'rgb(167, 167, 167)'}}
     >
         Terms of Services
     </Button>   
@@ -66,8 +67,8 @@ const Read = () => {
     router.push({pathname:'/textScreen', params:{id:'privacy'}})
 }}
 theme={{roundness:2}}
-style={{backgroundColor:readPrivacy ? MyColors.DARK_GREY : 'lightgray'}}
-labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy ? 'white' : 'gray'}}
+style={{backgroundColor:readPrivacy ? MyColors.DARK_GREY : 'rgb(222, 222, 222)'}}
+labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy ? 'white' : 'rgb(167, 167, 167)'}}
 >
     Privacy Policy
 </Button>
@@ -87,10 +88,10 @@ labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy ? 'whit
             markPrivacy(false)
         }}
         disabled={!(readPrivacy && readTerms)}
-        style={{backgroundColor: readPrivacy && readTerms ? MyColors.DARK_GREY : 'lightgray', height:44}}
+        style={{backgroundColor: readPrivacy && readTerms ? MyColors.DARK_GREY : 'rgb(222, 222, 222)', height:44}}
         theme={{roundness:2}}
         contentStyle={{height:44}}
-        labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy && readTerms ? 'white' : 'gray'}}
+        labelStyle={{fontFamily:'Outfit-Regular', fontSize:16, color:readPrivacy && readTerms ? 'white' : 'rgb(167, 167, 167)'}}
         >
             Next
         </Button>
