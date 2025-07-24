@@ -1,6 +1,7 @@
 import axios from "axios"
 import { db, auth } from "../firebase/firebaseConfig"
 import { responseCleaner } from "../../utils/responseCleaner"
+import Constants from 'expo-constants'  
 
 import { query, collection, where, getDocs, orderBy, limit, writeBatch, doc } from "@react-native-firebase/firestore"
 import { format } from "date-fns"
@@ -41,7 +42,7 @@ export const geminiPeriodPrediction = async () => {
         `.trim()
 
         const geminiResponse = await axios.post(
-            'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=AIzaSyBq12lR43iJ9lSAhEZxIyyUzo0nOEIfPW4',
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=${Constants.expoConfig?.extra?.GEMINI_API_KEY}`,
             {
                 contents: [
                     {

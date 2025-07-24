@@ -3,8 +3,10 @@ import { auth, db } from "../firebase/firebaseConfig"
 import { format } from "date-fns"
 import axios from "axios"
 import { responseCleaner } from "../../utils/responseCleaner"
+import Constants from 'expo-constants'  
 
 export const geminiMoodPrediciton = async (weekKey) => {
+
     try{
         const q = query(collection(db, 'users', auth.currentUser.uid, 'dayLogs'), orderBy('date', 'desc'), limit(7))
         const res = await getDocs(q)
@@ -45,7 +47,7 @@ Only choose from these categories:
 
 
         const geminiResponnse = await axios.post(
-            'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=AIzaSyBq12lR43iJ9lSAhEZxIyyUzo0nOEIfPW4',
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=${Constants.expoConfig?.extra?.GEMINI_API_KEY}`,
             {
                 contents: [
                     {

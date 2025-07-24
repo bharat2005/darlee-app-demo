@@ -1,4 +1,8 @@
-{
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+export default {
   "expo": {
     "name": "darlee",
     "slug": "darlee",
@@ -41,6 +45,7 @@
       "typedRoutes": true
     },
     "extra": {
+      "GEMINI_API_KEY": process.env.GEMINI_API_KEY,
       "router": {},
       "eas": {
         "projectId": "105881c8-bf3d-4c8c-a65f-27868f4f5317"

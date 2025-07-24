@@ -1,6 +1,7 @@
 import { addDoc, collection, doc, getDocs, limit, orderBy, query, serverTimestamp } from "@react-native-firebase/firestore"
 import { auth, db } from "../firebase/firebaseConfig"
 import axios, {} from 'axios'
+import Constants from 'expo-constants'
 
 export const geminiMessageSend = async(message) => {
     try{
@@ -28,7 +29,7 @@ export const geminiMessageSend = async(message) => {
 
 
         const geminiRes = await axios.post(
-            'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=AIzaSyBq12lR43iJ9lSAhEZxIyyUzo0nOEIfPW4',
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=${Constants.expoConfig?.extra?.GEMINI_API_KEY}`,
             {
                 contents: listToSendGemini,
                 systemInstruction:{
