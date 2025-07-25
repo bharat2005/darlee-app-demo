@@ -38,7 +38,7 @@ const MySectionList = ({user}) => {
                     label: 'UserId',
                     icon:<AntDesign name="idcard" size={22} color="gray" />,
                     info:true,
-                    text:user?.uid?.slice(0,17)
+                    text:user?.uid
                 },
     
             ]

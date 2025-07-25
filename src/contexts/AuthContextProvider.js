@@ -20,7 +20,9 @@ const AuthContextProvider = ({children}) => {
 
   useEffect(()=> {
 
-    router.replace('/start')
+   setTimeout(()=> {
+    router.replace('/home')
+   }, 1000)
     // const unsub = onAuthStateChanged(auth, async(u)=> {
     //   setUser(u)
     //   if(u){

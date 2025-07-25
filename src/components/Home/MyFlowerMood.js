@@ -8,7 +8,7 @@ import MyColors from '../../constants/MyColors'
 
 
 
-const MyFlowerMood = ({handleSheet, seletedDate, weekDays}) => {
+const MyFlowerMood = ({handleSheet,weekDays, seletedDate}) => {
   
    const {data:records} = useRecords(weekDays)
 
