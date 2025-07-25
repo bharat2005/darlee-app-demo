@@ -8,11 +8,11 @@ export const useMutateMessageResponse = (messageId) =>{
 
      return useMutation({
         mutationFn: async({currentResponse, pastResponse}) => {
-            const docRef = doc(db, 'users', auth.currentUser.uid, 'messages', messageId)
-            await updateDoc(docRef, {response: currentResponse === pastResponse ? null : currentResponse})
+            // const docRef = doc(db, 'users', auth.currentUser.uid, 'messages', messageId)
+            // await updateDoc(docRef, {response: currentResponse === pastResponse ? null : currentResponse})
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: ['message-response', messageId]})
+           // queryClient.invalidateQueries({queryKey: ['message-response', messageId]})
         },
         onMutate:async({currentResponse, pastResponse})=>{
             await queryClient.cancelQueries({queryKey: ['message-response', messageId]})
@@ -23,7 +23,7 @@ export const useMutateMessageResponse = (messageId) =>{
             return {previousData}
         },
         onError: (error, variables, context) => {
-            queryClient.setQueryData(['message-response', messageId], context.previousData) 
+          //  queryClient.setQueryData(['message-response', messageId], context.previousData) 
         }
     })
 

@@ -27,7 +27,7 @@ const ChatMessageItem = ({item}) => {
         </View>
 
         <View style={{paddingHorizontal:8, paddingVertical:5}}>
-          <Text style={{marginTop:'auto', fontSize:12, fontFamily:'Outfit-Regular', color:item?.role === 'user' ? 'black' : 'black'}}>{item?.createdAt ? format(item?.createdAt.toDate(), 'hh:mm'): null}</Text>
+          <Text style={{marginTop:'auto', fontSize:12, fontFamily:'Outfit-Regular', color:item?.role === 'user' ? 'black' : 'black'}}>{item?.createdAt ? format(item?.createdAt, 'hh:mm'): null}</Text>
         </View>
         
     </View>
