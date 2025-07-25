@@ -8,8 +8,8 @@ import { geminiPeriodPrediction } from '../../services/gemini/geminiPeriodPredic
 import { useQueryClient } from '@tanstack/react-query'
 import MyColors from '../../constants/MyColors'
 
-const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
-    const [isLoading, setIsLoading] = useState(false)
+const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods,setIsLoading}) => {
+   
     const queryClient = useQueryClient()
 
     const handleAddPeriod = () => {
@@ -43,10 +43,7 @@ const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
         </Button>
 
 
-        <Modal visible={isLoading} backdropColor={1} animationType='none'>
-            
-            <ActivityIndicator size='large' color={MyColors.DARK_BLUE} style={{marginVertical:'auto', marginHorizontal:'auto'}} />
-        </Modal>
+  
     </View>
   )
 }
