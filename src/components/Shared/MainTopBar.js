@@ -56,11 +56,9 @@ const MainTopBar = ({title="for my baby girl", type='home', bgColor}) => {
 
 
                 <Modal onRequestClose={()=> setVisible(false)} visible={visible} backdropColor={1} animationType='fade'>
-                    <TouchableWithoutFeedback onPress={()=> setVisible(false)}>
-                        <View style={{flex:1}}>
+             
                             <ModalView setVisible={setVisible} type={type} />
-                        </View>
-                    </TouchableWithoutFeedback>
+               
 
                 </Modal>
       
