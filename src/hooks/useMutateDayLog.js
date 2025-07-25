@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { doc, setDoc, Timestamp } from "@react-native-firebase/firestore"
+
 import { auth, db } from "../services/firebase/firebaseConfig"
 import { getDay, parseISO } from "date-fns"
 

@@ -35,7 +35,7 @@ export default function RootLayout() {
             <Stack.Screen name="index" />
             <Stack.Screen name="(auth)" />
             <Stack.Screen name="(main)" />
-             <Stack.Screen name="(profileBuild)" />
+             <Stack.Screen name="(profilebuild)" />
               <Stack.Screen name="magScreen" />
               <Stack.Screen name="profileScreen" />
               <Stack.Screen name="profileDetail" />

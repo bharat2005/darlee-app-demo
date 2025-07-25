@@ -1,10 +1,6 @@
 import { View, Text, Alert } from 'react-native'
-import React, { createContext, Profiler, useCallback, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { router } from 'expo-router'
-import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signOut } from '@react-native-firebase/auth'
-import { auth, db } from '../services/firebase/firebaseConfig'
-import { GoogleSignin } from '@react-native-google-signin/google-signin'
-import { deleteDoc, doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc } from '@react-native-firebase/firestore'
 import { useQueryClient } from '@tanstack/react-query'
 import * as SplashScreen from 'expo-splash-screen'
 
@@ -106,7 +102,7 @@ const AuthContextProvider = ({children}) => {
       //   email: res?.user?.email,
       //   hasCompletedOnboarding: false
       // })
-      router.replace('/(profileBuild)')
+      router.replace('/(profilebuild)')
 
     } catch(err){
       console.log("Error from emailRegister",err.message)

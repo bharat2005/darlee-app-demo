@@ -1,4 +1,4 @@
-import { collection, getDocs, limit, orderBy, query, startAfter, where } from '@react-native-firebase/firestore'
+
 import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query'
 import { db } from '../services/firebase/firebaseConfig'
 

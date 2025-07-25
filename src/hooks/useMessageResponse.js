@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query"
-import { getDoc, doc } from "@react-native-firebase/firestore"
 import { auth, db } from "../services/firebase/firebaseConfig"
 
 export const useMessageResponse = (messageId) => {

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { doc, getDoc } from '@react-native-firebase/firestore'
+
 import { db } from '../services/firebase/firebaseConfig'
 
 const data = {

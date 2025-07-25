@@ -1,4 +1,4 @@
-import { doc, getDoc } from "@react-native-firebase/firestore"
+
 import { useQuery } from "@tanstack/react-query"
 import { auth, db } from "../services/firebase/firebaseConfig"
 

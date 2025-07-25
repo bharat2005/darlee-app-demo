@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { db, auth } from '../services/firebase/firebaseConfig'
-import { writeBatch, getDocs, collection, doc, Timestamp } from "@react-native-firebase/firestore"
 import { parseISO } from "date-fns"
 
 export const useMutatePeriod = () =>{

@@ -6,7 +6,6 @@ import { useDetailsChange } from '../../hooks/useDetailsChange'
 import { format } from 'date-fns'
 import { Entypo } from '@expo/vector-icons'
 import DatePicker from 'react-native-date-picker'
-import { Timestamp } from '@react-native-firebase/firestore'
 import Toast from 'react-native-toast-message'
 import { router } from 'expo-router'
 import MyColors from '../../constants/MyColors'
@@ -20,7 +19,7 @@ const DateSettingComp = ({}) => {
 
   const handleSave = async() => {
     setIsLoading(true)
-    await updateDetails({id: 'dob', data: Timestamp.fromDate(dob)},{
+    await updateDetails({id: 'dob', data: {}},{
       onSuccess: () => {
         Toast.show({
           type:'custome',
