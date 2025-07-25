@@ -1,4 +1,4 @@
-import { View, Text, Modal } from 'react-native'
+import { View, Text, Modal, TouchableWithoutFeedback } from 'react-native'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MainTopBar from '../../src/components/Shared/MainTopBar'
@@ -8,9 +8,9 @@ import { usePeriods } from '../../src/hooks/usePeriods'
 import { useMutatePeriod } from '../../src/hooks/useMutatePeriod'
 import Toast from 'react-native-toast-message'
 import { router, useFocusEffect } from 'expo-router'
+import ModalView from '../../src/components/Shared/ModalView'
 
 const PeriodCalanderScreen = () => {
-  const [isLoading, setIsLoading] = useState(false)
   const { data, error} = usePeriods()
   const [periods, setPeriods] = useState(data || [])
   const {mutate: mutatePeriods, error:errorMutate} = useMutatePeriod()
@@ -33,15 +33,10 @@ const PeriodCalanderScreen = () => {
 
      <MyPeriodCalander periods={periods} setPeriods={setPeriods}/>
 
-     <MyPeriodCalanderButton  periods={periods} setPeriods={setPeriods} mutatePeriods={mutatePeriods} setIsLoading={setIsLoading}/>
+     <MyPeriodCalanderButton  periods={periods} setPeriods={setPeriods} mutatePeriods={mutatePeriods} />
 
      
-     <Modal visible={isLoading} backdropColor={1} animationType='fade'>
-            <View style={{marginVertical:'auto', alignSelf:'center', width:320, height:320, backgroundColor:'white', borderRadius:12, padding:20}}>
-             
-            </View>
-            
-        </Modal>
+
     </SafeAreaView>
   )
 }
