@@ -15,7 +15,7 @@ const TPScreen = () => {
       return (
         <View style={{width:'100%', paddingHorizontal :20, paddingVertical:12, backgroundColor:'white'}}>
           <View style={{marginVertical:12}}>
-          <Text style={{fontSize:22,  fontFamily:'KaiseiDecol-Bold', color:'rgb(34, 34, 34)'}}>{item.title}</Text>
+          <Text style={{fontSize:22,  fontFamily:'Outfit-Medium', color:'rgb(34, 34, 34)'}}>{item.title}</Text>
           </View>
         
           <Text style={{fontSize:16, fontWeight:'400', lineHeight:34, fontFamily:'Outfit-Light', color:'rgb(87, 87, 87)'}}>{item.text}</Text>

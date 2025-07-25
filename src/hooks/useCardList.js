@@ -2,7 +2,8 @@ import { collection, getDocs, limit, orderBy, query, startAfter, where } from '@
 import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query'
 import { db } from '../services/firebase/firebaseConfig'
 
-const data = [{"createdAt": 9, "id": "sleep", "title": "When you can't sleep", "type": "selfCare"}]
+const data1 = [{"createdAt": 9, "id": "sleep", "title": "When you can't sleep", "type": "selfCare"}]
+const data2 = [{"createdAt": 1, "id": "femaleHormone", "title": "About Female Hormones", "type": "hormoneGuide"}]
 
 export const useCardList = (type) => {
     return useQuery({
@@ -16,7 +17,13 @@ export const useCardList = (type) => {
             // const res = await getDocs(q)
             // const lastDocRef = res.docs[res.docs?.length - 1]
 
-            return data
+            if(type === 'selfCare'){
+                return data1
+            } else {
+                return data2
+            }
+
+            return []
 
 
         },

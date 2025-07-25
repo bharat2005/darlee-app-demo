@@ -26,10 +26,10 @@ const CardList = ({listData, type, starredCardIds}) => {
         horizontal
         style={{paddingHorizontal:12}}
         showsHorizontalScrollIndicator={false}
-        onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
-        onEndReachedThreshold={0}
-        ListFooterComponent={isFetchingNextPage && <View  
-          style={{height:160, width:160, paddingHorizontal:4}}><View  style={{height:'100%', width:'100%', backgroundColor:'lightgray', borderRadius:8}} /></View>}
+        //onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
+        //onEndReachedThreshold={0}
+        //ListFooterComponent={isFetchingNextPage && <View  
+        //  style={{height:160, width:160, paddingHorizontal:4}}><View  style={{height:'100%', width:'100%', backgroundColor:'lightgray', borderRadius:8}} /></View>}
         data={cleanedList}
         renderItem={({item, index})=> <Card type={type} cardData={item} isStarred={starredCardIds.includes(item?.docId)} />}
         keyExtractor={(item, index)=> index.toString()}

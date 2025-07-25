@@ -16,13 +16,14 @@ const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
         setIsLoading(true)
         mutatePeriods({periods}, {
             onSuccess: async() => {  
-                await geminiPeriodPrediction()
-                queryClient.invalidateQueries(['periods'])
-                Toast.show({type:'custome', text1:'Periods Added', props: {type: 'success'}})
-                setIsLoading(false)
+                await new Promise(resolve => setTimeout(resolve, 3000))
+                // await geminiPeriodPrediction()
+                // queryClient.invalidateQueries(['periods'])
+                Toast.show({type:'custome', text2:'Periods Predicted Successfully', props: {type: 'success'}})
+                router.back()
             },
             onError: () => {
-                Toast.show({type:'custome', text1:'Error Adding Periods', props: {type: 'error'}})
+                Toast.show({type:'custome', text2:'Error Adding Periods', props: {type: 'error'}})
             }
         })
     }
@@ -43,6 +44,7 @@ const MyPeriodCalanderButton = ({periods, setPeriods, mutatePeriods}) => {
 
 
         <Modal visible={isLoading} backdropColor={1} animationType='none'>
+            
             <ActivityIndicator size='large' color={MyColors.DARK_BLUE} style={{marginVertical:'auto', marginHorizontal:'auto'}} />
         </Modal>
     </View>
