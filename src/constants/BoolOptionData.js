@@ -45,9 +45,10 @@ export default {
                 id:'vaginalDischargeSituation',
                 subOptions: [
                     'Sticky',
-                    'Creampy',
-                    'Thickness',
-                    'Poroporo'
+                    'Creamy',
+                    'Thick',
+                    'Watery',
+                    'Clumpy'
                 ]
             },
                      {

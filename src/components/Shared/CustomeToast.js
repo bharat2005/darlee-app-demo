@@ -5,8 +5,8 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const CustomeToast = ({text1, text2, props}) => {
   return (
-    <View style={{backgroundColor:'white', borderRadius:12, padding:12}}>
-    <View style={{width:'80%', borderRadius:18,alignItems:'center', backgroundColor: props?.type === 'error' ? 'rgba(255, 0, 0, 0.18)' : 'rgba(0, 255, 0, 0.18)',flexDirection:'row', gap:8, paddingHorizontal:18, paddingVertical:16}}>
+    <View style={{backgroundColor:'white', borderRadius:18, width:'80%'}}>
+    <View style={{width:'100%', borderRadius:18,alignItems:'center', backgroundColor: props?.type === 'error' ? 'rgba(255, 0, 0, 0.18)' : 'rgba(0, 255, 0, 0.18)',flexDirection:'row', gap:8, paddingHorizontal:18, paddingVertical:16}}>
    {
     props?.type === 'error' ? (
         <Foundation name="alert" size={24} color="rgb(255, 0, 0)" />
