@@ -8,7 +8,7 @@ import { deleteDoc, doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc }
 import { useQueryClient } from '@tanstack/react-query'
 import * as SplashScreen from 'expo-splash-screen'
 
-// SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync()
 
 const AuthContext = createContext()
 
@@ -21,8 +21,9 @@ const AuthContextProvider = ({children}) => {
   useEffect(()=> {
 
    setTimeout(()=> {
-    router.replace('/home')
-   }, 1000)
+    router.replace('/start')
+    SplashScreen.hideAsync()
+   }, 300)
     // const unsub = onAuthStateChanged(auth, async(u)=> {
     //   setUser(u)
     //   if(u){
