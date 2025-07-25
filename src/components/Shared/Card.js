@@ -35,7 +35,7 @@ const Card = ({cardData, type, isStarred}) => {
             
               {
               cardData?.image && (
-                <Image source={{uri: cardData?.image}} style={{width:'100%', height:100, position:'absolute', left:0, right:0, bottom:0, zIndex:-1}} />
+                <Image source={cardData?.image} style={{width:'100%', height:100, position:'absolute', left:0, right:0, bottom:0, zIndex:-1}} />
               )
             }
 
