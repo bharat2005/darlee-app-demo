@@ -4,16 +4,16 @@ import CardList from './CardList'
 import { useCardList } from '../../../hooks/useCardList'
 
 const SelfCare = ({type, starredCardIds}) => {
-  const {data, error, fetchNextPage, isFetchingNextPage, hasNextPage, refetch} = useCardList(type)
+  const {data : cleandedList} = useCardList(type)
   const [refreshing, setRefreshing] = useState(false)
 
-  const cleandedList = useMemo(()=> {
-    return data?.pages?.flatMap(page => page?.list) || []
-  })
+  // const cleandedList = useMemo(()=> {
+  //   return data?.pages?.flatMap(page => page?.list) || []
+  // })
 
   const handleRefresh = async () => {
     setRefreshing(true)
-    await refetch()
+    await new Promise(resolve => setTimeout(resolve, 1000))
     setRefreshing(false)
   }
 
@@ -27,9 +27,9 @@ const SelfCare = ({type, starredCardIds}) => {
       onRefresh={handleRefresh}
       contentContainerStyle={{gap:24, paddingHorizontal:4, paddingVertical:18}}
       data={cleandedList}
-      ListFooterComponent={isFetchingNextPage && <View style={{ width:'100%', padding:12}} ><ActivityIndicator color={'black'} size={44}  style={{alignSelf:'center'}} /></View>}
-      onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
-      onEndReachedThreshold={0}
+     // ListFooterComponent={isFetchingNextPage && <View style={{ width:'100%', padding:12}} ><ActivityIndicator color={'black'} size={44}  style={{alignSelf:'center'}} /></View>}
+     // onEndReached={(hasNextPage && !isFetchingNextPage) && fetchNextPage}
+     // onEndReachedThreshold={0}
       keyExtractor={(item, index)=> index.toString()}
       showsHorizontalScrollIndicator={false}
       renderItem={({item, index})=> <CardList starredCardIds={starredCardIds} type={type} listData={item} />}

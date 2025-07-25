@@ -23,8 +23,8 @@ const renderScene = ({route}) => {
   switch (route.key){
     case 'selfCare':
       return <SelfCare {...props} />
-    case 'hormoneGuide':
-      return <HormoneGuide {...props} />
+    // case 'hormoneGuide':
+    //   return <HormoneGuide {...props} />
   }
 }
 

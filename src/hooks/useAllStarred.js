@@ -6,8 +6,9 @@ export const useAllStarred = (options={}) =>{
     return useQuery({
         queryKey:['allStarred'],
         queryFn:async()=> {
-            const res = await getDocs(collection(db, 'users', auth?.currentUser?.uid, 'starredCards'))
-            return res?.docs?.map(doc => ({docId: doc.id, ...doc.data()})) || []
+            // const res = await getDocs(collection(db, 'users', auth?.currentUser?.uid, 'starredCards'))
+            // return res?.docs?.map(doc => ({docId: doc.id, ...doc.data()})) || []
+            return []
         },
         ...options
     })

@@ -6,12 +6,12 @@ import { router } from 'expo-router'
 import Card from '../../Shared/Card'
 
 const CardList = ({listData, type, starredCardIds}) => {
-  const {data, error, hasNextPage, isFetchingNextPage, fetchNextPage} = useCards(listData?.id)
+   const {data : cleanedList, error, hasNextPage, isFetchingNextPage, fetchNextPage} = useCards(listData?.id)
     
 
-  const cleanedList = useMemo(()=> {
-    return data?.pages?.flatMap(page => page.list)
-  })
+  // const cleanedList = useMemo(()=> {
+  //   return data?.pages?.flatMap(page => page.list)
+  // })
 
 
 

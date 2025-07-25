@@ -30,12 +30,12 @@ const ChatTextInput = ({setMessagesList, setLoading, loading}) => {
         if(!text.trim()) return
         const t = text
         setText('')
-        setLoading(true)
-        setMessagesList(prev => [ {role:'user', text: t},...prev])
-        const res = await geminiMessageSend(t)
-        if(res?.success){
-          setLoading(false)
-        } 
+        // setLoading(true)
+        setMessagesList(prev => [ {role:'user', text: t, createdAt: new Date()},...prev])
+        // const res = await geminiMessageSend(t)
+        // if(res?.success){
+        //   setLoading(false)
+        // } 
 
 
     }
