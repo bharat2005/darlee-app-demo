@@ -141,7 +141,7 @@ const AuthContextProvider = ({children}) => {
       //   email: res?.user?.email,
       //   hasCompletedOnboarding: false
       // })
-      router.replace('/(profileBuild)')
+      router.replace('/(profilebuild)')
     // await signInWithEmailAndPassword(auth,email, password)
 
     } catch(err){
