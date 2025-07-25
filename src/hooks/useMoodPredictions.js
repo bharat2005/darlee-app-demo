@@ -7,19 +7,19 @@ return useQuery({
     queryKey:['mood-predictions', weekKey],
     queryFn: async () => {
         if(weekKey === '2025-W30'){
-            return {"body": "headache", "condition": "notGood", "heart": "exicted", "message": "diarrhea"}
+            return {"body": "headache", "condition": "fair", "heart": "exicted", "message": "diarrhea"}
         } else if(weekKey === '2025-W31'){
-            return {"body": "stomachAche", "condition": "notGood", "heart": "unstable", "message": "diarrhea"}
+            return {"body": "stomachAche", "condition": "notGood", "heart": "neat", "message": "diarrhea"}
         } else if(weekKey === '2025-W32'){
-            return  {"body": "stomachAche", "condition": "normal", "heart": "yutu", "message": "diarrhea"}
+            return  {"body": "stomachAche", "condition": "normal", "heart": "yutu"}
         } else if(weekKey === '2025-W33'){
-            return {"body": "headache", "condition": "notGood", "heart": "exicted", "message": "diarrhea"}
+            return {"body": "headache", "condition": "perfect", "heart": "anxity"}
         } else if(weekKey === '2025-W34'){
-            return {"body": "headache", "condition": "normal", "heart": "yute", "message": "diarrhea"}
+            return {"body": "headache", "condition": "perfect", "heart": "happy"}
         } else if(weekKey === '2025-W35'){
-            return {"body": "headache", "condition": "notGood", "heart": "unstable", "message": "diarrhea"}
+            return {"body": "headache", "condition": "perfect", "heart": "happy"}
         } else{
-            return {"body": "headache", "condition": "normal", "heart": "unstable", "message": "diarrhea"}
+            return {"body": "headache", "condition": "perfect", "heart": "happy"}
         } 
         // const res = await getDoc(doc(db, 'users', auth.currentUser.uid, 'mood-predictions', weekKey))
         // return res?.exists() ? res?.data() : null

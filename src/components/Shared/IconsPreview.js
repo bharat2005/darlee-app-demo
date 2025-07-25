@@ -37,11 +37,14 @@ const change = {
   'expressDelivery': 'express',
   'swelling': 'swelling',
   'sleepiness': 'sleepiness',
+  'headache': 'headache',
 
 }
 
 
 const IconsPreview = ({array}) => {
+
+  console.log(array)
 
   if(array.length === 0) {
     return (
