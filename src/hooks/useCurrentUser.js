@@ -9,7 +9,7 @@ export const useCurrentUser = () => {
             // const res = await getDoc(doc(db, 'users', auth.currentUser?.uid))
             // return res.data() || {}
             return {
-                name: 'Someone Special',
+                name: 'SomeoneSpecial',
                 email: 'itsforsomeonespecial@gmail.com',
                 profilePic: 'https://via.placeholder.com/150',
                 hasCompletedOnboarding: true,

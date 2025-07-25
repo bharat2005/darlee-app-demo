@@ -13,7 +13,7 @@ import MyColors from '../../constants/MyColors'
 
 const DateSettingComp = ({}) => {
   const {data: userData} = useCurrentUser()
-  const [dob, setDob] = useState(userData?.dob.toDate())
+  const [dob, setDob] = useState(new Date())
   const {mutateAsync: updateDetails} = useDetailsChange()
   const [isLoading, setIsLoading] = useState(false)
   const [showDatePicker, setShowDatePicker] = useState(false)

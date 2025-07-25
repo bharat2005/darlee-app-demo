@@ -26,12 +26,12 @@ const ProfileDetial = () => {
     const renderItem = ({item}) => (
 
       <TouchableOpacity activeOpacity={0.7} 
-      onPress={()=> Toast.show({type:'custome', text2:'Coming  dffh siauid sadfhh sdfhidsf ', props: {type: 'success'}})}
-      // onPress={()=>{
-      //       if(navigationRef.current) return
-      //       navigationRef.current = true
-      //       router.push({pathname:'/settingsScreen', params:{id:item.id}})
-      //   }} 
+     // onPress={()=> Toast.show({type:'custome', text2:'Coming  dffh siauid sadfhh sdfhidsf ', props: {type: 'success'}})}
+      onPress={()=>{
+            if(navigationRef.current) return
+            navigationRef.current = true
+            router.push({pathname:'/settingsScreen', params:{id:item.id}})
+        }} 
         style={{height:50, backgroundColor:'white', width:'100%', flexDirection:'row', alignItems:'center', paddingHorizontal:18, justifyContent:'space-between'}}>
         <Text style={{fontSize:14, fontFamily:'Outfit-Light', color:'black'}}>{item.title}</Text>
         <Ionicons name="chevron-forward" size={22} color="gray" />

@@ -19,8 +19,8 @@ const NameSettingComp = ({}) => {
     onSuccess: () => {
       Toast.show({
         type:'custome',
-        text1:'Date of Birth Updated',
-        text2:'Your date of birth has been updated successfully',
+        text1:'Name Updated',
+        text2:'Your name has been updated successfully',
         props:{type:'success'}
       })
       router.back()

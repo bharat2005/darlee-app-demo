@@ -7,12 +7,13 @@ export const useDetailsChange = () => {
     const queryClient = useQueryClient()
     return useMutation({
         mutationFn: async ({id, data}) => {
-            await updateDoc(doc(db, 'users', auth.currentUser.uid), {
-                [id]: data
-            })
+            // await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+            //     [id]: data
+            // })
+            
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['currentUser', auth.currentUser?.uid])
+            //queryClient.invalidateQueries(['currentUser', auth.currentUser?.uid])
         }
     })
 }

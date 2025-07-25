@@ -116,6 +116,7 @@ const AuthContextProvider = ({children}) => {
 
   const logout = async() => {
     try{
+      router.replace('/start')
      
       // await signOut(auth)
       // queryClient.clear()
@@ -184,7 +185,7 @@ const AuthContextProvider = ({children}) => {
 
   const deleteAccount = async() => {
     try{
-    
+      router.replace('/start')
       // await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
       // await deleteUser(auth.currentUser)
       queryClient.clear()
