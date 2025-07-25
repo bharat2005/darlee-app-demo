@@ -19,7 +19,7 @@ const Period = ({width, handleBlur, handleChange, handleReset, handleSubmit, tou
 
 
     <View style={{width:'100%', flex:1, gap:18}}>
-      <DateInputCard primaryText={'When was your most recent period'} secondaryText={'Start date'} value={values?.recentPeriodDate} setFeildValue={(v)=> setFieldValue('recentPeriodDate', v)} expandable={true} exPrimaryText={'What if you are currently on your periods?'}  exSecondaryText={"Select the date your period started."} />
+      <DateInputCard primaryText={'When was your most recent period'} dpTitle={'Period Start Date'} secondaryText={'Start date'} value={values?.recentPeriodDate} setFeildValue={(v)=> setFieldValue('recentPeriodDate', v)} expandable={true} exPrimaryText={'What if you are currently on your periods?'}  exSecondaryText={"Select the date your period started."} />
     
       <NumInputCard primaryText={'How many days does your periods usually lasts?'} isSecondaryText={false} value={values?.periodDaysLength} numlength={15} startNum={1} setFeildValue={(v)=> setFieldValue('periodDaysLength', v)} expandable={false} />
 

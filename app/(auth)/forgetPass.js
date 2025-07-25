@@ -56,7 +56,7 @@ const ForgetPassowrd = () => {
                         </HelperText>
 
 
-                        <Button onPress={handleSubmit} loading={isSubmitting} disabled={isSubmitting || !isValid} mode='contained'>
+                        <Button onPress={()=> {}} loading={isSubmitting} disabled={isSubmitting || !isValid} mode='contained'>
                             Send
                         </Button>
 

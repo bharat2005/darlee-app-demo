@@ -8,7 +8,7 @@ import { deleteDoc, doc, getDoc, serverTimestamp, setDoc, Timestamp, updateDoc }
 import { useQueryClient } from '@tanstack/react-query'
 import * as SplashScreen from 'expo-splash-screen'
 
-SplashScreen.preventAutoHideAsync()
+// SplashScreen.preventAutoHideAsync()
 
 const AuthContext = createContext()
 
@@ -20,63 +20,64 @@ const AuthContextProvider = ({children}) => {
 
   useEffect(()=> {
 
-    const unsub = onAuthStateChanged(auth, async(u)=> {
-      setUser(u)
-      if(u){
-        const res = await getDoc(doc(db, 'users', u?.uid))
-        if(res.data()?.hasCompletedOnboarding === true){
-          router.replace('/home')
-        } else{
-          router.replace('/(profileBuild)')
-        }
-      } else{
-        router.replace('/start')
-      } 
-        requestAnimationFrame(() => {
-          SplashScreen.hideAsync();
-        });
-    })
+    router.replace('/start')
+    // const unsub = onAuthStateChanged(auth, async(u)=> {
+    //   setUser(u)
+    //   if(u){
+    //     const res = await getDoc(doc(db, 'users', u?.uid))
+    //     if(res.data()?.hasCompletedOnboarding === true){
+    //       router.replace('/home')
+    //     } else{
+    //       router.replace('/(profileBuild)')
+    //     }
+    //   } else{
+    //     router.replace('/start')
+    //   } 
+    //     requestAnimationFrame(() => {
+    //       SplashScreen.hideAsync();
+    //     });
+    // })
 
-    return ()=>{
-      unsub()
-    }
-
-  },[])
-
-
-
-
-    useEffect(()=> {
-
-    GoogleSignin.configure({
-      webClientId:'385011330673-raaukpvrdq57f5vs030jfggu4qt0miia.apps.googleusercontent.com'
-    })
+    // return ()=>{
+    //   unsub()
+    // }
 
   },[])
+
+
+
+
+  //   useEffect(()=> {
+
+  //   GoogleSignin.configure({
+  //     webClientId:'385011330673-raaukpvrdq57f5vs030jfggu4qt0miia.apps.googleusercontent.com'
+  //   })
+
+  // },[])
 
   const googleLogin = async() => {
     try{
-      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog:true})
-      const {data} = await GoogleSignin.signIn()
+      // await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog:true})
+      // const {data} = await GoogleSignin.signIn()
 
-      const cred = await GoogleAuthProvider.credential(data?.idToken)
-      const res = await signInWithCredential(auth, cred)
+      // const cred = await GoogleAuthProvider.credential(data?.idToken)
+      // const res = await signInWithCredential(auth, cred)
 
-      const res2 = await getDoc(doc(db, 'users', res?.user?.uid))
-      if(res2.exists()) {
-        router.replace('/home')
-        return 
-      }
+      // const res2 = await getDoc(doc(db, 'users', res?.user?.uid))
+      // if(res2.exists()) {
+      //   router.replace('/home')
+      //   return 
+      // }
 
 
-      const docRef = doc(db, 'users', res?.user?.uid)
-      await setDoc(docRef, {
-        uid: res?.user?.uid,
-        profilePic: res?.user?.photoURL,
-        createdAt: serverTimestamp(),
-        email: res?.user?.email,
-        hasCompletedOnboarding: false
-      })
+      // const docRef = doc(db, 'users', res?.user?.uid)
+      // await setDoc(docRef, {
+      //   uid: res?.user?.uid,
+      //   profilePic: res?.user?.photoURL,
+      //   createdAt: serverTimestamp(),
+      //   email: res?.user?.email,
+      //   hasCompletedOnboarding: false
+      // })
 
       
 
@@ -88,16 +89,21 @@ const AuthContextProvider = ({children}) => {
 
   const emailRegister = async(email, password) => {
     try{
-      const res = await createUserWithEmailAndPassword(auth, email, password)
+      if(email !== 'itsForSomeoneSpecial@gmail.com' && password !== 'soSpecial'){
+        Alert.alert("Please use the correct email and password", "This email and password is not valid, please register/login with the correct email and password provided")
+        return
+      } 
+      // const res = await createUserWithEmailAndPassword(auth, email, password)
 
-      const docRef = doc(db, 'users', res?.user?.uid)
-      await setDoc(docRef, {
-        uid: res?.user?.uid,
-        profilePic: '',
-        createdAt: serverTimestamp(),
-        email: res?.user?.email,
-        hasCompletedOnboarding: false
-      })
+      // const docRef = doc(db, 'users', res?.user?.uid)
+      // await setDoc(docRef, {
+      //   uid: res?.user?.uid,
+      //   profilePic: '',
+      //   createdAt: serverTimestamp(),
+      //   email: res?.user?.email,
+      //   hasCompletedOnboarding: false
+      // })
+      router.replace('/(profileBuild)')
 
     } catch(err){
       console.log("Error from emailRegister",err.message)
@@ -109,8 +115,8 @@ const AuthContextProvider = ({children}) => {
   const logout = async() => {
     try{
      
-      await signOut(auth)
-      queryClient.clear()
+      // await signOut(auth)
+      // queryClient.clear()
 
     } catch(err){
       console.log("Error from logout function", err.message)
@@ -119,9 +125,24 @@ const AuthContextProvider = ({children}) => {
   }
 
   const emailLogin = async(email, password) =>{
-    try{
+    try{  
 
-    await signInWithEmailAndPassword(auth,email, password)
+      if(email !== 'itsForSomeoneSpecial@gmail.com' && password !== 'soSpecial'){
+        Alert.alert("Please use the correct email and password", "This email and password is not valid, please register/login with the correct email and password provided")  
+        return
+      } 
+      // const res = await createUserWithEmailAndPassword(auth, email, password)
+
+      // const docRef = doc(db, 'users', res?.user?.uid)
+      // await setDoc(docRef, {
+      //   uid: res?.user?.uid,
+      //   profilePic: '',
+      //   createdAt: serverTimestamp(),
+      //   email: res?.user?.email,
+      //   hasCompletedOnboarding: false
+      // })
+      router.replace('/(profileBuild)')
+    // await signInWithEmailAndPassword(auth,email, password)
 
     } catch(err){
       console.log('Error from eamilLogin funtion', err.message)
@@ -132,8 +153,8 @@ const AuthContextProvider = ({children}) => {
 
   const forgetPass = async(email) => {
     try{
-      await sendPasswordResetEmail(auth, email)
-      return {success:true, error: ''}
+      // await sendPasswordResetEmail(auth, email)
+      // return {success:true, error: ''}
 
     } catch(err){
       console.log("Error from forgetPasss funtion", err.message)
@@ -145,12 +166,12 @@ const AuthContextProvider = ({children}) => {
   const profileBuild = async(values) => {
     try{
 
-      await  setDoc(doc(db, 'users', auth.currentUser?.uid), {
-        ...values,
-        dob:Timestamp.fromDate(values?.dob),
-        recentPeriodDate: Timestamp.fromDate(values?.recentPeriodDate),
-        hasCompletedOnboarding:true
-      }, {merge:true})
+      // await  setDoc(doc(db, 'users', auth.currentUser?.uid), {
+      //   ...values,
+      //   dob:Timestamp.fromDate(values?.dob),
+      //   recentPeriodDate: Timestamp.fromDate(values?.recentPeriodDate),
+      //   hasCompletedOnboarding:true
+      // }, {merge:true})
 
       router.replace('/home')
       
@@ -162,8 +183,8 @@ const AuthContextProvider = ({children}) => {
   const deleteAccount = async() => {
     try{
     
-      await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
-      await deleteUser(auth.currentUser)
+      // await deleteDoc(doc(db, 'users', auth.currentUser?.uid))
+      // await deleteUser(auth.currentUser)
       queryClient.clear()
     } catch(err){
       console.log("Error from deleteAccount function", err.message)

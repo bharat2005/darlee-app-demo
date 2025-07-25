@@ -30,7 +30,7 @@ const Read = () => {
 
   return (
     <SafeAreaView style={{flex:1, paddingTop:180}} >
-          <LinearGradient colors={['rgb(255, 120, 120)','rgb(255, 154, 154)','rgb(255, 214, 247)', "rgb(255, 213, 142)",'rgb(252, 204, 120)']} start={{x:0, y:0}} end={{x:1, y:1}} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.8}} />
+                <Image source={require('../../assets/images/onboardBack.jpg')} style={{position:'absolute', top:0, left:0, right:0, bottom:0, opacity:0.6}} />
 
 <View style={{width:'100%', justifyContent:'center', alignItems:'center', gap:30, paddingHorizontal:20,}}>
 

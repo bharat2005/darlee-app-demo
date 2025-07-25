@@ -11,7 +11,7 @@ const GoogleAuthComp = () => {
   return (
     <View style={{width:'100%', paddingHorizontal:70, height:50}}>
         
-        <TouchableOpacity  activeOpacity={0.8} onPress={googleLogin} style={{width:'100%', height:'100%', borderRadius:32, backgroundColor:'white', justifyContent:'center', alignItems:'center', flexDirection:'row', gap:12, elevation:4}}>
+        <TouchableOpacity  activeOpacity={0.8} onPress={()=> {}} style={{width:'100%', height:'100%', borderRadius:32, backgroundColor:'white', justifyContent:'center', alignItems:'center', flexDirection:'row', gap:12, elevation:4}}>
            <View style={{backgroundColor:'white', padding:8, borderRadius:'50%', position:'absolute', left:8}}>
            <Google height={24} width={24} fill={MyColors.DARK_GREY} />
            </View>

@@ -5,7 +5,7 @@ import DatePicker, {} from 'react-native-date-picker'
 import Feather from '@expo/vector-icons/Feather';
 import MyColors from '../../constants/MyColors'
 
-const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setFeildValue, exPrimaryText, exSecondaryText, expandable}) => {
+const DateInputCard = ({primaryText, isSecondaryText, secondaryText,dpTitle, value, setFeildValue, exPrimaryText, exSecondaryText, expandable}) => {
   const [open, setOpen] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
   return (
@@ -17,7 +17,7 @@ const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setF
           <Text style={{fontSize:14, color:'red', fontFamily:'Outfit-Light'}}>Required*</Text>
         </Text>
 
-        {isSecondaryText && (
+        {secondaryText && (
             <Text style={{fontSize:14, fontWeight:'400', color:'gray'}}>{secondaryText}</Text>
         )}
 
@@ -49,7 +49,7 @@ const DateInputCard = ({primaryText, isSecondaryText, secondaryText, value, setF
 
       <DatePicker
         modal
-        title={'Date of Birth'} 
+        title={dpTitle || 'Date of Birth'} 
         open={open}
         mode='date'
         date={value}
