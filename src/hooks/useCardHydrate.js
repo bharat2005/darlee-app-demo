@@ -1,26 +1,128 @@
-import { useQuery } from "@tanstack/react-query"
-import { db } from "../services/firebase/firebaseConfig"
-import { doc, getDoc } from "@react-native-firebase/firestore"
+import { useQuery } from "@tanstack/react-query";
+import { db } from "../services/firebase/firebaseConfig";
+import { doc, getDoc } from "@react-native-firebase/firestore";
 
-const data1 =   {"description": "Explore how estrogen and cortisol changes might influence tightness in the neck and shoulder area.", "docId": "OLIxJpkqPWzdMOhtF90o", "stepsData": [{"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FScreenshot_2025-07-23-02-51-24-88.png?alt=media&token=be048fae-1119-4b43-890f-8ae02d8d393e", "primaryText": "Increase blood flow to your brain, and wake you up", "time": 5}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FScreenshot_2025-07-23-02-51-47-64.png?alt=media&token=bd5da453-7e63-4495-a395-bb19d8cb947a", "primaryText": "Delivers oxygen to your brain and improves concentration", "secondaryText": "When blood flow to the brain is poor, the supply of oxygen dicreases, and the brain decideds that it needs to rest. As a result, you may not be able to concentrate or feel sleepy during the day. By relaxing the area just below the \"mastoid process\" behind your ears, you can increase blood flow to the brain."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FScreenshot_2025-07-23-02-52-04-52.png?alt=media&token=24a8cdfb-453c-4aaa-a703-6ea0773b3663", "primaryText": "Rest your elbows on the desk", "secondaryText": "Sit on a chair, rest your right elbow on the desk, and bring your right hand next to your left ear.", "step": 1}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FScreenshot_2025-07-23-02-52-25-74.png?alt=media&token=d9ba7cf1-29b7-4197-a36a-dc848c86b893", "primaryText": "Press below the mastoid process", "secondaryText": "Press the area jsut below your ear (mastoid process) with your index and middle fingers, and tilt your head to the side, resting the weight of your head on your fingers,", "step": 2}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FIMG_20250723_025326.png?alt=media&token=a1e88d1c-23fb-4b2e-986b-a836467a4c2e", "primaryText": "Take a deep breath", "secondaryText": "Take three deep breaths in this position, then repeat on the left side. If you are feeling sleepy and unable to concentrate, try doing this about once every 30 minutes.", "step": 3}]}
-const data2 =  {"description": "Build a small collection of sensory items—like textures, scents, or sounds—to help soothe emotional overload.", "docId": "xpUdCC0j8Akm2JOPltWg", "stepsData": [{"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FScreenshot_2025-07-23-05-02-17-77.png?alt=media&token=2ab43b71-7cd3-49fd-8204-102a6414057b", "primaryText": "The surprising mechanism of female hormone secretion"}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FYour%20paragraph%20text.png?alt=media&token=c668a7b5-bddd-4145-a291-ea4a74c39148", "primaryText": "How female hormones are secreted", "secondaryText": "There are two types of female hormones: estrogen and progesterone. The cerebrum sends commands to the hypothalamus, pitutary gland, and ovaries, which secrete hormones in accordane with the mensrual cycle."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FYour%20paragraph%20text%20(1).png?alt=media&token=0a1b4166-0a7d-4a97-99aa-c6bd9e5d181a", "primaryText": "From the hypothalamus to the pituitary gland", "secondaryText": "The hypothlamus, which checks the amount of hormones in the blood and regulate the autonomic nervous system and endocrine system, secretes gonadrotropin-releasing hormone."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FYour%20paragraph%20text%20(2).png?alt=media&token=2d92bf97-82e2-49e6-b663-0db0aa6b6dc6", "primaryText": "From the pituitary gland to the ovaries", "secondaryText": "The pitutary gland, stimulated by hormones, secretes the gonadotropic hormones follicle-stimulating hormone (FSH) and luteinizing hormone (LH), which send commands to the ovaries."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FYour%20paragraph%20text%20(3).png?alt=media&token=c84633a6-e509-499e-9e7e-7c3e9e90d1b7", "primaryText": "The ovaries secrete female hormones", "secondaryText": "The ovaries, in the response to hormones secreted by the pitutary gland, secrete estrogen and progesterone."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FYour%20paragraph%20text%20(4).png?alt=media&token=742c89a6-1de6-4d8f-9def-54991ee1f27f", "primaryText": "Beware of hormonal imbalance", "secondaryText": "When female hormones are not secreted properly, it can cause problems such as irregular mesturation, and the balance of the autonomic nervous system can be disrupted, resulting in headaches, fatigue, and other symptoms."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FYour%20paragraph%20text%20(5).png?alt=media&token=23e8c5f7-7709-4128-ae40-393a61a2cf0d", "primaryText": "If your periods continues to be irregular or unwell, seek medical help.", "secondaryText": "To find out which organ involved in hormone secretion is not functioning properly, it is necessary to measure hornone levels through a blood test."}, {"boxImage": "https://firebasestorage.googleapis.com/v0/b/darlee-b47c4.firebasestorage.app/o/images%2FScreenshot_2025-07-23-05-28-38-48.png?alt=media&token=7c113626-a8e8-4b84-8637-4523437e7a66", "primaryText": "Thank you for watching", "secondaryText": "If theres somthing you want to see again, you can add it to your favorites by clicking the star at the bottom right."}]}
-
+const data1 = {
+  description:
+    "Explore how estrogen and cortisol changes might influence tightness in the neck and shoulder area.",
+  docId: "OLIxJpkqPWzdMOhtF90o",
+  stepsData: [
+    {
+      boxImage:
+        require('../../assets/images/data1Box1.png'),
+      primaryText: "Increase blood flow to your brain, and wake you up",
+      time: 5,
+    },
+    {
+      boxImage:
+        require('../../assets/images/data1Box2.png'),
+      primaryText: "Delivers oxygen to your brain and improves concentration",
+      secondaryText:
+        'When blood flow to the brain is poor, the supply of oxygen dicreases, and the brain decideds that it needs to rest. As a result, you may not be able to concentrate or feel sleepy during the day. By relaxing the area just below the "mastoid process" behind your ears, you can increase blood flow to the brain.',
+    },
+    {
+      boxImage:
+        require('../../assets/images/data1Box3.png'),
+      primaryText: "Rest your elbows on the desk",
+      secondaryText:
+        "Sit on a chair, rest your right elbow on the desk, and bring your right hand next to your left ear.",
+      step: 1,
+    },
+    {
+      boxImage:
+        require('../../assets/images/data1Box4.png'),
+      primaryText: "Press below the mastoid process",
+      secondaryText:
+        "Press the area jsut below your ear (mastoid process) with your index and middle fingers, and tilt your head to the side, resting the weight of your head on your fingers,",
+      step: 2,
+    },
+    {
+      boxImage:
+        require('../../assets/images/data1Box5.png'),
+      primaryText: "Take a deep breath",
+      secondaryText:
+        "Take three deep breaths in this position, then repeat on the left side. If you are feeling sleepy and unable to concentrate, try doing this about once every 30 minutes.",
+      step: 3,
+    },
+  ],
+};
+const data2 = {
+  description:
+    "Build a small collection of sensory items—like textures, scents, or sounds—to help soothe emotional overload.",
+  docId: "xpUdCC0j8Akm2JOPltWg",
+  stepsData: [
+    {
+      boxImage:
+        require('../../assets/images/data2Box1.png'),
+      primaryText: "The surprising mechanism of female hormone secretion",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box2.png'),
+      primaryText: "How female hormones are secreted",
+      secondaryText:
+        "There are two types of female hormones: estrogen and progesterone. The cerebrum sends commands to the hypothalamus, pitutary gland, and ovaries, which secrete hormones in accordane with the mensrual cycle.",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box3.png'),
+      primaryText: "From the hypothalamus to the pituitary gland",
+      secondaryText:
+        "The hypothlamus, which checks the amount of hormones in the blood and regulate the autonomic nervous system and endocrine system, secretes gonadrotropin-releasing hormone.",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box4.png'),
+      primaryText: "From the pituitary gland to the ovaries",
+      secondaryText:
+        "The pitutary gland, stimulated by hormones, secretes the gonadotropic hormones follicle-stimulating hormone (FSH) and luteinizing hormone (LH), which send commands to the ovaries.",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box5.png'),
+      primaryText: "The ovaries secrete female hormones",
+      secondaryText:
+        "The ovaries, in the response to hormones secreted by the pitutary gland, secrete estrogen and progesterone.",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box6.png'),
+      primaryText: "Beware of hormonal imbalance",
+      secondaryText:
+        "When female hormones are not secreted properly, it can cause problems such as irregular mesturation, and the balance of the autonomic nervous system can be disrupted, resulting in headaches, fatigue, and other symptoms.",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box7.png'),
+      primaryText:
+        "If your periods continues to be irregular or unwell, seek medical help.",
+      secondaryText:
+        "To find out which organ involved in hormone secretion is not functioning properly, it is necessary to measure hornone levels through a blood test.",
+    },
+    {
+      boxImage:
+        require('../../assets/images/data2Box8.png'),
+      primaryText: "Thank you for watching",
+      secondaryText:
+        "If theres somthing you want to see again, you can add it to your favorites by clicking the star at the bottom right.",
+    },
+  ],
+};
 
 export const useCardHydrate = (id) => {
-    return useQuery({
-        queryKey: ['card', id],
-        queryFn:async()=> {
-            // const docRef = doc(db, 'cardsMetaData', id) 
-            // const res = await getDoc(docRef)
+  return useQuery({
+    queryKey: ["card", id],
+    queryFn: async () => {
+      // const docRef = doc(db, 'cardsMetaData', id)
+      // const res = await getDoc(docRef)
 
-            // return res.data() || {}
-            if (id === 'OLIxJpkqPWzdMOhtF90o'){
-                return data1
-            } else {
-                return data2
-            }
-
-        },
-     //   enabled :!!id
-    })
-}
+      // return res.data() || {}
+      if (id === "OLIxJpkqPWzdMOhtF90o") {
+        return data1;
+      } else {
+        return data2;
+      }
+    },
+    //   enabled :!!id
+  });
+};

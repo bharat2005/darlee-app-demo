@@ -51,7 +51,7 @@ const renderItem = ({item})=> {
       
       
       <Text style={{fontSize:14, fontFamily:'Outfit-Medium', color:'rgb(84, 88, 111)'}}>{item?.secondaryText}</Text>
-      <Image source={{uri:item?.boxImage}} style={{width:'100%', height:200, borderRadius:8}} />
+      <Image source={item?.boxImage} style={{width:'100%', height:200, borderRadius:8}} />
     </View>
   )
 }
