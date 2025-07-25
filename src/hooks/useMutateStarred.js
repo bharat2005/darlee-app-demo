@@ -6,15 +6,15 @@ export const useMutateStarred = (id, type) => {
     const queryClient = useQueryClient()
     return useMutation({
         mutationFn:async({isStarred})=> {
-            const docRef = doc(db, 'users', auth?.currentUser?.uid, 'starredCards', id)
-            if(isStarred){
-                await deleteDoc(docRef)
-            } else {
-              await setDoc(docRef, {
-                    createdAt:serverTimestamp(),
-                    type: type
-                })
-            }
+            // const docRef = doc(db, 'users', auth?.currentUser?.uid, 'starredCards', id)
+            // if(isStarred){
+            //     await deleteDoc(docRef)
+            // } else {
+            //   await setDoc(docRef, {
+            //         createdAt:serverTimestamp(),
+            //         type: type
+            //     })
+            // }
         },
         onMutate:async({isStarred})=> {
             await queryClient.cancelQueries(['allStarred'])
@@ -30,11 +30,11 @@ export const useMutateStarred = (id, type) => {
 
         },
         onSuccess: async()=> {
-           await queryClient.invalidateQueries(['allStarred'])
-            queryClient.invalidateQueries(['starredCards', type])
+        //    await queryClient.invalidateQueries(['allStarred'])
+        //     queryClient.invalidateQueries(['starredCards', type])
         },
         onError:(a,b,context)=> {
-            queryClient.setQueryData(['allStarred'], context.prevCAtched)
+            // queryClient.setQueryData(['allStarred'], context.prevCAtched)
         }
     })
 }
