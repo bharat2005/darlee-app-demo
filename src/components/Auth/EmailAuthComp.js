@@ -5,7 +5,7 @@ import {
   Keyboard,
   TouchableOpacity,
 } from "react-native";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Button, HelperText, TextInput } from "react-native-paper";
@@ -15,6 +15,7 @@ import { useRef } from "react";
 import MyColors from "../../constants/MyColors";
 
 const EmailAuthComp = ({ origin }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const navigationRef = useRef(false);
   const { emailRegister, emailLogin } = useAuth();
 
@@ -132,7 +133,8 @@ const EmailAuthComp = ({ origin }) => {
               </Text>
 
               <TextInput
-                secureTextEntry
+                secureTextEntry={!isPasswordVisible}
+                right={<TextInput.Icon icon={isPasswordVisible ? "eye" : "eye-off"} onPress={()=> setIsPasswordVisible(!isPasswordVisible)} />}
                 theme={{colors:{primary:MyColors.PRIMARY}}}
                 style={{backgroundColor:(!!errors.password && touched.password === true) ? ' rgba(255, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'}}
                 placeholder="enter password"
